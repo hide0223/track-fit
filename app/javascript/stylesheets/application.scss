@@ -1,0 +1,19 @@
+@use '~bootstrap/scss/bootstrap';
+
+.test_container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+.body {
+  width: 60%;
+  background-color: yellow;
+}
+.side {
+  width: 20%;
+  background-color: pink;
+}
+.aside{
+  width: 20%;
+  background-color: pink;
+}
