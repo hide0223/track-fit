@@ -1,5 +1,62 @@
-<h1>Track Fit</h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Track Fit</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<h3>トレーニングと食事を記録して、新しい自分を作りだそう</h3>
+    <script src="https://kit.fontawesome.com/9101098a47.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
 
-<h3>さあ、始めよう</h3>
+  <body>
+		<h1>Track Fit</h1>
+
+		<h3>トレーニングと食事を記録して、新しい自分を作りだそう</h3>
+
+		<h3>さあ、始めよう</h3>
+
+		<div class="button_new">
+		  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#sign_upModal" data-whatever="@customer">新規登録</button>
+		</div>
+
+
+		<div class="modal fade" id="sign_upModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+			  <div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">×</span>
+				  </button>
+			  </div>
+				<div class="set_center_outer">
+					<h2 class="page_title_en">アカウントを作成</h2>
+				</div>
+				<%= render 'signup', customer: @customer %>
+		 	  </div>
+		  </div>
+		</div>
+
+		<div class="button_new">
+		  <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#log_inModal" data-whatever="@customer">ログイン</button>
+		</div>
+
+		<div class="modal fade" id="log_inModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+			  <div class="modal-content">
+			  <div class="modal-header">
+				  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+				  <span aria-hidden="true">×</span>
+				  </button>
+			  </div>
+				<div class="set_center_outer">
+					<h2 class="page_title_en">Track Fitにログイン</h2>
+				</div>
+				<%= render 'login', customer: @customer %>
+		 	  </div>
+		  </div>
+		</div>
+	</body>
+</html>
