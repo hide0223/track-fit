@@ -6,6 +6,12 @@ class DeviseCreateCustomers < ActiveRecord::Migration[6.1]
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
+      t.string :introduction, null: false
+      t.integer :age, null: false
+      t.float :weight, null: false
+      t.integer :height, null: false
+      t.boolean :is_active, default: true, null: false
+      
 
       ## Recoverable
       t.string   :reset_password_token
