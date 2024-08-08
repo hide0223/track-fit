@@ -1,0 +1,70 @@
+<%= form_with model: @customer, url: public_update_customer_information_path do |f| %>
+<div class="row mb-1 mt-4">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>ユーザー名</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>メールアドレス</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.email_field :email, value: @customer.email, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>自己紹介</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :introduction, value: @customer.introduction, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>年齢</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :age, value: @customer.age, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>身長</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :height, value: @customer.height, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"><strong>体重</strong></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.text_field :weight, value: @customer.weight, autofocus: true, class: "form-control form-control-sm mr-3" %>
+      </div>
+    </div>
+</div>
+
+<div class="form-group">
+  <%= f.label :image %>
+  <%= f.file_field :profile_image, class: "form-control-file user_image", accept: 'image/*' %>
+</div>
+
+<div class="row mb-1">
+  <label for="colFormLabelSm" class="col-sm-2 col-form-label col-form-label-sm"></label>
+    <div class="col-sm-4">
+      <div class="d-flex align-items-center">
+        <%= f.submit "編集内容を保存", class: 'btn btn-success' %>
+      　<%= link_to "退会する",  public_customer_unsubscribe_path(@customer), class: "btn btn-danger" %>
+      </div>
+    </div>
+</div>
+<% end %>

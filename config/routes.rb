@@ -5,10 +5,23 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  # devise_scope :customers do
+  #   post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
+  # end
+
   namespace :public do
-    root to: 'homes#top'
     get '/about', to: 'homes#about'
+
+    get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
+    get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
+    patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
+    get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
+    patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
+
+    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
   end
+
+
 
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
