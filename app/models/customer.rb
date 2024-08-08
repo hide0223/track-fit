@@ -6,6 +6,8 @@ class Customer < ApplicationRecord
 
   has_one_attached :profile_image
 
+  has_many :records, dependent: :destroy
+
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
 
