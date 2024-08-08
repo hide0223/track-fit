@@ -14,4 +14,13 @@ class Customer < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
+  # GUEST_CUSTOMER_EMAIL = "guest@example.com"
+
+  # def self.guest
+  #   find_or_create_by(email: GUEST_CUSTOMER_EMAIL) do |customer|
+  #     customer.password = SecureRandom.urlsafe_base64
+  #     customer.name = "guestcustomer"
+  #   end
+  # end
+
 end
