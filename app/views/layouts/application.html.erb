@@ -1,16 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>TrackFit</title>
+    <title>Track Fit</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/9101098a47.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <main class="test_container">
+      <div class="side">
+        <ul class = "navbar-nav ml-auto">
+          <li class="nav-item"><%= link_to 'マイページ',public_customer_my_page_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+          <li class="nav-item"><%= link_to 'homes',public_records_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+          <li class="nav-item"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+        </ul>
+      </div>
+      </div>
+      <div class="body">
+        <%= yield %>
+      </div>
+      <div class="aside">
+        <%= render 'public/customers/info', customer: current_customer %>
+      </div>
+    </main>
+
   </body>
 </html>
