@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
     end
   end
   
-   def set_aside
+  def set_aside
     if admin_signed_in?
       @aside = 'admin'
     elsif customer_signed_in?

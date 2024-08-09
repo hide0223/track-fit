@@ -1,4 +1,33 @@
-<%= javascript_pack_tag 'a', 'data-turbolinks-track': 'reload' %>
-<script>
-  
-</script>
+<select id="content_type">
+  <option value="">選択してください</option>
+  <option value="食事">食事</option>
+  <option value="トレーニング">トレーニング</option>
+</select>
+
+<div id="meal_form" style="display: none;">
+  <select id="meal_category">
+    <option value="">選択してください</option>
+    <option value="朝食">朝食</option>
+    <option value="昼食">昼食</option>
+    <option value="夕食">夕食</option>
+    <option value="間食">間食</option>
+  </select>
+  <div id="breakfast_form" style="display: none;">
+    <h1>リンク1</h1>
+  </div>
+  <div id="lunch_form" style="display: none;">
+    <h1>リンク2</h1>
+  </div>
+  <div id="dinner_form" style="display: none;">
+    <h1>リンク3</h1>
+  </div>
+  <div id="snack_form" style="display: none;">
+    <h1>リンク4</h1>
+  </div>
+</div>
+
+<div id="training_form" style="display: none;">
+  <h1>リンク5</h1>
+</div>
+
+<script src="/assets/record.js"></script>
