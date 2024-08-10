@@ -19,6 +19,18 @@ Rails.application.routes.draw do
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
 
     resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
+
+    resources :records
+      resources :meals do
+        scope module: :meals do
+          resources :records
+        end
+      end
+      resources :training do
+        scope module: :training do
+          resources :records
+        end
+      end
   end
 
 
