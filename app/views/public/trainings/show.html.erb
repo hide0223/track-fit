@@ -1,0 +1,53 @@
+<div id="trainings-forms">
+ <div class="form-group">
+    <span class="col-md-1"><%= image_tag @training.customer.get_profile_image, size:'50x50' %></span>
+  </div>
+    <div class="form-group">
+    <span class="col-md-1"><%= @training.customer.name %></span>
+  </div>
+   <div class="form-group">
+    <span class="col-md-4"><%= @training.body %></span>
+  </div>
+  <div class="form-group">
+    <span class="col-md-1"><%= @training.body_parts %></span>
+  </div>
+  <div class="row">
+    <div class="col-md-1">
+      <div class="form-group">
+        <span class="col-md-2"><%= @training.exercise %></span>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <span class="col-md-1"><%= @training.weight %></span>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <div class="form-group">
+        <span class="col-md-1"><%= @training.sets %></span>
+      </div>
+    </div>
+     <div class="col-md-2">
+      <div class="form-group">
+        <span class="col-md-1"><%= @training.reps %></span>
+      </div>
+    </div>
+    <% if @training.customer == current_customer %>
+      <div class="col-md-1">
+        <div class="form-group">
+          <span class="col-md-1"><%= link_to '編集', edit_public_training_path(@training), class: "btn btn-sm btn-success" %></span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <span class="col-md-1"><%= link_to "削除", public_training_path(@training.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <span class="col-md-1"><%= link_to "一覧", public_trainings_path, class: "btn btn-sm btn-primary" %></span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

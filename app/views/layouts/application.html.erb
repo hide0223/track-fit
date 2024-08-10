@@ -17,12 +17,13 @@
         <ul class = "navbar-nav ml-auto">
           <% if admin_signed_in? %>
           <li class="nav-item"><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-          <li class="nav-item"><%= link_to 'カテゴリー',admin_categories_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+
 
 
           <% elsif customer_signed_in? %>
           <li class="nav-item"><%= link_to 'マイページ',public_customer_my_page_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-          <li class="nav-item"><%= link_to 'Homes',public_records_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+          <li class="nav-item"><%= link_to '食事',public_meals_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+          <li class="nav-item"><%= link_to 'トレーニング',public_trainings_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
           <li class="nav-item"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
 
           <% else %>
