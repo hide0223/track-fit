@@ -1,0 +1,129 @@
+<%= render 'layouts/errors', obj: @training %>
+<%= form_with model: @training, url: public_trainings_path, local: true do |f| %>
+  <div id="main-training-forms">
+    <div class="form-group">
+      <%= f.text_area :body, class: 'form-control book_title col-md-4' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :部位 %>
+      <%= f.text_field :body_parts, class: 'form-control book_title col-md-1' %>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :種目 %>
+          <%= f.text_field :exercise, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :重量 %>
+          <%= f.text_field :weight, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :セット %>
+          <%= f.text_field :sets, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :回数 %>
+          <%= f.text_field :reps, class: 'form-control book_body' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="button" id="add-training" class="btn btn-primary">＋</button>
+    <%= f.submit '記録する', class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    var addTrainingButton = document.getElementById("add-training");
+    var trainingFormsContainer = document.getElementById("main-training-forms");
+    var trainingFormHtml = `
+      <div class="main-training-form row">
+            <div class="col-md-4">
+        <div class="form-group">
+          <label for="exercise">種目</label>
+          <input type="text" name="training[exercise][]" class="form-control book_body">
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <label for="weight">重量</label>
+          <input type="text" name="training[weight][]" class="form-control book_body">
+        </div>
+      </div>
+        <div class="col-md-1">
+          <div class="form-group">
+            <label for="sets">セット</label>
+            <input type="text" name="training[sets][]" class="form-control book_body">
+          </div>
+        </div>
+        <div class="col-md-1>
+          <div class="form-group">
+            <label for="reps">回数</label>
+            <input type="text" name="training[reps][]" class="form-control book_body">
+          </div>
+        </div>
+    `;
+
+    addTrainingButton.addEventListener("click", function() {
+      trainingFormsContainer.insertAdjacentHTML("beforeend", trainingFormHtml);
+      addRemoveTrainingButtonListener();
+    });
+
+    function addRemoveTrainingButtonListener() {
+      var removeTrainingButtons = document.getElementsByClassName("remove-training");
+      for (var i = 0; i < removeTrainingButtons.length; i++) {
+        var removeButton = removeTrainingButtons[i];
+        removeButton.addEventListener("click", function() {
+          var trainingForm = this.closest(".training-form");
+          trainingForm.remove();
+        });
+      }
+    }
+  });
+</script>
+
+  <% @trainings.each do |training| %>
+  <div id="meal-forms" onclick="location.href='<%= public_training_path(training) %>';">
+   <div id="meal-forms">
+     <div class="form-group">
+        <span class="col-md-1"><%= image_tag training.customer.get_profile_image, size:'50x50' %></span>
+      </div>
+        <div class="form-group">
+        <span class="col-md-1"><%= training.customer.name %></span>
+      </div>
+       <div class="form-group">
+        <span class="col-md-4"><%= training.body_parts %></span>
+      </div>
+      <div class="form-group">
+        <span class="col-md-1"><%= training.exercise %></span>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+          <div class="form-group">
+            <span class="col-md-2"><%= training.weight %>kg</span>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="col-md-1"><%= training.sets %>セット</span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <span class="col-md-1"><%= training.reps %> 回</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,42 @@
+<%= render 'layouts/errors', obj: @training %>
+<%= form_with model: @training, url: public_training_path, local: true, method: :patch do |f| %>
+  <div id="main-training-forms">
+    <div class="form-group">
+      <%= f.text_area :body, value: @training.body, class: 'form-control book_title col-md-4' %>
+    </div>
+    <div class="form-group">
+      <%= f.label :部位 %>
+      <%= f.text_field :body_parts, value: @training.body_parts, class: 'form-control book_title col-md-1' %>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="form-group">
+          <%= f.label :種目 %>
+          <%= f.text_field :exercise, value: @training.exercise, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :重量 %>
+          <%= f.text_field :weight, value: @training.weight, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :セット %>
+          <%= f.text_field :sets, value: @training.sets, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :回数 %>
+          <%= f.text_field :reps, value: @training.reps, class: 'form-control book_body' %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit '変更する', class: 'btn btn-success' %>
+  </div>
+<% end %>

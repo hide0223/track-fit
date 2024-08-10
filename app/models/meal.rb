@@ -1,6 +1,9 @@
 class Meal < ApplicationRecord
-  has_one :record, as: :content
-  has_many :meal_contents
+  belongs_to :customer
 
+  validates :category, presence: true
+  validates :meal_summary, presence: true
+  validates :eat_meal, presence: true
+  validates :kcal, presence: true
 
 end

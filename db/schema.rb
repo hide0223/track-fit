@@ -77,9 +77,11 @@ ActiveRecord::Schema.define(version: 2024_08_06_113436) do
 
   create_table "meals", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.integer "category", null: false
-    t.integer "meal_summary", null: false
-    t.integer "eat_meal", null: false
+    t.string "title"
+    t.text "body"
+    t.string "category", null: false
+    t.string "meal_summary", null: false
+    t.string "eat_meal", null: false
     t.integer "kcal", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,11 +94,12 @@ ActiveRecord::Schema.define(version: 2024_08_06_113436) do
 
   create_table "trainings", force: :cascade do |t|
     t.integer "customer_id", null: false
+    t.text "body"
     t.string "weight", null: false
     t.string "body_parts", null: false
+    t.string "exercise", null: false
     t.integer "sets", null: false
     t.integer "reps", null: false
-    t.float "calories_burneds", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

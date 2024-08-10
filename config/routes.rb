@@ -18,19 +18,8 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
 
-    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
-
-    resources :records
-      resources :meals do
-        scope module: :meals do
-          resources :records
-        end
-      end
-      resources :training do
-        scope module: :training do
-          resources :records
-        end
-      end
+    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]
   end
 
 
