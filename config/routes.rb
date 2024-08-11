@@ -12,13 +12,12 @@ Rails.application.routes.draw do
   namespace :public do
     get '/about', to: 'homes#about'
 
-    get '/customers/my_page', to: 'customers#show', as: 'customer_my_page'
-    get '/customers/information/edit', to: 'customers#edit', as: 'edit_customer_information'
-    patch '/customers/information', to: 'customers#update', as:  'update_customer_information'
+    resources :customers, only: [:show, :edit, :update]
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
     patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
 
-    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]
   end
 
 
@@ -26,4 +25,9 @@ Rails.application.routes.draw do
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     sessions: "admin/sessions"
   }
+
+  namespace :admin do
+    resources :categories, only: [:index, :create, :edit, :update]
+    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
+ end
 end

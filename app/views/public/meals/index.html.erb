@@ -1,0 +1,134 @@
+<%= render 'layouts/errors', obj: @meal %>
+<%= form_with model: @meal, url: public_meals_path, local: true do |f| %>
+  <%= f.file_field :image %>
+  <div id="main-meal-forms">
+    <div class="form-group">
+      <%= f.label :カテゴリ %>
+      <%= f.text_field :category, class: 'form-control book_title col-md-1' %>
+    </div>
+    <div class="form-group">
+      <%= f.text_area :body, class: 'form-control book_title col-md-4' %>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :食事概要 %>
+          <%= f.text_field :meal_summary, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :食べた物 %>
+          <%= f.text_field :eat_meal, class: 'form-control book_body' %>
+        </div>
+      </div>
+
+       <div class="col-md-2">
+        <div class="form-group">
+          <%= f.label :カロリー %>
+          <div class="input-group">
+            <%= f.text_field :kcal, class: 'form-control book_body' %>
+            <span class="input-group-addon">kcal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="button" id="add-meal" class="btn btn-primary">＋</button>
+    <%= f.submit '記録する', class: 'btn btn-success' %>
+  </div>
+<% end %>
+
+<script>
+//   document.addEventListener("DOMContentLoaded", function() {
+//     var addMealButton = document.getElementById("add-meal");
+//     var mealFormsContainer = document.getElementById("main-meal-forms");
+//     var mealFormHtml = `
+//       <div class="main-meal-form row">
+//         <div class="col-md-1">
+//           <div class="form-group">
+//             <label for="meal_summary">食事概要</label>
+//             <input type="text" name="meal[meal_summary][]" class="form-control book_body">
+//           </div>
+//         </div>
+//         <div class="col-md-4>
+//           <div class="form-group">
+//             <label for="eat_meal">食べた物</label>
+//             <input type="text" name="meal[eat_meal][]" class="form-control book_body">
+//           </div>
+//         </div>
+//         <div class="col-md-1">
+//           <div class="form-group">
+//             <label for="kcal">カロリー</label>
+//             <input type="text" name="meal[kcal][]" class="form-control book_body">kcal
+//           </div>
+//         </div>
+//         <div class="col-md-2">
+//           <button type="button" class="btn btn-danger remove-meal">削除</button>
+//         </div>
+//       </div>
+//     `;
+
+//     addMealButton.addEventListener("click", function() {
+//       mealFormsContainer.insertAdjacentHTML("beforeend", mealFormHtml);
+//       addRemoveMealButtonListener();
+//     });
+
+//     function addRemoveMealButtonListener() {
+//       var removeMealButtons = document.getElementsByClassName("remove-meal");
+//       for (var i = 0; i < removeMealButtons.length; i++) {
+//         var removeButton = removeMealButtons[i];
+//         removeButton.addEventListener("click", function() {
+//           var mealForm = this.closest(".meal-form");
+//           mealForm.remove();
+//         });
+//       }
+//     }
+//   });
+// </script>
+
+  <% @meals.each do |meal| %>
+  <div id="meal-forms-<%= meal.id %>" class="meal-form" onclick="location.href='<%= public_meal_path(meal) %>';">
+   <div id="meal-forms">
+      <% if meal.image.attached? %>
+        <%= image_tag meal.image, size:'200x200' %>
+      <% end %>
+
+     <div class="form-group">
+      <%= link_to public_customer_path(meal.customer) do %>
+        <span class="col-md-1 photo-link" onclick="event.stopPropagation();">
+          <%= image_tag meal.customer.get_profile_image, size:'50x50' %>
+        </span>
+      <% end %>
+      </div>
+        <div class="form-group">
+        <span class="col-md-1"><%= meal.customer.name %></span>
+      </div>
+       <div class="form-group">
+        <span class="col-md-4"><%= meal.body %></span>
+      </div>
+      <div class="form-group">
+        <span class="col-md-1"><%= meal.category %></span>
+      </div>
+      <div class="row">
+        <div class="col-md-1">
+          <div class="form-group">
+            <span class="col-md-2"><%= meal.meal_summary %></span>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <span class="col-md-1"><%= meal.eat_meal %></span>
+          </div>
+        </div>
+        <div class="col-md-2">
+          <div class="form-group">
+            <span class="col-md-1"><%= meal.kcal %> kcal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

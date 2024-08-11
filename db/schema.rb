@@ -52,11 +52,6 @@ ActiveRecord::Schema.define(version: 2024_08_06_113436) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "categories", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string "name", null: false
     t.string "email", default: "", null: false
@@ -80,22 +75,14 @@ ActiveRecord::Schema.define(version: 2024_08_06_113436) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "meal_contents", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "meals", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "record_comments", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "records", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.string "title"
+    t.text "body"
+    t.string "category", null: false
+    t.string "meal_summary", null: false
+    t.string "eat_meal", null: false
+    t.integer "kcal", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -106,6 +93,13 @@ ActiveRecord::Schema.define(version: 2024_08_06_113436) do
   end
 
   create_table "trainings", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.text "body"
+    t.string "weight", null: false
+    t.string "body_parts", null: false
+    t.string "exercise", null: false
+    t.integer "sets", null: false
+    t.integer "reps", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

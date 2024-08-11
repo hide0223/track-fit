@@ -1,0 +1,43 @@
+<%= render 'layouts/errors', obj: @meal %>
+<%= form_with model: @meal, url: public_meal_path, local: true, method: :patch do |f| %>
+  <div id="main-meal-forms">
+    <%= image_tag @meal.image, size:'200x200' %>
+    <%= f.file_field :image, value: @meal.image %>
+    <div class="form-group">
+      <%= f.label :カテゴリ %>
+      <%= f.text_field :category, value: @meal.category, class: 'form-control book_title col-md-1' %>
+    </div>
+    <div class="form-group">
+      <%= f.text_area :body, value: @meal.body, class: 'form-control book_title col-md-4' %>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        <div class="form-group">
+          <%= f.label :食事概要 %>
+          <%= f.text_field :meal_summary, value: @meal.meal_summary, class: 'form-control book_body' %>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <%= f.label :食べた物 %>
+          <%= f.text_field :eat_meal, value: @meal.eat_meal, class: 'form-control book_body' %>
+        </div>
+      </div>
+
+       <div class="col-md-2">
+        <div class="form-group">
+          <%= f.label :カロリー %>
+          <div class="input-group">
+            <%= f.text_field :kcal, value: @meal.kcal, class: 'form-control book_body' %>
+            <span class="input-group-addon">kcal</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit '変更する', class: 'btn btn-success' %>
+  </div>
+<% end %>
+

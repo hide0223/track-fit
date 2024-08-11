@@ -1,2 +1,0 @@
-class MealContent < ApplicationRecord
-end
