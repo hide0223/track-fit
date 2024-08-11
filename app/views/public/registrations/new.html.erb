@@ -1,5 +1,5 @@
 <h2>アカウントを作成</h2>
-
+<%= render "public/shared/error_messages", resource: resource %>
 <%= form_with model: @customer, url: customer_registration_path, local: true do |f| %>
   <div class="set_center_outer">
     <div class="set_center_inner">

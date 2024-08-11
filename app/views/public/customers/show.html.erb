@@ -1,6 +1,9 @@
   <h5><b>アカウント情報</h5>
-    <%= link_to "編集する", public_edit_customer_information_path(@customer), class:"btn btn-success ml-2" %>
+  <% if @customer == current_customer %>
+    <%= link_to "編集する", edit_public_customer_path(@customer), class:"btn btn-success ml-2" %>
+  <% end %>
       <table class="table table-striped-columns">
+        <tr><%= image_tag @customer.get_profile_image, size:'100x100' %></tr>
         <tr>
           <th class="table-light">ユーザー名</th>
           <td>

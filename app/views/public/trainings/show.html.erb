@@ -1,6 +1,9 @@
 <div id="trainings-forms">
  <div class="form-group">
+   <%= link_to public_customer_path(@training.customer) do %>
     <span class="col-md-1"><%= image_tag @training.customer.get_profile_image, size:'50x50' %></span>
+   <% end %>
+   <%= image_tag @training.image, size:'200x200' %>
   </div>
     <div class="form-group">
     <span class="col-md-1"><%= @training.customer.name %></span>

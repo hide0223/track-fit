@@ -34,7 +34,7 @@ class Public::MealsController < ApplicationController
     @meal = Meal.find(params[:id])
   end
 
-   def update
+  def update
      @meal = Meal.find(params[:id])
     if @meal.update(meal_params)
       redirect_to public_meal_path(@meal)
@@ -46,12 +46,12 @@ class Public::MealsController < ApplicationController
     private
 
   def meal_params
-    params.require(:meal).permit(:category, :meal_summary, :eat_meal, :kcal, :body)
+    params.require(:meal).permit(:category, :meal_summary, :eat_meal, :kcal, :body, :image)
   end
 
   def ensure_correct_customer
     @meal = Meal.find(params[:id])
-    unless @meal.customer_id == current_customer
+    unless @meal.customer == current_customer
       redirect_to public_meals_path
     end
   end
