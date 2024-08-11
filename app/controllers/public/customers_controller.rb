@@ -14,7 +14,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
     if@customer.update(customer_params)
       flash[:notice] = "変更内容を登録しました"
-      redirect_to public_customer_my_page_path
+      redirect_to edit_public_customer_path
     else
        @customer = Customer.find(params[:id])
       render :edit
@@ -30,7 +30,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_active: false)
     reset_session
     flash[:notice] = "またのご利用をお待ちしております。"
-    redirect_to public_about_path
+    redirect_to root_path
   end
 
 
