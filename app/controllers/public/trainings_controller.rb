@@ -46,7 +46,7 @@ class Public::TrainingsController < ApplicationController
     private
 
   def training_params
-    params.require(:training).permit(:body_parts, :exercise, :weight, :sets, :reps, :body)
+    params.require(:training).permit(:body_parts, :exercise, :weight, :sets, :reps, :body, :image)
   end
 
   def ensure_correct_customer

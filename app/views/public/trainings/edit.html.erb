@@ -1,6 +1,8 @@
 <%= render 'layouts/errors', obj: @training %>
 <%= form_with model: @training, url: public_training_path, local: true, method: :patch do |f| %>
   <div id="main-training-forms">
+    <%= image_tag @training.image, size:'200x200' %>
+    <%= f.file_field :image, value: @training.image %>
     <div class="form-group">
       <%= f.text_area :body, value: @training.body, class: 'form-control book_title col-md-4' %>
     </div>
