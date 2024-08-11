@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # end
 
   namespace :public do
-    get '/about', to: 'homes#about'
+    get '/', to: 'homes#about'
 
     resources :customers, only: [:show, :edit, :update]
     get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
