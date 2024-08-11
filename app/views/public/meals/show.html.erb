@@ -1,11 +1,13 @@
 <div id="meal-forms">
- <div class="form-group">
-   <%= link_to public_customer_path(@meal.customer) do %>
-    <span class="col-md-1"><%= image_tag @meal.customer.get_profile_image, size:'50x50' %></span>
-   <% end %>
-   <%= image_tag @meal.image, size:'200x200' %>
+  <div class="form-group">
+    <%= link_to public_customer_path(@meal.customer) do %>
+      <span class="col-md-1"><%= image_tag @meal.customer.get_profile_image, size:'50x50' %></span>
+    <% end %>
+    <% if @meal.image.attached? %>
+      <%= image_tag @meal.image, size:'200x200' %>]
+    <% end %>
   </div>
-    <div class="form-group">
+  <div class="form-group">
     <span class="col-md-1"><%= @meal.customer.name %></span>
   </div>
    <div class="form-group">

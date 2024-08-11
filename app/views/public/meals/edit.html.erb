@@ -1,7 +1,9 @@
 <%= render 'layouts/errors', obj: @meal %>
 <%= form_with model: @meal, url: public_meal_path, local: true, method: :patch do |f| %>
   <div id="main-meal-forms">
-    <%= image_tag @meal.image, size:'200x200' %>
+    <% if @meal.image.attached? %>
+      <%= image_tag @meal.image, size:'200x200' %>]
+    <% end %>
     <%= f.file_field :image, value: @meal.image %>
     <div class="form-group">
       <%= f.label :カテゴリ %>
