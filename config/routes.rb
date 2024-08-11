@@ -16,8 +16,8 @@ Rails.application.routes.draw do
 
 
     resources :customers, only: [:show, :edit, :update]
-    get '/customers/unsubscribe', to: 'customers#unsubscribe',as: 'customer_unsubscribe'
-    patch '/customers/withdraw',to: 'customers#withdraw', as: 'customer_withdraw'
+    get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
+    patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
 
     resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]
