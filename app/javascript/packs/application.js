@@ -18,6 +18,8 @@ Turbolinks.start()
 ActiveStorage.start()
 
 
+
+
 // document.addEventListener('DOMContentLoaded', function() {
 //   let selectBox = document.getElementById('content_type');
 //   let mealForm = document.getElementById('meal_form');

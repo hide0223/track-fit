@@ -17,10 +17,27 @@
   width: 20%;
 }
 
-#meal-forms:hover {
+#training-forms:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-#training-forms:hover {
-  background-color: rgba(0, 0, 0, 0.1);
+.pl10 {}
+.pl20 {}
+.pl30 {}
+.pl40 { padding-left: 40px; }
+.pl50 {}
+
+.username{
+  line-height: 40px;
+}
+
+#meal_kcal {
+  width: 100px;
+}
+
+.meal-img-top {
+    border-radius: 20px;
+    max-width: 40%;
+    max-height: 40%;
+    object-fit: contain;
 }

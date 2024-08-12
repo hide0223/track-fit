@@ -37,6 +37,7 @@
       <div class="aside">
         <% if admin_signed_in? %>
         <% elsif customer_signed_in? %>
+        <%= render 'public/customers/info', customer: current_customer %>
         <% else %>
         <% end %>
       </div>
