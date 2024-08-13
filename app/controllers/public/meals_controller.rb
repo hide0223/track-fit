@@ -3,7 +3,7 @@ class Public::MealsController < ApplicationController
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index
-    @meals = Meal.all
+    @meals = Meal.all.order(created_at: :desc)
     @meal = Meal.new
   end
 

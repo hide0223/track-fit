@@ -1,4 +1,4 @@
-class Public::HomesController < ApplicationController
+class HomesController < ApplicationController
   layout 'application', except: [:about]
 
   def about
@@ -6,6 +6,4 @@ class Public::HomesController < ApplicationController
     render :layout => nil
   end
 
-  def top
-  end
 end

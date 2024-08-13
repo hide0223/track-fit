@@ -7,7 +7,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
   private
 
   def after_sign_up_path_for(resource)
-    public_customer_my_page_path
+    public_customer_path(resource)
   end
 
   def configure_sign_up_params

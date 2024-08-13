@@ -17,48 +17,12 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-
-// document.addEventListener('DOMContentLoaded', function() {
-//   let selectBox = document.getElementById('content_type');
-//   let mealForm = document.getElementById('meal_form');
-//   let trainingForm = document.getElementById('training_form');
-
-//   let mealCategorySelect = document.getElementById('meal_category');
-
-//   let breakfastForm = document.getElementById('breakfast_form');
-//   let lunchForm = document.getElementById('lunch_form');
-//   let dinnerForm = document.getElementById('dinner_form');
-//   let snackForm = document.getElementById('snack_form');
-
-//   selectBox.addEventListener('change', function() {
-//     let selectedValue = selectBox.value;
-
-//     mealForm.style.display = 'none';
-//     trainingForm.style.display = 'none';
-
-//     if (selectedValue === '食事') {
-//       mealForm.style.display = 'block';
-//     } else if (selectedValue === 'トレーニング') {
-//       trainingForm.style.display = 'block';
-//     }
-//   });
-
-//   mealCategorySelect.addEventListener('change', function() {
-//     let selectedCategory = mealCategorySelect.value;
-
-//     breakfastForm.style.display = 'none';
-//     lunchForm.style.display = 'none';
-//     dinnerForm.style.display = 'none';
-//     snackForm.style.display = 'none';
-
-//     if (selectedCategory === '朝食') {
-//       breakfastForm.style.display = 'block';
-//     } else if (selectedCategory === '昼食') {
-//       lunchForm.style.display = 'block';
-//     } else if (selectedCategory === '夕食') {
-//       dinnerForm.style.display = 'block';
-//     } else if (selectedCategory === '間食') {
-//       snackForm.style.display = 'block';
-//     }
-//   });
-// });
+   document.addEventListener('DOMContentLoaded', function() {
+     var elements = document.getElementsByClassName('post-link');
+     for (var i = 0; i < elements.length; i++) {
+       elements[i].addEventListener('click', function(event) {
+         event.preventDefault();
+         window.location.href = this.getAttribute('href');
+       });
+     }
+   });
