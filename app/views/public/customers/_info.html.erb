@@ -4,4 +4,12 @@
   	  <th>name</th>
   	  <th><%= customer.name %></th>
     </tr>
+    <tr>
+      <th>follows</th>
+      <th><%= link_to customer.followings.count, public_followings_path %></th>
+    </tr>
+    <tr>
+      <th>followers</th>
+      <th><%= link_to customer.followers.count, public_followers_path %></th>
+    </tr>
   </table>

@@ -5,6 +5,7 @@ class Public::MealsController < ApplicationController
   def index
     @meals = Meal.all.order(created_at: :desc)
     @meal = Meal.new
+    @customers = Customer.all
   end
 
 
