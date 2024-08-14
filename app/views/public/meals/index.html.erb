@@ -4,14 +4,15 @@
     <% if current_customer %>
       <div class="">
         <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
-          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle" %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
         <% end %>
       </div>
        <div class="username">
-        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link" %>
       </div>
     <% end %>
   </div>
+  
   <%= form_with model: @meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
@@ -58,7 +59,7 @@
     <div class="d-flex pt-2">
       <div class="">
         <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
-          <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle" %>
+          <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
         <% end %>
       </div>
       <div class="username">
@@ -90,13 +91,6 @@
         </table>
       </div>
     </div>
-    <% @customers.each do |customer| %>
-    <tr>
-      <td>フォロー数: <%= customer.followings.count %></td>
-      <td>フォロワー数: <%= customer.followers.count %></td>
-      <td><%= render "public/relationships/btn", customer: customer, options: { class: "follow-link" } %></td>
-    </tr>
-    <% end %>
     <div class="mt-1 mb-2" style="margin-left: 780px;" >
       <div>
         <form>

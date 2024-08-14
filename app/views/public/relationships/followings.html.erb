@@ -1,6 +1,34 @@
-<h2>Follow Users</h2>
+<h2 class="border-bottom" style="padding: 10px;">フォロー中</h2>
+
 <% if @customers.exists? %>
-  <%= render '/customers/index', customers: @customers %>
+　<% @customers.each do |customer| %>
+<div class="d-flex border-bottom">
+　<div class="">
+　  <%= image_tag customer.get_profile_image, size: '40x40', class: "rounded-circle border" %>
+　</div>
+　<div class="d-flex">
+    <div>
+    　<%= link_to customer.name, public_customer_path(customer), class: "name-link" %><br>
+    　<span class="name-link"><%= customer.introduction %></span>
+    </div>
+    <div class="">
+    　<% if current_customer != customer %>
+        <% if current_customer.following?(customer) %>
+          <div>
+            <%= form_tag public_customer_relationships_path(customer.id), method: :delete do %>
+              <%= submit_tag "フォロー解除", class: "radius-pixel-20" %>
+            <% end %>
+          </div>
+        <% else %>
+          <%= form_tag public_customer_relationships_path(customer.id), method: :post do %>
+            <%= submit_tag "フォロー", class: "radius-pixel-20" %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
