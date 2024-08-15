@@ -21,8 +21,13 @@
 .pl10 {}
 .pl20 {}
 .pl30 {}
-.pl40 { padding-left: 40px; }
-.pl50 {}
+.pl40 { padding-left: 40px;}
+.pl50 { padding-left: 50px;}
+.pl60 { padding-left: 60px;}
+.pl100 { padding-left: 100px;}
+
+.mt115 {margin-top: 115px;}
+.mt125 {margin-top: 125px;}
 
 .username{
   line-height: 40px;
@@ -64,6 +69,12 @@ select {
   color: #666666;
 }
 
+.relationships-name {
+  color: black;
+  text-decoration: none;
+  color: #666666;
+}
+
 .new-img{
   width: 400px;
   object-fit: cover;
@@ -87,6 +98,16 @@ select {
   padding: 5px 10px;
 }
 
+.radius-pixel-20 {
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  border: 1px solid #2b2b2b;
+  background-color: #2b2b2b;
+  border-radius: 30px;
+  padding: 3px 10px; /* パディングを小さくする */
+}
+
 .file-input-label {
 }
 
@@ -97,5 +118,4 @@ select {
 }
 
 #delete-button{
-
 }

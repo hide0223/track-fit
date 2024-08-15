@@ -4,7 +4,7 @@
     <% if current_customer %>
       <div class="">
         <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
-          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle" %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
         <% end %>
       </div>
        <div class="username">
