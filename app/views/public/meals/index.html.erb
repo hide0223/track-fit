@@ -1,134 +1,121 @@
 <%= render 'layouts/errors', obj: @meal %>
-<%= form_with model: @meal, url: public_meals_path, local: true do |f| %>
-  <%= f.file_field :image %>
-  <div id="main-meal-forms">
-    <div class="form-group">
-      <%= f.label :カテゴリ %>
-      <%= f.text_field :category, class: 'form-control book_title col-md-1' %>
-    </div>
-    <div class="form-group">
-      <%= f.text_area :body, class: 'form-control book_title col-md-4' %>
-    </div>
-    <div class="row">
-      <div class="col-md-1">
-        <div class="form-group">
-          <%= f.label :食事概要 %>
-          <%= f.text_field :meal_summary, class: 'form-control book_body' %>
-        </div>
+<div class="px-4 pt-2 border-bottom">
+  <div class="d-flex">
+    <% if current_customer %>
+      <div class="">
+        <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
       </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <%= f.label :食べた物 %>
-          <%= f.text_field :eat_meal, class: 'form-control book_body' %>
-        </div>
+       <div class="username">
+        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link" %>
       </div>
-
-       <div class="col-md-2">
-        <div class="form-group">
-          <%= f.label :カロリー %>
-          <div class="input-group">
-            <%= f.text_field :kcal, class: 'form-control book_body' %>
-            <span class="input-group-addon">kcal</span>
-          </div>
-        </div>
-      </div>
-    </div>
+    <% end %>
   </div>
+  
+  <%= form_with model: @meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.text_area :body, class: "form-control", rows: "4", cols: "30" %>
+      </div>
+    </div>
+    <div class="mt-2">
+      <img id="preview" style="width:40%;">
+    </div>
+    <div class="mt-1">
+      <button id="delete-button" type="button" style="display: none;" >削除</button>
+    </div>
+    <div class="d-flex">
+      <div class="mt-2 mr-2">
+        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+      </div>
+      <div class="mt-2 mx-2">
+        <%= f.select :meal_summary, [["主食", "主食"], ["主菜", "主菜"], ["副菜", "副菜"]], include_blank: "主食など選択", class: "form-control" %>
+      </div>
+      <div class="mt-2 mx-2"><%= f.text_field :eat_meal, placeholder: "例：鶏肉と野菜の炒め物", class: "form-control" %></div>
+      <div class="mt-2 mx-2"><%= f.number_field :kcal, class: "form-control" %></div>
+      <div class="mt-3 mr-4"><%= f.label :kcal %></div>
+    </div>
+    <div class="d-flex">
+      <div class="mt-4">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+      <div class="mt-4" style="margin-left: 700px;" >
+        <div>
+          <form>
+            <input class="radius-pixel-30" type="submit" value="記録する">
+          </form>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-  <div class="form-group">
-    <button type="button" id="add-meal" class="btn btn-primary">＋</button>
-    <%= f.submit '記録する', class: 'btn btn-success' %>
+<% @meals.each do |meal| %>
+  <div class="border-bottom px-4">
+    <div class="d-flex pt-2">
+      <div class="">
+        <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
+          <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
+      </div>
+      <div class="username">
+        <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
+      </div>
+      <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
+        <%= time_ago_in_words(meal.created_at) %>前
+      </div>
+    </div>
+    <div class="pl40 pt-2">
+      <div class="row">
+        <div class="col-6">
+          <%= meal.body %>
+        </div>
+      </div>
+      <div class="mt-2">
+        <% if meal.image.attached? %>
+          <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
+        <% end %>
+      </div>
+      <div class="d-flex">
+        <table class="table table-bordered mt-3" style="width: 50%;">
+          <tr class="">
+            <td class="col-1"><%= meal.category %></td>
+            <td class="col-1"><%= meal.meal_summary %></td>
+            <td class="col-3"><%= meal.eat_meal %></td>
+            <td class="col-1"><%= meal.kcal %> kcal</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="mt-1 mb-2" style="margin-left: 780px;" >
+      <div>
+        <form>
+          <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
+        </form>
+      </div>
+    </div>
   </div>
 <% end %>
+
 
 <script>
-//   document.addEventListener("DOMContentLoaded", function() {
-//     var addMealButton = document.getElementById("add-meal");
-//     var mealFormsContainer = document.getElementById("main-meal-forms");
-//     var mealFormHtml = `
-//       <div class="main-meal-form row">
-//         <div class="col-md-1">
-//           <div class="form-group">
-//             <label for="meal_summary">食事概要</label>
-//             <input type="text" name="meal[meal_summary][]" class="form-control book_body">
-//           </div>
-//         </div>
-//         <div class="col-md-4>
-//           <div class="form-group">
-//             <label for="eat_meal">食べた物</label>
-//             <input type="text" name="meal[eat_meal][]" class="form-control book_body">
-//           </div>
-//         </div>
-//         <div class="col-md-1">
-//           <div class="form-group">
-//             <label for="kcal">カロリー</label>
-//             <input type="text" name="meal[kcal][]" class="form-control book_body">kcal
-//           </div>
-//         </div>
-//         <div class="col-md-2">
-//           <button type="button" class="btn btn-danger remove-meal">削除</button>
-//         </div>
-//       </div>
-//     `;
+$('#file-upload').on('change', function (e) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $("#preview").attr('src', e.target.result);
+  }
+  reader.readAsDataURL(e.target.files[0]);
 
-//     addMealButton.addEventListener("click", function() {
-//       mealFormsContainer.insertAdjacentHTML("beforeend", mealFormHtml);
-//       addRemoveMealButtonListener();
-//     });
+  $('#delete-button').show();
+});
+$('#delete-button').on('click', function () {
 
-//     function addRemoveMealButtonListener() {
-//       var removeMealButtons = document.getElementsByClassName("remove-meal");
-//       for (var i = 0; i < removeMealButtons.length; i++) {
-//         var removeButton = removeMealButtons[i];
-//         removeButton.addEventListener("click", function() {
-//           var mealForm = this.closest(".meal-form");
-//           mealForm.remove();
-//         });
-//       }
-//     }
-//   });
-// </script>
+  $('#preview').attr('src', '');
 
-  <% @meals.each do |meal| %>
-  <div id="meal-forms-<%= meal.id %>" class="meal-form" onclick="location.href='<%= public_meal_path(meal) %>';">
-   <div id="meal-forms">
-      <% if meal.image.attached? %>
-        <%= image_tag meal.image, size:'200x200' %>
-      <% end %>
-
-     <div class="form-group">
-      <%= link_to public_customer_path(meal.customer) do %>
-        <span class="col-md-1 photo-link" onclick="event.stopPropagation();">
-          <%= image_tag meal.customer.get_profile_image, size:'50x50' %>
-        </span>
-      <% end %>
-      </div>
-        <div class="form-group">
-        <span class="col-md-1"><%= meal.customer.name %></span>
-      </div>
-       <div class="form-group">
-        <span class="col-md-4"><%= meal.body %></span>
-      </div>
-      <div class="form-group">
-        <span class="col-md-1"><%= meal.category %></span>
-      </div>
-      <div class="row">
-        <div class="col-md-1">
-          <div class="form-group">
-            <span class="col-md-2"><%= meal.meal_summary %></span>
-          </div>
-        </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="col-md-1"><%= meal.eat_meal %></span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group">
-            <span class="col-md-1"><%= meal.kcal %> kcal</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+  $('#delete-button').hide();
+});
+</script>

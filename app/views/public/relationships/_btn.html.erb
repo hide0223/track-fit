@@ -1,0 +1,15 @@
+<% if current_customer != customer%>
+  <% if current_customer.following?(customer) %>
+    <div>
+      <%= form_tag public_customer_relationships_path(customer.id), method: :delete do %>
+        <%= submit_tag "フォロー解除", class: "radius-pixel-20" %>
+      <% end %>
+    </div>
+  <% else %>
+    <div>
+      <%= form_tag public_customer_relationships_path(customer.id), method: :post do %>
+        <%= submit_tag "フォロー", class: "radius-pixel-20" %>
+      <% end %>
+    </div>
+  <% end %>
+<% end %>

@@ -15,9 +15,14 @@ Rails.application.routes.draw do
   namespace :public do
 
 
-    resources :customers, only: [:show, :edit, :update]
+    resources :customers, only: [:show, :edit, :update] do
+     resource :relationships, only: [:create, :destroy]
+    	get "followings" => "relationships#followings", as: "followings"
+    	get "followers" => "relationships#followers", as: "followers"
+    end
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
+
 
     resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]

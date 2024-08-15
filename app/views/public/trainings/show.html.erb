@@ -1,58 +1,53 @@
-<div id="trainings-forms">
- <div class="form-group">
-   <%= link_to public_customer_path(@training.customer) do %>
-    <span class="col-md-1"><%= image_tag @training.customer.get_profile_image, size:'50x50' %></span>
-   <% end %>
-    <% if @training.image.attached? %>
-      <%= image_tag @training.image, size:'200x200' %>]
-    <% end %>
-  </div>
-    <div class="form-group">
-    <span class="col-md-1"><%= @training.customer.name %></span>
-  </div>
-   <div class="form-group">
-    <span class="col-md-4"><%= @training.body %></span>
-  </div>
-  <div class="form-group">
-    <span class="col-md-1"><%= @training.body_parts %></span>
-  </div>
-  <div class="row">
-    <div class="col-md-1">
-      <div class="form-group">
-        <span class="col-md-2"><%= @training.exercise %></span>
+<div class="">
+    <div class="border-bottom px-4">
+      <div class="d-flex pt-2">
+        <div class="">
+          <%= link_to public_customer_path(@training.customer), class: "profile-link" do %>
+            <%= image_tag @training.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+          <% end %>
+        </div>
+        <div class="username">
+          <%= link_to @training.customer.name, public_customer_path(@training.customer), class: "name-link"%>
+        </div>
+        <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
+          <%= time_ago_in_words(@training.created_at) %>前
+        </div>
+        <% if @training.customer == current_customer %>
+        <div class="d-flex" style="margin-left: 550px;">
+          <div class="px-2">
+            <span><%= link_to '編集', edit_public_training_path(@training), class: "btn btn-sm btn-success" %></span>
+          </div>
+          <div class="px-2">
+            <span><%= link_to "削除", public_training_path(@training.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+          </div>
+          <div class="px-2">
+            <span><%= link_to "一覧", public_trainings_path, class: "btn btn-sm btn-primary" %></span>
+          </div>
+        </div>
+        <% end %>
       </div>
-    </div>
-    <div class="col-md-3">
-      <div class="form-group">
-        <span class="col-md-1"><%= @training.weight %></span>
-      </div>
-    </div>
-    <div class="col-md-2">
-      <div class="form-group">
-        <span class="col-md-1"><%= @training.sets %></span>
-      </div>
-    </div>
-     <div class="col-md-2">
-      <div class="form-group">
-        <span class="col-md-1"><%= @training.reps %></span>
-      </div>
-    </div>
-    <% if @training.customer == current_customer %>
-      <div class="col-md-1">
-        <div class="form-group">
-          <span class="col-md-1"><%= link_to '編集', edit_public_training_path(@training), class: "btn btn-sm btn-success" %></span>
+      <div class="pl40 pt-2">
+        <div class="row">
+          <div class="col-6">
+            <%= @training.body %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <% if @training.image.attached? %>
+            <%= image_tag @training.image, class: "meal-img-top img-fluid" %>
+          <% end %>
+        </div>
+        <div class="d-flex">
+          <table class="table table-bordered mt-3" style="width: 90%;">
+            <tr class="">
+              <td class="col-2"><%= @training.body_parts %></td>
+              <td class="col-4"><%= @training.exercise %></td>
+              <td class="col-1"><%= @training.weight %> kg</td>
+              <td class="col-2"><%= @training.sets %> セット</td>
+              <td class="col-1"><%= @training.reps %> 回</td>
+            </tr>
+          </table>
         </div>
       </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <span class="col-md-1"><%= link_to "削除", public_training_path(@training.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
-        </div>
-      </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <span class="col-md-1"><%= link_to "一覧", public_trainings_path, class: "btn btn-sm btn-primary" %></span>
-        </div>
-      </div>
-    <% end %>
-  </div>
+    </div>
 </div>

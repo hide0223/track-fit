@@ -4,10 +4,15 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_one_attached :profile_image
+  has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :followers, through: :reverse_of_relationships, source: :follower
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followings, through: :relationships, source: :followed
 
   has_many :meals, dependent: :destroy
   has_many :trainings, dependent: :destroy
+
+  has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   validates :introduction, length: { maximum: 50 }
@@ -17,13 +22,17 @@ class Customer < ApplicationRecord
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
 
-  # GUEST_CUSTOMER_EMAIL = "guest@example.com"
+  def follow(customer)
+    relationships.create(followed_id: customer.id)
+  end
 
-  # def self.guest
-  #   find_or_create_by(email: GUEST_CUSTOMER_EMAIL) do |customer|
-  #     customer.password = SecureRandom.urlsafe_base64
-  #     customer.name = "guestcustomer"
-  #   end
-  # end
+  def unfollow(customer)
+    relationships.find_by(followed_id: customer.id).destroy
+  end
+
+  def following?(customer)
+    followings.include?(customer)
+  end
+
 
 end

@@ -1,45 +1,86 @@
 <%= render 'layouts/errors', obj: @meal %>
-<%= form_with model: @meal, url: public_meal_path, local: true, method: :patch do |f| %>
-  <div id="main-meal-forms">
-    <% if @meal.image.attached? %>
-      <%= image_tag @meal.image, size:'200x200' %>]
+<div class="px-4 pt-2 border-bottom">
+  <div class="d-flex">
+    <% if current_customer %>
+      <div class="">
+        <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
+      </div>
+       <div class="username">
+        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+      </div>
     <% end %>
-    <%= f.file_field :image, value: @meal.image %>
-    <div class="form-group">
-      <%= f.label :カテゴリ %>
-      <%= f.text_field :category, value: @meal.category, class: 'form-control book_title col-md-1' %>
-    </div>
-    <div class="form-group">
-      <%= f.text_area :body, value: @meal.body, class: 'form-control book_title col-md-4' %>
-    </div>
+  </div>
+
+  <%= form_with model: @meal, url: public_meal_path, local: true, method: :patch do |f| %>
     <div class="row">
-      <div class="col-md-1">
-        <div class="form-group">
-          <%= f.label :食事概要 %>
-          <%= f.text_field :meal_summary, value: @meal.meal_summary, class: 'form-control book_body' %>
-        </div>
+      <div class="col-6">
+        <%= f.text_area :body, value: @meal.body, class: "form-control", rows: "4", cols: "30" %>
       </div>
-      <div class="col-md-3">
-        <div class="form-group">
-          <%= f.label :食べた物 %>
-          <%= f.text_field :eat_meal, value: @meal.eat_meal, class: 'form-control book_body' %>
-        </div>
+    </div>
+    <div class="mt-2">
+      <img id="preview" style="width:40%;">
+    </div>
+    <div class="mt-1">
+      <button id="delete-button" type="button" style="display: none;" >削除</button>
+    </div>
+    <div class="d-flex">
+      <div class="mt-2 mr-2">
+        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
+      <div class="mt-2 mx-2">
+        <%= f.select :meal_summary, [["主食", "主食"], ["主菜", "主菜"], ["副菜", "副菜"]], include_blank: "主食など選択", class: "form-control" %>
+      </div>
+      <div class="mt-2 mx-2"><%= f.text_field :eat_meal, value: @meal.eat_meal, placeholder: "例：鶏肉と野菜の炒め物", class: "form-control" %></div>
+      <div class="mt-2 mx-2"><%= f.number_field :kcal, value: @meal.kcal, class: "form-control" %></div>
+      <div class="mt-3 mr-4"><%= f.label :kcal %></div>
+    </div>
 
-       <div class="col-md-2">
-        <div class="form-group">
-          <%= f.label :カロリー %>
-          <div class="input-group">
-            <%= f.text_field :kcal, value: @meal.kcal, class: 'form-control book_body' %>
-            <span class="input-group-addon">kcal</span>
-          </div>
+    <% if @meal.image.attached? %>
+    <%= image_tag @meal.image, class: "meal-img-top img-fluid mt-3" %>
+    <div class="d-flex">
+      <div class="mt-4">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+    <% else %>
+      <div class="mt-4">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+    <% end %>
+      <div class="mt-4" style="margin-left: 700px;" >
+        <div>
+          <form>
+            <input class="radius-pixel-30" type="submit" value="変更する">
+          </form>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>
+</div>
 
-  <div class="form-group">
-    <%= f.submit '変更する', class: 'btn btn-success' %>
-  </div>
-<% end %>
 
+<script>
+$('#file-upload').on('change', function (e) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $("#preview").attr('src', e.target.result);
+  }
+  reader.readAsDataURL(e.target.files[0]);
+
+  $(".meal-img-top").hide();
+  $('#delete-button').show();
+});
+$('#delete-button').on('click', function () {
+
+  $('#preview').attr('src', '');
+
+  $('#delete-button').hide();
+});
+</script>

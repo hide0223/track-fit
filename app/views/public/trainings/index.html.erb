@@ -1,137 +1,119 @@
 <%= render 'layouts/errors', obj: @training %>
-<%= form_with model: @training, url: public_trainings_path, local: true do |f| %>
-  <%= f.file_field :image %>
-  <div id="main-training-forms">
-    <div class="form-group">
-      <%= f.text_area :body, class: 'form-control book_title col-md-4' %>
-    </div>
-    <div class="form-group">
-      <%= f.label :部位 %>
-      <%= f.text_field :body_parts, class: 'form-control book_title col-md-1' %>
-    </div>
+<div class="px-4 pt-2 border-bottom">
+  <div class="d-flex">
+    <% if current_customer %>
+      <div class="">
+        <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
+      </div>
+       <div class="username">
+        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+      </div>
+    <% end %>
+  </div>
+  <%= form_with model: @training, url: public_trainings_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
-      <div class="col-md-4">
-        <div class="form-group">
-          <%= f.label :種目 %>
-          <%= f.text_field :exercise, class: 'form-control book_body' %>
-        </div>
+      <div class="col-6">
+        <%= f.text_area :body, class: "form-control", rows: "4", cols: "30" %>
       </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <%= f.label :重量 %>
-          <%= f.text_field :weight, class: 'form-control book_body' %>
-        </div>
+    </div>
+    <div class="mt-2 mb-2">
+      <img id="preview" style="width:40%;">
+    </div>
+    <div class="mt-1">
+        <button id="delete-button" type="button" style="display: none;" >削除</button>
+    </div>
+    <div>
+      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
+    </div>
+    <div class="d-flex">
+      <div class="mt-3 pr-1"><%= f.text_field :exercise, placeholder: "種目名を入力", class: "form-control", style: "width: 250px;" %></div>
+      <div class="mt-3 px-1"><%= f.number_field :weight, placeholder: "重量を入力", class: "form-control", style: "width: 130px;" %></div>
+      <div class="mt-3 px-1"><%= f.number_field :sets, placeholder: "セット数を入力", class: "form-control", style: "width: 160px;" %></div>
+      <div class="mt-3 px-1"><%= f.number_field :reps, placeholder: "回数を入力", class: "form-control", style: "width: 130px;" %></div>
+    </div>
+    <div class="d-flex">
+      <div class="mt-4">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <%= f.label :セット %>
-          <%= f.text_field :sets, class: 'form-control book_body' %>
-        </div>
-      </div>
-      <div class="col-md-1">
-        <div class="form-group">
-          <%= f.label :回数 %>
-          <%= f.text_field :reps, class: 'form-control book_body' %>
+      <div class="mt-4" style="margin-left: 700px;" >
+        <div>
+          <form>
+            <input class="radius-pixel-30" type="submit" value="記録する">
+          </form>
         </div>
       </div>
     </div>
-  </div>
-
-  <div class="form-group">
-    <button type="button" id="add-training" class="btn btn-primary">＋</button>
-    <%= f.submit '記録する', class: 'btn btn-success' %>
-  </div>
-<% end %>
-
- <script>
-//   document.addEventListener("DOMContentLoaded", function() {
-//     var addTrainingButton = document.getElementById("add-training");
-//     var trainingFormsContainer = document.getElementById("main-training-forms");
-//     var trainingFormHtml = `
-//       <div class="main-training-form row">
-//             <div class="col-md-4">
-//         <div class="form-group">
-//           <label for="exercise">種目</label>
-//           <input type="text" name="training[exercise][]" class="form-control book_body">
-//         </div>
-//       </div>
-//       <div class="col-md-1">
-//         <div class="form-group">
-//           <label for="weight">重量</label>
-//           <input type="text" name="training[weight][]" class="form-control book_body">
-//         </div>
-//       </div>
-//         <div class="col-md-1">
-//           <div class="form-group">
-//             <label for="sets">セット</label>
-//             <input type="text" name="training[sets][]" class="form-control book_body">
-//           </div>
-//         </div>
-//         <div class="col-md-1>
-//           <div class="form-group">
-//             <label for="reps">回数</label>
-//             <input type="text" name="training[reps][]" class="form-control book_body">
-//           </div>
-//         </div>
-//     `;
-
-//     addTrainingButton.addEventListener("click", function() {
-//       trainingFormsContainer.insertAdjacentHTML("beforeend", trainingFormHtml);
-//       addRemoveTrainingButtonListener();
-//     });
-
-//     function addRemoveTrainingButtonListener() {
-//       var removeTrainingButtons = document.getElementsByClassName("remove-training");
-//       for (var i = 0; i < removeTrainingButtons.length; i++) {
-//         var removeButton = removeTrainingButtons[i];
-//         removeButton.addEventListener("click", function() {
-//           var trainingForm = this.closest(".training-form");
-//           trainingForm.remove();
-//         });
-//       }
-//     }
-//   });
-// </script>
+  <% end %>
+</div>
 
 <% @trainings.each do |training| %>
-  <div id="training-forms-<%= training.id %>" class="training-form" onclick="location.href='<%= public_training_path(training) %>';">
-    <div id="training-forms">
-      <% if training.image.attached? %>
-        <%= image_tag training.image, size:'200x200' %>
-      <% end %>
-     <div class="form-group">
-       <%= link_to public_customer_path(training.customer) do %>
-         <span class="col-md-1 photo-link" onclick="event.stopPropagation();">
-           <%= image_tag training.customer.get_profile_image, size:'50x50' %>
-         </span>
-       <% end %>
+  <div class="border-bottom px-4">
+    <div class="d-flex pt-2">
+      <div class="">
+        <%= link_to public_customer_path(training.customer), class: "profile-link" do %>
+          <%= image_tag training.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
       </div>
-        <div class="form-group">
-        <span class="col-md-1"><%= training.customer.name %></span>
+      <div class="username">
+        <%= link_to training.customer.name, public_customer_path(training.customer), class: "name-link"%>
       </div>
-       <div class="form-group">
-        <span class="col-md-4"><%= training.body_parts %></span>
+      <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
+        <%= time_ago_in_words(training.created_at) %>前
       </div>
-      <div class="form-group">
-        <span class="col-md-1"><%= training.exercise %></span>
-      </div>
+    </div>
+    <div class="pl40 pt-2">
       <div class="row">
-        <div class="col-md-1">
-          <div class="form-group">
-            <span class="col-md-2"><%= training.weight %>kg</span>
-          </div>
+        <div class="col-6">
+          <%= training.body %>
         </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <span class="col-md-1"><%= training.sets %>セット</span>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <div class="form-group">
-            <span class="col-md-1"><%= training.reps %> 回</span>
-          </div>
-        </div>
+      </div>
+      <div class="mt-2">
+        <% if training.image.attached? %>
+          <%= image_tag training.image, class: "meal-img-top img-fluid" %>
+        <% end %>
+      </div>
+      <div class="d-flex">
+        <table class="table table-bordered mt-3" style="width: 90%;">
+          <tr class="">
+            <td class="col-2"><%= training.body_parts %></td>
+            <td class="col-4"><%= training.exercise %></td>
+            <td class="col-1"><%= training.weight %> kg</td>
+            <td class="col-2"><%= training.sets %> セット</td>
+            <td class="col-1"><%= training.reps %> 回</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div class="mt-1 mb-2" style="margin-left: 780px;" >
+      <div>
+        <form>
+          <%= link_to '詳細', public_training_path(training), class: "radius-pixel-30" %>
+        </form>
       </div>
     </div>
   </div>
 <% end %>
+
+
+<script>
+$('#file-upload').on('change', function (e) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $("#preview").attr('src', e.target.result);
+  }
+  reader.readAsDataURL(e.target.files[0]);
+
+  $('#delete-button').show();
+});
+$('#delete-button').on('click', function () {
+
+  $('#preview').attr('src', '');
+
+  $('#delete-button').hide();
+});
+</script>
