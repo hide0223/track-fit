@@ -12,7 +12,7 @@
       </div>
     <% end %>
   </div>
-  
+
   <%= form_with model: @meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
@@ -90,6 +90,9 @@
           </tr>
         </table>
       </div>
+    </div>
+    <div>
+      コメント数: <%= meal.meal_comments.count %>
     </div>
     <div class="mt-1 mb-2" style="margin-left: 780px;" >
       <div>

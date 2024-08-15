@@ -11,6 +11,7 @@ class Public::MealsController < ApplicationController
 
   def show
     @meal = Meal.find(params[:id])
+    @meal_comment = MealComment.new
   end
 
   def create

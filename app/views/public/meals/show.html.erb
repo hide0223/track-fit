@@ -49,4 +49,8 @@
         </div>
       </div>
     </div>
+    <div>
+      <%= render "/public/meal_comments/index", meal: @meal %>
+      <%= render "public/meal_comments/from", meal: @meal, meal_comment: @meal_comment %>
+    </div>
 </div>

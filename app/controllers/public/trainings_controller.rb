@@ -10,6 +10,7 @@ class Public::TrainingsController < ApplicationController
 
   def show
     @training = Training.find(params[:id])
+    @training_comment = TrainingComment.new
   end
 
   def create

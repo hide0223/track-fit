@@ -1,5 +1,6 @@
 class Training < ApplicationRecord
   belongs_to :customer
+  has_many :training_comments, dependent: :destroy
   has_one_attached :image
 
   validates :body_parts, presence: true
