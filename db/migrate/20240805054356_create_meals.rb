@@ -5,9 +5,6 @@ class CreateMeals < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :body
       t.string :category, null: false
-      t.string :meal_summary, null: false
-      t.string :eat_meal, null: false
-      t.integer :kcal, null: false
       t.timestamps
     end
   end
