@@ -24,8 +24,12 @@ Rails.application.routes.draw do
     patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
 
 
-    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
-    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy] do
+      resources :meal_comments, only: [:create, :destroy]
+    end
+    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
+      resources :training_comments, only: [:create, :destroy]
+    end
   end
 
 

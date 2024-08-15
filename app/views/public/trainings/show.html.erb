@@ -50,4 +50,8 @@
         </div>
       </div>
     </div>
+    <div>
+      <%= render "/public/training_comments/index", training: @training %>
+      <%= render "public/training_comments/from", training: @training, training_comment: @training_comment %>
+    </div>
 </div>

@@ -1,5 +1,6 @@
 class Meal < ApplicationRecord
   belongs_to :customer
+  has_many :meal_comments, dependent: :destroy
   has_one_attached :image
 
   validates :category, presence: true

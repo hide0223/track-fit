@@ -11,6 +11,8 @@ class Customer < ApplicationRecord
 
   has_many :meals, dependent: :destroy
   has_many :trainings, dependent: :destroy
+  has_many :meal_comments, dependent: :destroy
+  has_many :training_comments, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -33,6 +35,5 @@ class Customer < ApplicationRecord
   def following?(customer)
     followings.include?(customer)
   end
-
 
 end
