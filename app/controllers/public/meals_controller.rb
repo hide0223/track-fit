@@ -49,7 +49,7 @@ class Public::MealsController < ApplicationController
 
   def meal_params
     params.require(:meal).permit(:category, :body, :image,
-      meal_contents_attributes: [:id, :meal_summary, :eat_meal, :kcal, :_destroy])
+    meal_contents_attributes: [:id, :meal_summary, :eat_meal, :kcal, :_destroy])
   end
 
   def ensure_correct_customer

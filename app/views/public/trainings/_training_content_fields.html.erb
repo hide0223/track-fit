@@ -1,0 +1,19 @@
+<div class="nested-fields">
+  <div class="d-flex">
+    <div class="mt-2">
+      <%= f.text_field :exercise, placeholder: "種目名を入力", class: "form-control", style: "width: 250px;" %>
+    </div>
+    <div class="mt-2 mx-2">
+      <%= f.number_field :weight, placeholder: "重量を入力", class: "form-control", style: "width: 130px;" %>
+    </div>
+    <div class="mt-2 mx-2">
+      <%= f.number_field :sets, placeholder: "セット数を入力", class: "form-control", style: "width: 160px;" %>
+    </div>
+    <div class="mt-2 mx-2">
+      <%= f.number_field :reps, placeholder: "回数を入力", class: "form-control", style: "width: 130px;" %>
+    </div>
+  </div>
+  <div>
+  <%= link_to_remove_association "削除", f %>
+  </div>
+</div>

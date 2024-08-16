@@ -25,13 +25,10 @@
     <div class="mt-1">
       <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    <div class="d-flex">
-      <div class="mt-2 mr-2">
-        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
-      </div>
+    <div>
+      <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
     </div>
-    
-    
+
     <div id='meal_contents'>
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'meal_content_fields', :f => meal_content %>
@@ -40,22 +37,18 @@
         <%= link_to_add_association '詳細を追加', f, :meal_contents %>
       </div>
     </div>
-    
-    
-    
-    <div class="d-flex">
-      <div class="mt-4">
+
+    <div style="display: flex; justify-content: space-between; padding: 20px 0px 0px 0px ;">
+      <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
-      <div class="mt-4" style="margin-left: 700px;" >
-        <div>
-          <form>
-            <input class="radius-pixel-30" type="submit" value="記録する">
-          </form>
-        </div>
+      <div>
+        <form>
+          <input class="radius-pixel-30" type="submit" value="記録する">
+        </form>
       </div>
     </div>
   <% end %>
@@ -87,7 +80,7 @@
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div class="col-1"><%= meal.category %></div>
+      <div class=""><%= meal.category %></div>
       <div class="">
         <% meal.meal_contents.each do |meal_content| %>
         <table class="table table-bordered" style="width: 50%;">
@@ -99,15 +92,17 @@
         </table>
         <% end %>
       </div>
-    </div>
-    <div>
-      コメント数: <%= meal.meal_comments.count %>
-    </div>
-    <div class="mt-1 mb-2" style="margin-left: 780px;" >
-      <div>
-        <form>
-          <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
-        </form>
+      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+        <div>
+          <i class="fa-regular fa-comment">
+            <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
+          </i>
+        </div>
+         <div>
+          <form>
+            <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
+          </form>
+        </div>
       </div>
     </div>
   </div>
