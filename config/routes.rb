@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
 
+    get "search" => "searches#search"
 
     resources :meals, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :meal_comments, only: [:create, :destroy]

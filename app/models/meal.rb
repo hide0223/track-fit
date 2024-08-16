@@ -11,6 +11,18 @@ class Meal < ApplicationRecord
     meal_favorites.where(customer_id: customer.id).exists?
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Meal.where(body: content)
+    elsif method == 'forward'
+      Meal.where('body LIKE ?', content+'%')
+    elsif method == 'backward'
+      Meal.where('body LIKE ?', '%'+content)
+    else
+      Meal.where('body LIKE ?', '%'+content+'%')
+    end
+  end
+
   # validates :category, presence: true
   # validates :meal_summary, presence: true
   # validates :eat_meal, presence: true

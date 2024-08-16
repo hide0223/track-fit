@@ -11,6 +11,17 @@ class Training < ApplicationRecord
     training_favorites.where(customer_id: customer.id).exists?
   end
 
+  def self.search_for(content, method)
+    if method == 'perfect'
+      Training.where(body: content)
+    elsif method == 'forward'
+      Training.where('body LIKE ?', content+'%')
+    elsif method == 'backward'
+      Training.where('body LIKE ?', '%'+content)
+    else
+      Training.where('body LIKE ?', '%'+content+'%')
+    end
+  end
   # validates :body_parts, presence: true
   # validates :exercise, presence: true
   # validates :weight, presence: true
