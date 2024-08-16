@@ -32,20 +32,22 @@
             <%= @meal.body %>
           </div>
         </div>
+        <div><%= @meal.category %></div>
         <div class="mt-2">
           <% if @meal.image.attached? %>
             <%= image_tag @meal.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="d-flex">
+        <div class="">
+          <% @meal.meal_contents.each do |meal_content| %>
           <table class="table table-bordered mt-3" style="width: 70%;">
             <tr class="">
-              <td class="col-2"><%= @meal.category %></td>
-              <td class="col-2"><%= @meal.meal_summary %></td>
-              <td class="col-4"><%= @meal.eat_meal %></td>
-              <td class="col-2"><%= @meal.kcal %> kcal</td>
+              <td class="col-2"><%= meal_content.meal_summary %></td>
+              <td class="col-4"><%= meal_content.eat_meal %></td>
+              <td class="col-2"><%= meal_content.kcal %> kcal</td>
             </tr>
           </table>
+          <% end %>
         </div>
       </div>
     </div>

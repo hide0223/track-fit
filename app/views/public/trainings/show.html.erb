@@ -32,21 +32,23 @@
             <%= @training.body %>
           </div>
         </div>
+        <div><%= @training.body_parts %></div>
         <div class="mt-2">
           <% if @training.image.attached? %>
             <%= image_tag @training.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="d-flex">
+        <div class="">
+          <% @training.training_contents.each do |training_content| %>
           <table class="table table-bordered mt-3" style="width: 90%;">
             <tr class="">
-              <td class="col-2"><%= @training.body_parts %></td>
-              <td class="col-4"><%= @training.exercise %></td>
-              <td class="col-1"><%= @training.weight %> kg</td>
-              <td class="col-2"><%= @training.sets %> セット</td>
-              <td class="col-1"><%= @training.reps %> 回</td>
+              <td class="col-4"><%= training_content.exercise %></td>
+              <td class="col-1"><%= training_content.weight %> kg</td>
+              <td class="col-2"><%= training_content.sets %> セット</td>
+              <td class="col-1"><%= training_content.reps %> 回</td>
             </tr>
           </table>
+          <% end %>
         </div>
       </div>
     </div>

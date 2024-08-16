@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_15_033021) do
+ActiveRecord::Schema.define(version: 2024_08_16_030953) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -83,14 +83,21 @@ ActiveRecord::Schema.define(version: 2024_08_15_033021) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "meal_contents", force: :cascade do |t|
+    t.integer "meal_id"
+    t.string "meal_summary", null: false
+    t.string "eat_meal", null: false
+    t.integer "kcal", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["meal_id"], name: "index_meal_contents_on_meal_id"
+  end
+
   create_table "meals", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.string "title"
     t.text "body"
     t.string "category", null: false
-    t.string "meal_summary", null: false
-    t.string "eat_meal", null: false
-    t.integer "kcal", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -110,18 +117,28 @@ ActiveRecord::Schema.define(version: 2024_08_15_033021) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "trainings", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.text "body"
+  create_table "training_contents", force: :cascade do |t|
+    t.integer "training_id"
     t.string "weight", null: false
-    t.string "body_parts", null: false
+    t.string "body_parts"
     t.string "exercise", null: false
     t.integer "sets", null: false
     t.integer "reps", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["training_id"], name: "index_training_contents_on_training_id"
+  end
+
+  create_table "trainings", force: :cascade do |t|
+    t.integer "customer_id", null: false
+    t.text "body"
+    t.string "body_parts", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "meal_contents", "meals"
+  add_foreign_key "training_contents", "trainings"
 end

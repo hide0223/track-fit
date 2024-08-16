@@ -3,8 +3,9 @@ class Public::TrainingsController < ApplicationController
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index
-    @trainings = Training.all
+    @trainings = Training.all.order(created_at: :desc)
     @training = Training.new
+    @customers = Customer.all
   end
 
 
@@ -35,7 +36,7 @@ class Public::TrainingsController < ApplicationController
     @training = Training.find(params[:id])
   end
 
-   def update
+  def update
      @training = Training.find(params[:id])
     if @training.update(training_params)
       redirect_to public_training_path(@training)
@@ -47,7 +48,8 @@ class Public::TrainingsController < ApplicationController
     private
 
   def training_params
-    params.require(:training).permit(:body_parts, :exercise, :weight, :sets, :reps, :body, :image)
+    params.require(:training).permit(:body_parts, :body, :image,
+    training_contents_attributes: [:id, :exercise, :weight, :sets, :reps, :_destroy])
   end
 
   def ensure_correct_customer
