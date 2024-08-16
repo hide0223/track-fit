@@ -51,6 +51,7 @@
         </form>
       </div>
     </div>
+
   <% end %>
 </div>
 
@@ -95,9 +96,9 @@
       </div>
       <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
         <div>
-          <i class="fa-regular fa-comment">
-            <span style="font-size: smaller; opacity: 0.8;"><%= training.training_comments.count %></span>
-          </i>
+          <i class="fa-regular fa-comment"></i>
+          <span style="font-size: smaller; opacity: 0.8;"><%= training.training_comments.count %></span>
+          <%= render "public/training_favorites/training_favorite_btn", training: training %>
         </div>
         <div>
           <form>

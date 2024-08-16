@@ -1,0 +1,2 @@
+module Public::TrainingFavoritesHelper
+end

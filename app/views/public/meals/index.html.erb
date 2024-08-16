@@ -94,9 +94,9 @@
       </div>
       <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
         <div>
-          <i class="fa-regular fa-comment">
-            <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
-          </i>
+          <i class="fa-regular fa-comment"></i>
+          <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
+          <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
         </div>
          <div>
           <form>

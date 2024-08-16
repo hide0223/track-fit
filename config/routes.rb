@@ -8,13 +8,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  # devise_scope :customers do
-  #   post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
-  # end
-
   namespace :public do
-
-
     resources :customers, only: [:show, :edit, :update] do
      resource :relationships, only: [:create, :destroy]
     	get "followings" => "relationships#followings", as: "followings"
@@ -26,9 +20,11 @@ Rails.application.routes.draw do
 
     resources :meals, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :meal_comments, only: [:create, :destroy]
+      resource :meal_favorites, only: [:create, :destroy]
     end
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :training_comments, only: [:create, :destroy]
+      resource :training_favorites, only: [:create, :destroy]
     end
   end
 
