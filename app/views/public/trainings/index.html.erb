@@ -25,9 +25,8 @@
     <div class="mt-1">
         <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    
 
-     <div id='training_contents'>
+    <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'training_content_fields', :f => training_content %>
       <% end %>
@@ -52,6 +51,18 @@
 
   <% end %>
 </div>
+
+<script>
+  $(document).on('turbolinks:load', function() {
+    $('#training_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#training_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
+</script>
 
 <% @trainings.each do |training| %>
   <div class="border-bottom px-4">

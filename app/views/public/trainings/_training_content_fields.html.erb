@@ -1,9 +1,9 @@
 <div class="nested-fields">
   <div class="d-flex">
-    <div>
+    <div class="mt-2">
       <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
     </div>
-    <div class="mt-2">
+    <div class="mt-2 mx-2">
       <%= f.text_field :exercise, placeholder: "種目名を入力", class: "form-control", style: "width: 250px;" %>
     </div>
     <div class="mt-2 mx-2">

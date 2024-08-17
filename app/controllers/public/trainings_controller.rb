@@ -5,6 +5,7 @@ class Public::TrainingsController < ApplicationController
   def index
     @trainings = Training.all.order(created_at: :desc)
     @training = Training.new
+    @training.training_contents.build
     @customers = Customer.all
   end
 
