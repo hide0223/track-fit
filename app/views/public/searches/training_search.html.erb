@@ -1,0 +1,27 @@
+<% if @training == [] %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果がありません。</h2>
+  </div>
+<% elsif @training.present? %>
+  <% search_word = @training_q.training_contents_body_parts_cont %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果 "<%= search_word %>"</h2>
+  </div>
+    <div style="display: flex; justify-content: space-between; padding: 0px 10px 10px 10px ;" class="mt-3 border-bottom">
+      <div style="display: flex;">
+      <% @training.each do |training| %>
+        <% training.training_contents.each do |training_content| %>
+          <%= training_content.id %>
+          <%= training_content.body_parts %>
+        <% end %>
+      <% end %>
+      </div>
+    </div>
+<% else %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果がありません。</h2>
+  </div>
+<% end %>
+
+
+

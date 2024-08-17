@@ -44,7 +44,7 @@ class Public::CustomersController < ApplicationController
     params.require(:customer).permit(:name, :email, :introduction, :age, :weight, :height, :profile_image)
   end
 
-   def ensure_correct_customer
+  def ensure_correct_customer
     @customer = Customer.find(params[:id])
     unless @customer == current_customer
       redirect_to public_meals_path(current_customer)

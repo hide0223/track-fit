@@ -25,9 +25,7 @@
     <div class="mt-1">
         <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    <div>
-      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
-    </div>
+    
 
      <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
@@ -98,7 +96,9 @@
         <div>
           <i class="fa-regular fa-comment"></i>
           <span style="font-size: smaller; opacity: 0.8;"><%= training.training_comments.count %></span>
-          <%= render "public/training_favorites/training_favorite_btn", training: training %>
+          <div id="favorite_btn_<%= training.id %>">
+            <%= render "public/training_favorites/training_favorite_btn", training: training %>
+          </div>
         </div>
         <div>
           <form>

@@ -54,7 +54,9 @@
           <div>
             <i class="fa-regular fa-comment"></i>
             <span style="font-size: smaller; opacity: 0.8;"><%= @training.training_comments.count %></span>
-            <%= render "public/training_favorites/training_favorite_btn", training: @training %>
+            <div id="favorite_btn_<%= @training.id %>">
+              <%= render "public/training_favorites/training_favorite_btn", training: @training %>
+            </div>
           </div>
         </div>
       </div>

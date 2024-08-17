@@ -10,17 +10,14 @@ class Meal < ApplicationRecord
   def favorited_by?(customer)
     meal_favorites.where(customer_id: customer.id).exists?
   end
+  
+  def self.ransackable_attributes(auth_object = nil)
+    ["body", "category", "created_at", "customer_id", "id", "title", "updated_at"]
+  end
 
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Meal.where(body: content)
-    elsif method == 'forward'
-      Meal.where('body LIKE ?', content+'%')
-    elsif method == 'backward'
-      Meal.where('body LIKE ?', '%'+content)
-    else
-      Meal.where('body LIKE ?', '%'+content+'%')
-    end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["meal_contents"]
   end
 
   # validates :category, presence: true

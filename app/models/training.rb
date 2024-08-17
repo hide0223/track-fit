@@ -11,17 +11,15 @@ class Training < ApplicationRecord
     training_favorites.where(customer_id: customer.id).exists?
   end
 
-  def self.search_for(content, method)
-    if method == 'perfect'
-      Training.where(body: content)
-    elsif method == 'forward'
-      Training.where('body LIKE ?', content+'%')
-    elsif method == 'backward'
-      Training.where('body LIKE ?', '%'+content)
-    else
-      Training.where('body LIKE ?', '%'+content+'%')
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    ["body", "category", "created_at", "customer_id", "id", "title", "updated_at"]
   end
+  
+  def self.ransackable_associations(auth_object = nil)
+    ["training_contents"]
+  end
+
+
   # validates :body_parts, presence: true
   # validates :exercise, presence: true
   # validates :weight, presence: true
