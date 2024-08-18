@@ -42,7 +42,9 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :categories, only: [:index, :create, :edit, :update]
-    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :meals, only: [:index, :show, :destroy]
+    resources :meal_comments, only: [:index, :show, :destroy]
+
+    root to: 'admin/homes#top'
  end
 end
