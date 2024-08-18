@@ -102,8 +102,8 @@ ActiveRecord::Schema.define(version: 2024_08_16_064437) do
 
   create_table "meals", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "title"
     t.text "body"
+    t.float "body_weight"
     t.string "category", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -146,7 +146,7 @@ ActiveRecord::Schema.define(version: 2024_08_16_064437) do
   create_table "trainings", force: :cascade do |t|
     t.integer "customer_id", null: false
     t.text "body"
-    t.string "body_parts", null: false
+    t.float "body_weight"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

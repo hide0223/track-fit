@@ -25,17 +25,20 @@
     <div class="mt-1">
       <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    <div class="">
-      <div class="mt-2 mr-2">
+    <div class="d-flex">
+      <div>
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
-      <div id='meal_contents'>
-        <%= f.fields_for :meal_contents do |meal_content| %>
-          <%= render 'meal_content_fields', :f => meal_content %>
-        <% end %>
-        <div class='links'>
-          <%= link_to_add_association '詳細を追加', f, :meal_contents %>
-        </div>
+      <div class="mx-3">
+        <%= f.number_field :body_weight, class: "form-control" %>
+      </div>
+    </div>
+    <div id='meal_contents'>
+      <%= f.fields_for :meal_contents do |meal_content| %>
+        <%= render 'meal_content_fields', :f => meal_content %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association '詳細を追加', f, :meal_contents %>
       </div>
     </div>
 
@@ -83,4 +86,14 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+
+$(document).on('turbolinks:load', function() {
+    $('#meal_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#meal_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
 </script>

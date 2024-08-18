@@ -1,18 +1,18 @@
 <div class="nested-fields">
   <div class="d-flex">
-    <div class="mt-2">
+    <div class="mt-2 mr-1">
       <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
     </div>
-    <div class="mt-2 mx-2">
+    <div class="mt-2 mx-1">
       <%= f.text_field :exercise, placeholder: "種目名を入力", class: "form-control", style: "width: 250px;" %>
     </div>
-    <div class="mt-2 mx-2">
+    <div class="mt-2 mx-1">
       <%= f.number_field :weight, placeholder: "重量を入力", class: "form-control", style: "width: 130px;" %>
     </div>
-    <div class="mt-2 mx-2">
+    <div class="mt-2 mx-1">
       <%= f.number_field :sets, placeholder: "セット数を入力", class: "form-control", style: "width: 160px;" %>
     </div>
-    <div class="mt-2 mx-2">
+    <div class="mt-2 mx-1">
       <%= f.number_field :reps, placeholder: "回数を入力", class: "form-control", style: "width: 130px;" %>
     </div>
   </div>
