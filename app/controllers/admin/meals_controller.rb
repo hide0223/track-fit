@@ -9,5 +9,4 @@ class Admin::MealsController < ApplicationController
     @meal.destroy
     redirect_to admin_meals_path
   end
-
 end
