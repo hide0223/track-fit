@@ -37,6 +37,18 @@ class Public::CustomersController < ApplicationController
     redirect_to root_path
   end
 
+  def meal_favorites
+    @customer = Customer.find(params[:id])
+    meal_favorites = MealFavorite.where(customer_id: @customer.id).pluck(:meal_id)
+    @favorite_meals = Meal.find(meal_favorites)
+  end
+
+  def training_favorites
+    @customer = Customer.find(params[:id])
+    training_favorites = TrainingFavorite.where(customer_id: @customer.id).pluck(:training_id)
+    @favorite_trainings = Training.find(training_favorites)
+  end
+
 
   private
 
