@@ -25,10 +25,15 @@
     <div class="mt-1">
       <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    <div>
-      <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+    <div class="d-flex">
+      <div>
+        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+      </div>
+      <div class="mx-3">
+        <%= f.number_field :body_weight, class: "form-control" %>
+      </div>
+      <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
-
     <div id='meal_contents'>
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'meal_content_fields', :f => meal_content %>
@@ -81,22 +86,23 @@
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class="">
-        <% meal.meal_contents.each do |meal_content| %>
-        <table class="table table-bordered" style="width: 50%;">
-          <tr class="">
-            <td class="col-1"><%= meal_content.meal_summary %></td>
-            <td class="col-3"><%= meal_content.eat_meal %></td>
-            <td class="col-1"><%= meal_content.kcal %> kcal</td>
-          </tr>
-        </table>
-        <% end %>
-      </div>
+      <div class="">体重 <%= meal.body_weight %> kg</div>
+      <% meal.meal_contents.each do |meal_content| %>
+      <table class="table table-bordered" style="width: 50%;">
+        <tr class="">
+          <td class="col-1"><%= meal_content.meal_summary %></td>
+          <td class="col-3"><%= meal_content.eat_meal %></td>
+          <td class="col-1"><%= meal_content.kcal %> kcal</td>
+        </tr>
+      </table>
+      <% end %>
       <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
         <div>
           <i class="fa-regular fa-comment"></i>
           <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
-          <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
+          <span id="favorite_btn_<%= meal.id %>">
+            <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
+          </span>
         </div>
          <div>
           <form>
@@ -125,4 +131,14 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+
+$(document).on('turbolinks:load', function() {
+    $('#meal_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#meal_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
 </script>

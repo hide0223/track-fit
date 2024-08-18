@@ -1,0 +1,69 @@
+<% if @meal == [] %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果がありません。</h2>
+  </div>
+<% elsif @meal.present? %>
+  <% search_word = @meal_q.meal_contents_eat_meal_cont %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果 "<%= search_word %>"</h2>
+  </div>
+ <!--#indexページで共通化する-->
+  <% @meal.each do |meal| %>
+    <div class="border-bottom px-4">
+      <div class="d-flex pt-2">
+        <div class="">
+          <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
+            <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+          <% end %>
+        </div>
+        <div class="username">
+          <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
+        </div>
+        <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
+          <%= time_ago_in_words(meal.created_at) %>前
+        </div>
+      </div>
+      <div class="pl40 pt-2">
+        <div class="row">
+          <div class="col-6">
+            <%= meal.body %>
+          </div>
+        </div>
+        <div class="mt-2">
+          <% if meal.image.attached? %>
+            <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
+          <% end %>
+        </div>
+        <div class=""><%= meal.category %></div>
+        <div class="">体重 <%= meal.body_weight %> kg</div>
+        <% meal.meal_contents.each do |meal_content| %>
+        <table class="table table-bordered" style="width: 50%;">
+          <tr class="">
+            <td class="col-1"><%= meal_content.meal_summary %></td>
+            <td class="col-3"><%= meal_content.eat_meal %></td>
+            <td class="col-1"><%= meal_content.kcal %> kcal</td>
+          </tr>
+        </table>
+        <% end %>
+        <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+          <div>
+            <i class="fa-regular fa-comment"></i>
+            <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
+            <span id="favorite_btn_<%= meal.id %>">
+              <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
+            </span>
+          </div>
+           <div>
+            <form>
+              <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <div class="border-bottom">
+    <h2 style="text-align:center">検索結果がありません。</h2>
+  </div>
+<% end %>

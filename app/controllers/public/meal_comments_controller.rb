@@ -1,16 +1,15 @@
 class Public::MealCommentsController < ApplicationController
 
   def create
-    meal = Meal.find(params[:meal_id])
-    comment = current_customer.meal_comments.new(meal_comment_params)
-    comment.meal_id = meal.id
-    comment.save
-    redirect_to request.referer
+    @meal = Meal.find(params[:meal_id])
+    @meal_comment = current_customer.meal_comments.new(meal_comment_params)
+    @meal_comment.meal_id = @meal.id
+    @meal_comment.save
   end
 
   def destroy
-    MealComment.find_by(id: params[:id], meal_id: params[:meal_id]).destroy
-    redirect_to request.referer
+    @meal_comment = MealComment.find_by(id: params[:id], meal_id: params[:meal_id])
+    @meal_comment.destroy
   end
 
   private

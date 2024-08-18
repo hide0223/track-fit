@@ -1,0 +1,3 @@
+$('#comment_counter').html("<%= j(render 'public/training_comments/counter', training: @training_comment.training) %>");
+$('#comment_index').html("<%= j(render 'public/training_comments/index', training: @training_comment.training) %>");
+$('#comment_textarea').val("");

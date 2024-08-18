@@ -12,7 +12,6 @@
       </div>
     <% end %>
   </div>
-
   <%= form_with model: @training, url: public_trainings_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
@@ -25,11 +24,13 @@
     <div class="mt-1">
         <button id="delete-button" type="button" style="display: none;" >削除</button>
     </div>
-    <div>
-      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
+    <div class="row">
+      <div class="col-2">
+        <%= f.number_field :body_weight, class: "form-control" %>
+      </div>
+      <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
-
-     <div id='training_contents'>
+    <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'training_content_fields', :f => training_content %>
       <% end %>
@@ -81,11 +82,11 @@
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div><%= training.body_parts %></div>
-      <div class="">
+      <div>体重 <%= training.body_weight %> kg</div>
         <% training.training_contents.each do |training_content| %>
-        <table class="table table-bordered mt-3" style="width: 70%;">
-          <tr class="">
+        <table class="table table-bordered" style="width: 70%;">
+          <tr>
+            <td class="col-1"><%= training_content.body_parts %></td>
             <td class="col-2"><%= training_content.exercise %></td>
             <td class="col-1"><%= training_content.weight %> kg</td>
             <td class="col-1"><%= training_content.sets %> セット</td>
@@ -93,12 +94,13 @@
           </tr>
         </table>
         <% end %>
-      </div>
       <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
         <div>
           <i class="fa-regular fa-comment"></i>
-          <span style="font-size: smaller; opacity: 0.8;"><%= training.training_comments.count %></span>
-          <%= render "public/training_favorites/training_favorite_btn", training: training %>
+          <span style="font-size: smaller; opacity: 0.8;"></span>
+          <span id="favorite_btn_<%= training.id %>">
+            <%= render "public/training_favorites/training_favorite_btn", training: training %>
+          </span>
         </div>
         <div>
           <form>
@@ -127,4 +129,14 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+
+$(document).on('turbolinks:load', function() {
+    $('#training_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#training_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
 </script>

@@ -5,6 +5,7 @@ class Public::TrainingsController < ApplicationController
   def index
     @trainings = Training.all.order(created_at: :desc)
     @training = Training.new
+    @training.training_contents.build
     @customers = Customer.all
   end
 
@@ -48,8 +49,8 @@ class Public::TrainingsController < ApplicationController
     private
 
   def training_params
-    params.require(:training).permit(:body_parts, :body, :image,
-    training_contents_attributes: [:id, :exercise, :weight, :sets, :reps, :_destroy])
+    params.require(:training).permit(:body_weight, :body, :image,
+    training_contents_attributes: [:id, :body_parts, :exercise, :weight, :sets, :reps, :_destroy])
   end
 
   def ensure_correct_customer

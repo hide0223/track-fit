@@ -1,10 +1,10 @@
 <% if training.favorited_by?(current_customer) %>
-  <%= link_to public_training_training_favorites_path(training), method: :delete,  style: "color: red;" do %>
+  <%= link_to public_training_training_favorites_path(training), method: :delete, remote: true,  style: "color: red;" do %>
     <i class="fas fa-heart" aria-hidden="true"></i>
   <% end %>
   <span style="font-size: smaller; opacity: 0.8;"><%= training.training_favorites.count %></span>
 <% else %>
-  <%= link_to public_training_training_favorites_path(training), method: :post do %>
+  <%= link_to public_training_training_favorites_path(training), method: :post, remote: true do %>
     <i class="favorite fas fa-heart"></i>
   <% end %>
   <span style="font-size: smaller; opacity: 0.8;"><%= training.training_favorites.count %></span>

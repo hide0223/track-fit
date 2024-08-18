@@ -32,34 +32,39 @@
             <%= @meal.body %>
           </div>
         </div>
-        <div><%= @meal.category %></div>
         <div class="mt-2">
           <% if @meal.image.attached? %>
             <%= image_tag @meal.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="">
-          <% @meal.meal_contents.each do |meal_content| %>
-          <table class="table table-bordered mt-3" style="width: 70%;">
-            <tr class="">
-              <td class="col-2"><%= meal_content.meal_summary %></td>
-              <td class="col-4"><%= meal_content.eat_meal %></td>
-              <td class="col-2"><%= meal_content.kcal %> kcal</td>
-            </tr>
-          </table>
-          <% end %>
-        </div>
+        <div><%= @meal.category %></div>
+        <div>体重 <%= @meal.body_weight %> kg</div>
+        <% @meal.meal_contents.each do |meal_content| %>
+        <table class="table table-bordered" style="width: 70%;">
+          <tr class="">
+            <td class="col-2"><%= meal_content.meal_summary %></td>
+            <td class="col-4"><%= meal_content.eat_meal %></td>
+            <td class="col-2"><%= meal_content.kcal %> kcal</td>
+          </tr>
+        </table>
+        <% end %>
         <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
           <div>
             <i class="fa-regular fa-comment"></i>
-            <span style="font-size: smaller; opacity: 0.8;"><%= @meal.meal_comments.count %></span>
-            <%= render "public/meal_favorites/meal_favorite_btn", meal: @meal %>
+            <span id="comment_counter" style="font-size: smaller; opacity: 0.8;">
+              <%= render "public/meal_comments/counter", meal: @meal %>
+            </span>
+            <span id="favorite_btn_<%= @meal.id %>">
+              <%= render "public/meal_favorites/meal_favorite_btn", meal: @meal %>
+            </span>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <%= render "/public/meal_comments/index", meal: @meal %>
+      <div id="comment_index">
+        <%= render "public/meal_comments/index", meal: @meal %>
+      </div>
       <%= render "public/meal_comments/from", meal: @meal, meal_comment: @meal_comment %>
     </div>
 </div>

@@ -39,4 +39,11 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+  ["followers", "followings", "meal_comments", "meal_favorites", "meals", "profile_image_attachment", "profile_image_blob", "relationships", "reverse_of_relationships", "training_comments", "training_favorites", "trainings"]
+  end
 end

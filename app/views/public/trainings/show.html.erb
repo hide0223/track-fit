@@ -32,35 +32,40 @@
             <%= @training.body %>
           </div>
         </div>
-        <div><%= @training.body_parts %></div>
         <div class="mt-2">
           <% if @training.image.attached? %>
             <%= image_tag @training.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="">
-          <% @training.training_contents.each do |training_content| %>
-          <table class="table table-bordered mt-3" style="width: 90%;">
-            <tr class="">
-              <td class="col-4"><%= training_content.exercise %></td>
-              <td class="col-1"><%= training_content.weight %> kg</td>
-              <td class="col-2"><%= training_content.sets %> セット</td>
-              <td class="col-1"><%= training_content.reps %> 回</td>
-            </tr>
-          </table>
-          <% end %>
-        </div>
+        <div>体重 <%= @training.body_weight %> kg</div>
+        <% @training.training_contents.each do |training_content| %>
+        <table class="table table-bordered" style="width: 90%;">
+          <tr class="">
+            <td class="col-1"><%= training_content.body_parts %></td>
+            <td class="col-4"><%= training_content.exercise %></td>
+            <td class="col-1"><%= training_content.weight %> kg</td>
+            <td class="col-2"><%= training_content.sets %> セット</td>
+            <td class="col-1"><%= training_content.reps %> 回</td>
+          </tr>
+        </table>
+        <% end %>
         <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
           <div>
             <i class="fa-regular fa-comment"></i>
-            <span style="font-size: smaller; opacity: 0.8;"><%= @training.training_comments.count %></span>
-            <%= render "public/training_favorites/training_favorite_btn", training: @training %>
+            <span id="comment_counter" style="font-size: smaller; opacity: 0.8;">
+              <%= render "public/training_comments/counter", training: @training %>
+            </span>
+            <span id="favorite_btn_<%= @training.id %>">
+              <%= render "public/training_favorites/training_favorite_btn", training: @training %>
+            </span>
           </div>
         </div>
       </div>
     </div>
     <div>
-      <%= render "/public/training_comments/index", training: @training %>
+      <div id="comment_index">
+        <%= render "public/training_comments/index", training: @training %>
+      </div>
       <%= render "public/training_comments/from", training: @training, training_comment: @training_comment %>
     </div>
 </div>
