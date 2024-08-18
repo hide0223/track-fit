@@ -16,6 +16,7 @@
       <div class="side">
         <ul class = "navbar-nav ml-auto">
           <% if admin_signed_in? %>
+            <li class="nav-item"><%= link_to 'ユーザ一覧',admin_customers_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
             <li class="nav-item"><%= link_to '食事一覧',admin_meals_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
             <li class="nav-item"><%= link_to 'トレーニング一覧',admin_trainings_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
             <li class="nav-item"><%= link_to '食事コメント一覧', admin_meal_comments_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>

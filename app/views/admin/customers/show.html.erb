@@ -1,0 +1,44 @@
+<div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid">
+  <%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle border" %>
+  <div style="margin-left: 30px;">
+    <div class="d-flex">
+      <div class="mt-1 name-link" style="font-size: 25px;">
+        <%= @customer.name %>
+      </div>
+    </div>
+    <div class="d-flex mt-1">
+      <div class="d-flex">
+        <div>
+          <span style="opacity: 0.8;">年齢</span>
+        </div>
+        <div class="ml-1 name-link">
+          <%= @customer.age %>歳
+        </div>
+      </div>
+      <div class="d-flex ml-4">
+        <div>
+          <span style="opacity: 0.8;">身長</span>
+        </div>
+        <div class="ml-1 name-link">
+          <%= @customer.height %>cm
+        </div>
+      </div>
+      <div class="d-flex ml-4">
+        <div>
+          <span style="opacity: 0.8;">体重</span>
+        </div>
+        <div class="ml-1 name-link">
+          <%= @customer.weight %>kg
+        </div>
+      </div>
+    </div>
+    <div class="mt-1 mb-3 name-link" style="font-size: 15px;">
+      <%= @customer.introduction %>
+    </div>
+  </div>
+  <div>
+    <form>
+      <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+    </form>
+  </div>
+</div>
