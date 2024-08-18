@@ -45,6 +45,9 @@ Rails.application.routes.draw do
     resources :meals, only: [:index, :show, :destroy]
     resources :meal_comments, only: [:index, :show, :destroy]
 
+    resources :trainings, only: [:index, :show, :destroy]
+    resources :training_comments, only: [:index, :show, :destroy]
+
     root to: 'admin/homes#top'
  end
 end
