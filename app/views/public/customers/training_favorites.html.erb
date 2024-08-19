@@ -1,3 +1,11 @@
+<div class="list_buttons">
+  <div class="list_button">
+    <%= link_to '食事', meal_favorites_public_customer_path(current_customer), class: "name-link" %>
+  </div>
+  <div class="list_button">
+    <%= link_to 'トレーニング',training_favorites_public_customer_path(current_customer), class: "name-link" %>
+  </div>
+</div>
 <% @favorite_trainings.each do |training| %>
 <!--#indexから共通化する-->
   <div class="border-bottom px-4">
@@ -46,9 +54,9 @@
           </span>
         </div>
         <div>
-          <form>
-            <%= link_to '詳細', public_training_path(training), class: "radius-pixel-30" %>
-          </form>
+          <%= link_to public_training_path(training), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">詳細</p>
+          <% end %>
         </div>
       </div>
     </div>

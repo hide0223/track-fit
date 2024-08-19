@@ -13,15 +13,21 @@
           <%= time_ago_in_words(@meal.created_at) %>前
         </div>
         <% if @meal.customer == current_customer %>
-        <div class="d-flex" style="margin-left: 550px;">
+        <div class="d-flex" style="margin-left: 520px;">
           <div class="px-2">
-            <span><%= link_to '編集', edit_public_meal_path(@meal), class: "btn btn-sm btn-success" %></span>
+            <%= link_to edit_public_meal_path(@meal), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">編集</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "削除", public_meal_path(@meal.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+            <%= link_to public_meals_path, class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">一覧</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "一覧", public_meals_path, class: "btn btn-sm btn-primary" %></span>
+            <%= link_to public_meal_path(@meal.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
+              <p class="a-button">削除</p>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -62,9 +68,9 @@
       </div>
     </div>
     <div>
+      <%= render "public/meal_comments/from", meal: @meal, meal_comment: @meal_comment %>
       <div id="comment_index">
         <%= render "public/meal_comments/index", meal: @meal %>
       </div>
-      <%= render "public/meal_comments/from", meal: @meal, meal_comment: @meal_comment %>
     </div>
 </div>

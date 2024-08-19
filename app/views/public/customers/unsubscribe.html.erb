@@ -10,12 +10,12 @@
       <br>
       <br>
       <br>
-      <div class="row justify-content-center">
-        <div class="col-2">
-          <%= link_to "退会しない", edit_public_customer_path(@customer), class: "btn btn-primary btn-block" %>
+      <div class="d-flex justify-content-center">
+        <div class="">
+          <%= link_to "退会しない", edit_public_customer_path(@customer), class: "btn btn-outline-dark btn-block" %>
         </div>
-        <div class="col-2">
-          <%= button_to "退会する", public_customer_withdraw_path(@customer), method: :patch, class: 'btn btn-danger btn-block' %>
+        <div class="">
+          <%= button_to "退会する", public_customer_withdraw_path(@customer), method: :patch, class: 'btn btn-outline-danger btn-block' %>
         </div>
       </div>
     </div>

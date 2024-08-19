@@ -9,6 +9,11 @@
   width: 50%;
   border-right: 2px solid #f7f7f7;
   border-left: 2px solid #f7f7f7;
+
+}
+
+body{
+   //background: red;
 }
 .side {
   width: 25%;
@@ -125,4 +130,110 @@ select {
 }
 
 #delete-button{
+}
+
+.buttons{
+    margin: 10px auto;/* 上下 50px 空け、左右中央に配置 */
+    width: 300px;        /* 横幅 210px */
+}
+
+/* ➁ボタン単体 */
+
+
+/* Aボタン */
+#a_btn{
+    color: black;           /* 文字色：白 */
+    background-color: lightgray;  /* 背景色：赤 */
+}
+
+/* Aボタン active */
+#a_btn.active{
+    color: black;             /* 文字色：黒 */
+    background-color: white;  /* 文字色：白 */
+}
+
+/* Bボタン */
+#b_btn{
+    color: black;             /* 文字色：黒 */
+    background-color: white;  /* 文字色：白 */
+}
+
+/* Bボタン active */
+#b_btn.active{
+    color: black;            /* 文字色：白 */
+    background-color: lightgray;  /* 背景色：青 */
+}
+
+/* ➂切り替え画面 */
+.screen{
+    width: 100%;         /* 横幅 100% */
+    height: 500px;       /* 縦幅 500px */
+    position: relative;  /* 親要素 */
+}
+
+/* ➃A画面 */
+.a_screen{
+    position: absolute;           /* 子要素 */
+    display: block;                   /* 要素の透明度 */
+    pointer-events: auto;         /* マウスイベントをオン */
+    width: 100%;                  /* 横幅 100% */
+    height: 100%;                 /* 縦幅 100% */
+}
+
+/* ➃A画面 active */
+.a_screen.active{
+    display: none;           /* 要素の透明度 */
+    pointer-events: none; /* マウスイベントをキャンセル */
+}
+
+/* ➄B画面 */
+.b_screen{
+    display: none;           /* 要素の透明度 */
+    pointer-events: none; /* マウスイベントをキャンセル */
+}
+
+/* ➄B画面 active */
+.b_screen.active{
+    position: absolute;           /* 子要素 */
+    display: block;                   /* 要素の透明度 */
+    pointer-events: auto;         /* マウスイベントをオン */
+    width: 100%;                  /* 横幅 100% */
+    height: 100%;                 /* 縦幅 100% */
+}
+
+.list_buttons {
+  display: flex; /* Flexboxの利用 */
+  justify-content: center; /* 子要素の横並び・中央寄せ */
+  margin: 0 auto;
+  padding: 20px;
+  border-bottom: 2px solid #f7f7f7;
+}
+
+ .list_button {
+   padding-left: 30px;
+   padding-right: 30px;
+ }
+
+.btn-outline-dark {
+  border-radius: 30px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.btn-outline-danger {
+  border-radius: 30px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+
+.a-button {
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.search_word {
+  font-weight: bold;
+  color: #2b2b2b;
 }

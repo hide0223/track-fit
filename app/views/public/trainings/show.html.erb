@@ -13,15 +13,21 @@
           <%= time_ago_in_words(@training.created_at) %>前
         </div>
         <% if @training.customer == current_customer %>
-        <div class="d-flex" style="margin-left: 550px;">
+        <div class="d-flex" style="margin-left: 520px;">
           <div class="px-2">
-            <span><%= link_to '編集', edit_public_training_path(@training), class: "btn btn-sm btn-success" %></span>
+            <%= link_to edit_public_training_path(@training), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">編集</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "削除", public_training_path(@training.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+            <%= link_to public_trainings_path, class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">一覧</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "一覧", public_trainings_path, class: "btn btn-sm btn-primary" %></span>
+            <%= link_to public_training_path(@training.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
+              <p class="a-button">削除</p>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -49,7 +55,7 @@
           </tr>
         </table>
         <% end %>
-        <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+        <div style="display: flex; justify-content: space-between; padding: 5px 10px 5px 0px ;">
           <div>
             <i class="fa-regular fa-comment"></i>
             <span id="comment_counter" style="font-size: smaller; opacity: 0.8;">
@@ -63,9 +69,9 @@
       </div>
     </div>
     <div>
+      <%= render "public/training_comments/from", training: @training, training_comment: @training_comment %>
       <div id="comment_index">
         <%= render "public/training_comments/index", training: @training %>
       </div>
-      <%= render "public/training_comments/from", training: @training, training_comment: @training_comment %>
     </div>
 </div>
