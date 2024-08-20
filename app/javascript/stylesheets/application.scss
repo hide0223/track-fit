@@ -9,17 +9,40 @@
   width: 50%;
   border-right: 2px solid #f7f7f7;
   border-left: 2px solid #f7f7f7;
-
 }
 
-body{
-   //background: red;
-}
 .side {
   width: 25%;
 }
 .aside{
   width: 25%;
+}
+
+.leftside{
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.rightside {
+  width: 50%;
+  position: relative;
+}
+
+.rightinner {
+  margin-top: 350px;
+  margin-left: 100px;
+}
+
+.track-fit {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  color: #666666;
+  font-size: 130px;
+  margin-left: 100px;
 }
 
 
@@ -206,7 +229,6 @@ select {
   justify-content: center; /* 子要素の横並び・中央寄せ */
   margin: 0 auto;
   padding: 20px;
-  border-bottom: 2px solid #f7f7f7;
 }
 
  .list_button {
@@ -292,3 +314,8 @@ h3 {
   font-weight: bold;
   color: #666666;
 }
+
+p {
+  margin-bottom: 0px;
+}
+

@@ -22,6 +22,7 @@ class Public::MealsController < ApplicationController
       redirect_to public_meals_path
     else
       @meals = Meal.all
+      @meal.meal_contents.build
       render 'index'
     end
   end
@@ -35,6 +36,7 @@ class Public::MealsController < ApplicationController
 
   def edit
     @meal = Meal.find(params[:id])
+    @meal.meal_contents.build
   end
 
   def update

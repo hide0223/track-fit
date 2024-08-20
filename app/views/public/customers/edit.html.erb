@@ -1,8 +1,7 @@
+<%= render 'layouts/errors', obj: @customer %>
 <%= form_with model: @customer, url: public_customer_path do |f| %>
   <div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid">
-   
       <img id="preview" class="rounded-circle border" style="width: 100px; height: 100px; display: none;" >
-  
     <% if @customer.get_profile_image.present? %>
     <%= image_tag @customer.get_profile_image, size: '100x100', class: "profile_image rounded-circle border" %>
       <div class="">

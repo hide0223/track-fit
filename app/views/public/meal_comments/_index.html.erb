@@ -1,5 +1,5 @@
-<div style="display: flex; justify-content: space-between;" class="border-bottom">
 <% meal.meal_comments.each do |meal_comment| %>
+<div style="display: flex; justify-content: space-between;" class="border-bottom">
   <div class="px-4 pt-2">
     <div class="d-flex">
       <% if current_customer %>
@@ -27,5 +27,5 @@
       <%= link_to "削除", public_meal_meal_comment_path(meal, meal_comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
     <% end %>
   </div>
-<% end %>
 </div>
+<% end %>

@@ -38,12 +38,12 @@
   </div>
   <div style="display: flex; justify-content: space-between; padding: 25px 0px 0px 500px ;">
     <form>
-      <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+      <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
     </form>
   </div>
 </div>
 
-<div class=" border-left border-right" style="padding: 30px;" >
+<div class="border-bottom" style="padding: 30px;">
   <div class="d-flex justify-content-center">
     <button class="button" id="a_btn">食事</button>
     <button class="button" id="b_btn">トレーニング</button>
@@ -52,7 +52,7 @@
 <div class="screen">
   <div class="a_screen">
     <% @meals.each do |meal| %>
-      <div class="border-top px-4 border-right border-left">
+      <div class="border-top px-4">
         <div class="d-flex pt-2">
           <div class="">
             <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
@@ -93,7 +93,7 @@
             </div>
             <div>
               <form>
-                <%= link_to '削除', admin_meal_path(meal), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+                <%= link_to '削除', admin_meal_path(meal), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
               </form>
             </div>
           </div>
@@ -103,8 +103,7 @@
   </div>
   <div class="b_screen">
     <% @trainings.each do |training| %>
-    
-      <div class="border-top px-4 border-right border-left">
+      <div class="border-bottom px-4">
         <div class="d-flex pt-2">
           <div class="">
             <%= link_to public_customer_path(training.customer), class: "profile-link" do %>
@@ -146,7 +145,7 @@
             </div>
             <div>
               <form>
-                <%= link_to '削除', admin_training_path(training), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+                <%= link_to '削除', admin_training_path(training), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
               </form>
             </div>
           </div>

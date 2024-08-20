@@ -18,10 +18,11 @@ class Public::TrainingsController < ApplicationController
   def create
     @training = Training.new(training_params)
     @training.customer_id = current_customer.id
-    if @training.save
+    if @training.training_contents.present? && @training.save
       redirect_to public_trainings_path
     else
       @trainings = Training.all
+      @training.training_contents.build
       render 'index'
     end
   end

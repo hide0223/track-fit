@@ -1,11 +1,11 @@
 <% if @meal == [] %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果がありません。</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果がありません。</h2>
   </div>
 <% elsif @meal.present? %>
   <% search_word = @meal_q.meal_contents_eat_meal_cont %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果 "<%= search_word %>"</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果 "<%= search_word %>"</h2>
   </div>
  <!--#indexページで共通化する-->
   <% @meal.each do |meal| %>
@@ -54,16 +54,16 @@
             </span>
           </div>
            <div>
-            <form>
-              <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
-            </form>
+            <%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">詳細</p>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 <% else %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果がありません。</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果がありません。</h2>
   </div>
 <% end %>

@@ -66,5 +66,22 @@
     <% end %>
   </div>
 </div>
+<%= button_to "食事", "#", id: "meal-button", method: :get %>
+<%= button_to "トレーニング", "#", id: "training-button", method: :get %>
+<div id="rendering-area"></div>
+
+<script>
+  $(function() {
+    // 食事ボタンのクリックイベント
+    $("#meal-button").on("click", function() {
+      $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals) %>");
+    });
+
+    // トレーニングボタンのクリックイベント
+    $("#training-button").on("click", function() {
+      $("#rendering-area").html("<%= j render('public/trainings/index', training: @trainings) %>");
+    });
+  });
+</script>
 
 

@@ -2,9 +2,13 @@ class Public::MealCommentsController < ApplicationController
 
   def create
     @meal = Meal.find(params[:meal_id])
-    @meal_comment = current_customer.meal_comments.new(meal_comment_params)
-    @meal_comment.meal_id = @meal.id
-    @meal_comment.save
+    if@meal_comment = current_customer.meal_comments.new(meal_comment_params)
+      @meal_comment.meal_id = @meal.id
+      @meal_comment.save
+    else
+      @meal = Meal.find(params[:meal_id])
+      render :create
+    end
   end
 
   def destroy
