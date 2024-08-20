@@ -1,3 +1,11 @@
+<div class="list_buttons">
+  <div class="list_button">
+    <%= link_to '食事', public_meals_path(@customers), class: "name-link" %>
+  </div>
+  <div class="list_button">
+    <%= link_to 'トレーニング',public_trainings_path(@customers), class: "name-link" %>
+  </div>
+</div>
 <%= render 'layouts/errors', obj: @meal %>
 <div class="px-4 pt-2 border-bottom">
   <div class="d-flex">
@@ -12,25 +20,24 @@
       </div>
     <% end %>
   </div>
-
   <%= form_with model: @meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
         <%= f.text_area :body, class: "form-control", rows: "4", cols: "30" %>
       </div>
     </div>
-    <div class="mt-2">
+    <div class="mt-3">
       <img id="preview" style="width:40%;">
     </div>
-    <div class="mt-1">
-      <button id="delete-button" type="button" style="display: none;" >削除</button>
+    <div class="mt-1 mb-1">
+      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger" >削除</button>
     </div>
     <div class="d-flex">
       <div>
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
       <div class="mx-3">
-        <%= f.number_field :body_weight, class: "form-control" %>
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力"%>
       </div>
       <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
@@ -38,8 +45,8 @@
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'meal_content_fields', :f => meal_content %>
       <% end %>
-      <div class='links'>
-        <%= link_to_add_association '詳細を追加', f, :meal_contents %>
+      <div class='links mt-2'>
+        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark" %>
       </div>
     </div>
 
@@ -51,9 +58,7 @@
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <form>
-          <input class="radius-pixel-30" type="submit" value="記録する">
-        </form>
+        <button type="submit" class="btn btn-outline-dark"><p class="a-button">記録する</p></button>
       </div>
     </div>
   <% end %>
@@ -80,16 +85,16 @@
           <%= meal.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-3">
         <% if meal.image.attached? %>
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class="">体重 <%= meal.body_weight %> kg</div>
+      <div class=""><%= meal.body_weight %></div>
       <% meal.meal_contents.each do |meal_content| %>
       <table class="table table-bordered" style="width: 50%;">
-        <tr class="">
+        <tr class="meal-tr">
           <td class="col-1"><%= meal_content.meal_summary %></td>
           <td class="col-3"><%= meal_content.eat_meal %></td>
           <td class="col-1"><%= meal_content.kcal %> kcal</td>
@@ -104,10 +109,10 @@
             <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
           </span>
         </div>
-         <div>
-          <form>
-            <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
-          </form>
+        <div>
+          <%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">詳細</p>
+          <% end %>
         </div>
       </div>
     </div>

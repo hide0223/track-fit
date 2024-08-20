@@ -1,3 +1,11 @@
+<div class="list_buttons">
+  <div class="list_button">
+    <%= link_to '食事', public_meals_path(@customers), class: "name-link" %>
+  </div>
+  <div class="list_button">
+    <%= link_to 'トレーニング',public_trainings_path(@customers), class: "name-link" %>
+  </div>
+</div>
 <%= render 'layouts/errors', obj: @training %>
 <div class="px-4 pt-2 border-bottom">
   <div class="d-flex">
@@ -21,12 +29,12 @@
     <div class="mt-2 mb-2">
       <img id="preview" style="width:40%;">
     </div>
-    <div class="mt-1">
-        <button id="delete-button" type="button" style="display: none;" >削除</button>
+    <div class="mt-1 mb-1">
+        <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
     </div>
     <div class="row">
       <div class="col-2">
-        <%= f.number_field :body_weight, class: "form-control" %>
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力" %>
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
@@ -34,12 +42,12 @@
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'training_content_fields', :f => training_content %>
       <% end %>
-      <div class='links'>
-        <%= link_to_add_association '詳細を追加', f, :training_contents %>
+      <div class='links mt-2'>
+        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark" %>
       </div>
     </div>
 
-    <div style="display: flex; justify-content: space-between; padding: 20px 0px 0px 0px ;">
+    <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
       <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
@@ -47,12 +55,9 @@
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <form>
-          <input class="radius-pixel-30" type="submit" value="記録する">
-        </form>
+        <button type="submit" class="btn btn-outline-dark"><p class="a-button">記録する</p></button>
       </div>
     </div>
-
   <% end %>
 </div>
 
@@ -77,24 +82,24 @@
           <%= training.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-4">
         <% if training.image.attached? %>
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div>体重 <%= training.body_weight %> kg</div>
-        <% training.training_contents.each do |training_content| %>
-        <table class="table table-bordered" style="width: 70%;">
-          <tr>
-            <td class="col-1"><%= training_content.body_parts %></td>
-            <td class="col-2"><%= training_content.exercise %></td>
-            <td class="col-1"><%= training_content.weight %> kg</td>
-            <td class="col-1"><%= training_content.sets %> セット</td>
-            <td class="col-1"><%= training_content.reps %> 回</td>
-          </tr>
-        </table>
-        <% end %>
-      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+      <div><%= training.body_weight %> kg</div>
+      <% training.training_contents.each do |training_content| %>
+      <table class="table table-bordered" style="width: 80%;">
+        <tr>
+          <td class="col-1"><%= training_content.body_parts %></td>
+          <td class="col-2"><%= training_content.exercise %></td>
+          <td class="col-1"><%= training_content.weight %> kg</td>
+          <td class="col-1"><%= training_content.sets %> セット</td>
+          <td class="col-1"><%= training_content.reps %> 回</td>
+        </tr>
+      </table>
+      <% end %>
+      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
         <div>
           <i class="fa-regular fa-comment"></i>
           <span style="font-size: smaller; opacity: 0.8;"></span>
@@ -103,9 +108,9 @@
           </span>
         </div>
         <div>
-          <form>
-            <%= link_to '詳細', public_training_path(training), class: "radius-pixel-30" %>
-          </form>
+          <%= link_to public_training_path(training), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">詳細</p>
+          <% end %>
         </div>
       </div>
     </div>

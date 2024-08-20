@@ -47,6 +47,7 @@ Rails.application.routes.draw do
 
     resources :trainings, only: [:index, :show, :destroy]
     resources :training_comments, only: [:index, :show, :destroy]
+    resources :customers, only: [:index, :show, :edit, :update, :destroy]
 
     root to: 'admin/homes#top'
  end
