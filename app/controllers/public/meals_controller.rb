@@ -6,11 +6,13 @@ class Public::MealsController < ApplicationController
     @meals = Meal.all.order(created_at: :desc)
     @meal = Meal.new
     @customers = Customer.all
+    @meal.meal_contents.build
   end
 
 
   def show
     @meal = Meal.find(params[:id])
+    @meal_comment = MealComment.new
   end
 
   def create
@@ -47,7 +49,8 @@ class Public::MealsController < ApplicationController
     private
 
   def meal_params
-    params.require(:meal).permit(:category, :meal_summary, :eat_meal, :kcal, :body, :image)
+    params.require(:meal).permit(:category, :body_weight, :body, :image,
+    meal_contents_attributes: [:id, :meal_summary, :eat_meal, :kcal, :_destroy])
   end
 
   def ensure_correct_customer

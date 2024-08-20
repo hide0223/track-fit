@@ -1,3 +1,11 @@
+<div class="list_buttons">
+  <div class="list_button">
+    <%= link_to '食事', public_meals_path(@customers), class: "name-link" %>
+  </div>
+  <div class="list_button">
+    <%= link_to 'トレーニング',public_trainings_path(@customers), class: "name-link" %>
+  </div>
+</div>
 <%= render 'layouts/errors', obj: @meal %>
 <div class="px-4 pt-2 border-bottom">
   <div class="d-flex">
@@ -12,43 +20,45 @@
       </div>
     <% end %>
   </div>
-  
   <%= form_with model: @meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
         <%= f.text_area :body, class: "form-control", rows: "4", cols: "30" %>
       </div>
     </div>
-    <div class="mt-2">
+    <div class="mt-3">
       <img id="preview" style="width:40%;">
     </div>
-    <div class="mt-1">
-      <button id="delete-button" type="button" style="display: none;" >削除</button>
+    <div class="mt-1 mb-1">
+      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger" >削除</button>
     </div>
     <div class="d-flex">
-      <div class="mt-2 mr-2">
+      <div>
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
-      <div class="mt-2 mx-2">
-        <%= f.select :meal_summary, [["主食", "主食"], ["主菜", "主菜"], ["副菜", "副菜"]], include_blank: "主食など選択", class: "form-control" %>
+      <div class="mx-3">
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力"%>
       </div>
-      <div class="mt-2 mx-2"><%= f.text_field :eat_meal, placeholder: "例：鶏肉と野菜の炒め物", class: "form-control" %></div>
-      <div class="mt-2 mx-2"><%= f.number_field :kcal, class: "form-control" %></div>
-      <div class="mt-3 mr-4"><%= f.label :kcal %></div>
+      <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
-    <div class="d-flex">
-      <div class="mt-4">
+    <div id='meal_contents'>
+      <%= f.fields_for :meal_contents do |meal_content| %>
+        <%= render 'meal_content_fields', :f => meal_content %>
+      <% end %>
+      <div class='links mt-2'>
+        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark" %>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; padding: 20px 0px 0px 0px ;">
+      <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
-      <div class="mt-4" style="margin-left: 700px;" >
-        <div>
-          <form>
-            <input class="radius-pixel-30" type="submit" value="記録する">
-          </form>
-        </div>
+      <div>
+        <button type="submit" class="btn btn-outline-dark"><p class="a-button">記録する</p></button>
       </div>
     </div>
   <% end %>
@@ -75,27 +85,35 @@
           <%= meal.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-3">
         <% if meal.image.attached? %>
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div class="d-flex">
-        <table class="table table-bordered mt-3" style="width: 50%;">
-          <tr class="">
-            <td class="col-1"><%= meal.category %></td>
-            <td class="col-1"><%= meal.meal_summary %></td>
-            <td class="col-3"><%= meal.eat_meal %></td>
-            <td class="col-1"><%= meal.kcal %> kcal</td>
-          </tr>
-        </table>
-      </div>
-    </div>
-    <div class="mt-1 mb-2" style="margin-left: 780px;" >
-      <div>
-        <form>
-          <%= link_to '詳細', public_meal_path(meal), class: "radius-pixel-30" %>
-        </form>
+      <div class=""><%= meal.category %></div>
+      <div class=""><%= meal.body_weight %></div>
+      <% meal.meal_contents.each do |meal_content| %>
+      <table class="table table-bordered" style="width: 50%;">
+        <tr class="meal-tr">
+          <td class="col-1"><%= meal_content.meal_summary %></td>
+          <td class="col-3"><%= meal_content.eat_meal %></td>
+          <td class="col-1"><%= meal_content.kcal %> kcal</td>
+        </tr>
+      </table>
+      <% end %>
+      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+        <div>
+          <i class="fa-regular fa-comment"></i>
+          <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
+          <span id="favorite_btn_<%= meal.id %>">
+            <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
+          </span>
+        </div>
+        <div>
+          <%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">詳細</p>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
@@ -118,4 +136,14 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+
+$(document).on('turbolinks:load', function() {
+    $('#meal_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#meal_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
 </script>

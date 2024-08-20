@@ -1,0 +1,11 @@
+<% if meal.favorited_by?(current_customer) %>
+  <%= link_to public_meal_meal_favorites_path(meal), method: :delete, remote: true,  style: "color: red;" do %>
+    <i class="fas fa-heart" aria-hidden="true"></i>
+  <% end %>
+  <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_favorites.count %></span>
+<% else %>
+  <%= link_to public_meal_meal_favorites_path(meal), method: :post, remote: true do %>
+    <i class="favorite fas fa-heart" aria-hidden="true"></i>
+  <% end %>
+  <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_favorites.count %></span>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="border-bottom container mt-3 pb-2">
+  <h3>ユーザ一覧</h3>
+</div>
+  <% @customers.each do |customer| %>
+  <div style="display: flex; justify-content: space-between; padding: 0px 10px 10px 10px ;" class=" border-bottom">
+    <div style="display: flex;">
+      <%= image_tag customer.get_profile_image, size: '40x40', class: "rounded-circle border mt-2" %>
+      <div style="margin-top: 12px;">
+      　<%= link_to customer.name, admin_customer_path(customer), class: "name-link" %><br>
+      </div>
+    </div>
+    <div style="margin-top: 12px;">
+      <form>
+        <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+      </form>
+    </div>
+  </div>
+<% end %>

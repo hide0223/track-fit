@@ -13,15 +13,54 @@
 
   <body>
     <main class="test_container">
-      <div class="side">
+      <div class="side mt-3">
         <ul class = "navbar-nav ml-auto">
           <% if admin_signed_in? %>
+            <li class="nav-item"><%= link_to 'ユーザ一覧',admin_customers_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li class="nav-item"><%= link_to '食事一覧',admin_meals_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li class="nav-item"><%= link_to 'トレーニング一覧',admin_trainings_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li class="nav-item"><%= link_to '食事コメント一覧', admin_meal_comments_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li class="nav-item"><%= link_to 'トレーニングコメント一覧', admin_training_comments_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
             <li class="nav-item"><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+
           <% elsif customer_signed_in? %>
-            <li class="nav-item"><%= link_to 'マイページ',public_customer_path(current_customer) ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to '食事',public_meals_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to 'トレーニング',public_trainings_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to 'ログアウト',destroy_customer_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li>
+              <%=  link_to public_customer_path(current_customer),class: 'nav-link' do %>
+                <i class="fa-solid fa-house"></i>
+                <span class="ml-2">ホーム</span>
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to public_meals_path,class: 'nav-link' do %>
+                <i class="fa-solid fa-dumbbell"></i>
+                <span class="ml-2">食事</span>
+              <% end %>
+            </li>
+
+            <li>
+              <%=  link_to public_trainings_path,class: 'nav-link' do %>
+                 <i class="fa-solid fa-drumstick-bite"></i>
+                 <span class="ml-2">トレーニング</span>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to meal_favorites_public_customer_path(current_customer), class: 'nav-link' do %>
+                <i class="fa-solid fa-heart"></i>
+                <span class="ml-2">食事のいいね</span>
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to training_favorites_public_customer_path(current_customer),class: 'nav-link' do %>
+                 <i class="fa-solid fa-heart"></i>
+                 <span class="ml-2">トレーニングのいいね</span>
+              <% end %>
+            </li>
+            <li>
+              <%=  link_to destroy_customer_session_path, method: :delete,class: 'nav-link' do %>
+                 <i class="fas fa-sign-out-alt"></i>
+                 <span class="ml-2">ログアウト</span>
+              <% end %>
+            </li>
           <% else %>
             <li class="nav-item"><%= link_to 'About',root_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
           <% end %>

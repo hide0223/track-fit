@@ -13,15 +13,21 @@
           <%= time_ago_in_words(@meal.created_at) %>前
         </div>
         <% if @meal.customer == current_customer %>
-        <div class="d-flex" style="margin-left: 550px;">
+        <div class="d-flex" style="margin-left: 520px;">
           <div class="px-2">
-            <span><%= link_to '編集', edit_public_meal_path(@meal), class: "btn btn-sm btn-success" %></span>
+            <%= link_to edit_public_meal_path(@meal), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">編集</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "削除", public_meal_path(@meal.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+            <%= link_to public_meals_path, class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">一覧</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "一覧", public_meals_path, class: "btn btn-sm btn-primary" %></span>
+            <%= link_to public_meal_path(@meal.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
+              <p class="a-button">削除</p>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -37,16 +43,34 @@
             <%= image_tag @meal.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="d-flex">
-          <table class="table table-bordered mt-3" style="width: 70%;">
-            <tr class="">
-              <td class="col-2"><%= @meal.category %></td>
-              <td class="col-2"><%= @meal.meal_summary %></td>
-              <td class="col-4"><%= @meal.eat_meal %></td>
-              <td class="col-2"><%= @meal.kcal %> kcal</td>
-            </tr>
-          </table>
+        <div><%= @meal.category %></div>
+        <div>体重 <%= @meal.body_weight %> kg</div>
+        <% @meal.meal_contents.each do |meal_content| %>
+        <table class="table table-bordered" style="width: 70%;">
+          <tr class="">
+            <td class="col-2"><%= meal_content.meal_summary %></td>
+            <td class="col-4"><%= meal_content.eat_meal %></td>
+            <td class="col-2"><%= meal_content.kcal %> kcal</td>
+          </tr>
+        </table>
+        <% end %>
+        <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+          <div>
+            <i class="fa-regular fa-comment"></i>
+            <span id="comment_counter" style="font-size: smaller; opacity: 0.8;">
+              <%= render "public/meal_comments/counter", meal: @meal %>
+            </span>
+            <span id="favorite_btn_<%= @meal.id %>">
+              <%= render "public/meal_favorites/meal_favorite_btn", meal: @meal %>
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
+    <div>
+      <%= render "public/meal_comments/from", meal: @meal, meal_comment: @meal_comment %>
+      <div id="comment_index">
+        <%= render "public/meal_comments/index", meal: @meal %>
       </div>
     </div>
 </div>

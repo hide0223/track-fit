@@ -1,0 +1,31 @@
+<div style="display: flex; justify-content: space-between;" class="border-bottom">
+<% training.training_comments.each do |training_comment| %>
+  <div class="px-4 pt-2">
+    <div class="d-flex">
+      <% if current_customer %>
+        <div class="">
+          <%= link_to public_customer_path(training_comment.customer) do %>
+            <%= image_tag training_comment.customer.get_profile_image, size: "40x40", class: "rounded-circle border" %>
+          <% end %>
+        </div>
+         <div class="username">
+          <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+        </div>
+        <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
+          <%= time_ago_in_words(training.created_at) %>前
+        </div>
+      <% end %>
+    </div>
+    <div class="pl40 mb-3 mt-2">
+      <div class="">
+        <%= training_comment.comment %>
+      </div>
+    </div>
+  </div>
+  <div class="mt-5 mr-4">
+    <% if training_comment.customer == current_customer %>
+      <%= link_to "削除", public_training_training_comment_path(training, training_comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
+    <% end %>
+  </div>
+<% end %>
+</div>

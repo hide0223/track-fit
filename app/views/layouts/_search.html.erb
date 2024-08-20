@@ -1,0 +1,42 @@
+<div class="">
+  <p class="name-link ml-4" style="margin: 10px 0px 0px 0px ;">キーワードを検索</p>
+</div>
+<% if controller_name != 'sessions' %>
+<div class="">
+  <%= search_form_for @customer_q, url: public_customer_search_path, class:"row ml-4" do |f| %>
+  <!--<%#= select_tag :model_name, options_from_collection_for_select([["Customer", "ユーザー"], ["Meal", "食事"], ["Training", "トレーニング"]],:first,:last), include_blank: "選択" %>-->
+  <div class="">
+    <%= f.search_field :name_cont, class:"form-control", placeholder: "ユーザーを入力" %>
+  </div>
+  <div class="">
+    <button class="btn btn-outline-dark" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <% end %>
+</div>
+<div class="">
+  <%= search_form_for @meal_q, url: public_meal_search_path, class:"row ml-4" do |f| %>
+  <div class="">
+    <%= f.search_field :meal_contents_eat_meal_cont, class: "form-control", placeholder: "食べ物を入力" %>
+  </div>
+  <div class="">
+    <button class="btn btn-outline-dark" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <% end %>
+</div>
+<div class="">
+  <%= search_form_for @training_q, url: public_training_search_path, class:"row ml-4" do |f| %>
+  <div class="">
+    <%= f.search_field :training_contents_body_parts_cont, class:"form-control", placeholder: "部位を入力" %>
+  </div>
+  <div class="">
+    <button class="btn btn-outline-dark" type="submit">
+      <i class="fa-solid fa-magnifying-glass"></i>
+    </button>
+  </div>
+  <% end %>
+</div>
+<% end %>

@@ -10,7 +10,12 @@ class Customer < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
 
   has_many :meals, dependent: :destroy
+  has_many :meal_comments, dependent: :destroy
+  has_many :meal_favorites, dependent: :destroy
+
   has_many :trainings, dependent: :destroy
+  has_many :training_comments, dependent: :destroy
+  has_many :training_favorites, dependent: :destroy
 
   has_one_attached :profile_image
 
@@ -34,5 +39,11 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["name"]
+  end
 
+  def self.ransackable_associations(auth_object = nil)
+  ["followers", "followings", "meal_comments", "meal_favorites", "meals", "profile_image_attachment", "profile_image_blob", "relationships", "reverse_of_relationships", "training_comments", "training_favorites", "trainings"]
+  end
 end

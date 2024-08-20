@@ -1,18 +1,18 @@
 <%= form_with model: customer, url: customer_session_path, local: true do |f| %>
   <div class="set_center_outer">
-    <div class="set_center_inner">
-      <div class="field">
+    <div class="login-set_center_inner">
+      <div class="login-field">
         <%= f.label :メールアドレス %><br />
-        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
       </div>
 
-      <div class="field">
+      <div class="login-field">
         <%= f.label :パスワード %><br />
-        <%= f.password_field :password, autocomplete: "current-password" %>
+        <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
       </div>
 
-      <div class="actions">
-        <%= f.submit "Log in" %>
+      <div class="modal_submit">
+        <%= f.submit "Log in", class: "btn btn-outline-dark" %>
       </div>
     </div>
   </div>

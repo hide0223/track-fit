@@ -13,15 +13,21 @@
           <%= time_ago_in_words(@training.created_at) %>前
         </div>
         <% if @training.customer == current_customer %>
-        <div class="d-flex" style="margin-left: 550px;">
+        <div class="d-flex" style="margin-left: 520px;">
           <div class="px-2">
-            <span><%= link_to '編集', edit_public_training_path(@training), class: "btn btn-sm btn-success" %></span>
+            <%= link_to edit_public_training_path(@training), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">編集</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "削除", public_training_path(@training.id), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-sm btn-danger" %></span>
+            <%= link_to public_trainings_path, class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">一覧</p>
+            <% end %>
           </div>
           <div class="px-2">
-            <span><%= link_to "一覧", public_trainings_path, class: "btn btn-sm btn-primary" %></span>
+            <%= link_to public_training_path(@training.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
+              <p class="a-button">削除</p>
+            <% end %>
           </div>
         </div>
         <% end %>
@@ -37,17 +43,35 @@
             <%= image_tag @training.image, class: "meal-img-top img-fluid" %>
           <% end %>
         </div>
-        <div class="d-flex">
-          <table class="table table-bordered mt-3" style="width: 90%;">
-            <tr class="">
-              <td class="col-2"><%= @training.body_parts %></td>
-              <td class="col-4"><%= @training.exercise %></td>
-              <td class="col-1"><%= @training.weight %> kg</td>
-              <td class="col-2"><%= @training.sets %> セット</td>
-              <td class="col-1"><%= @training.reps %> 回</td>
-            </tr>
-          </table>
+        <div>体重 <%= @training.body_weight %> kg</div>
+        <% @training.training_contents.each do |training_content| %>
+        <table class="table table-bordered" style="width: 90%;">
+          <tr class="">
+            <td class="col-1"><%= training_content.body_parts %></td>
+            <td class="col-4"><%= training_content.exercise %></td>
+            <td class="col-1"><%= training_content.weight %> kg</td>
+            <td class="col-2"><%= training_content.sets %> セット</td>
+            <td class="col-1"><%= training_content.reps %> 回</td>
+          </tr>
+        </table>
+        <% end %>
+        <div style="display: flex; justify-content: space-between; padding: 5px 10px 5px 0px ;">
+          <div>
+            <i class="fa-regular fa-comment"></i>
+            <span id="comment_counter" style="font-size: smaller; opacity: 0.8;">
+              <%= render "public/training_comments/counter", training: @training %>
+            </span>
+            <span id="favorite_btn_<%= @training.id %>">
+              <%= render "public/training_favorites/training_favorite_btn", training: @training %>
+            </span>
+          </div>
         </div>
+      </div>
+    </div>
+    <div>
+      <%= render "public/training_comments/from", training: @training, training_comment: @training_comment %>
+      <div id="comment_index">
+        <%= render "public/training_comments/index", training: @training %>
       </div>
     </div>
 </div>

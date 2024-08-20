@@ -8,24 +8,31 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
-  # devise_scope :customers do
-  #   post 'customers/guest_sign_in', to: 'customers/sessions#guest_sign_in'
-  # end
-
   namespace :public do
-
-
     resources :customers, only: [:show, :edit, :update] do
-     resource :relationships, only: [:create, :destroy]
-    	get "followings" => "relationships#followings", as: "followings"
-    	get "followers" => "relationships#followers", as: "followers"
+      member do
+        get :training_favorites
+        get :meal_favorites
+      end
+      resource :relationships, only: [:create, :destroy]
+        get "followings" => "relationships#followings", as: "followings"
+        get "followers" => "relationships#followers", as: "followers"
     end
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
     patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
 
+    get "customer/search" => "searches#customer_search", as: 'customer_search'
+    get "meal/search" => "searches#meal_search", as: 'meal_search'
+    get "training/search" => "searches#training_search", as: 'training_search'
 
-    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy]
-    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :meals, only: [:index, :show, :edit, :create, :update, :destroy] do
+      resources :meal_comments, only: [:create, :destroy]
+      resource :meal_favorites, only: [:create, :destroy]
+    end
+    resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
+      resources :training_comments, only: [:create, :destroy]
+      resource :training_favorites, only: [:create, :destroy]
+    end
   end
 
 
@@ -35,7 +42,13 @@ Rails.application.routes.draw do
   }
 
   namespace :admin do
-    resources :categories, only: [:index, :create, :edit, :update]
-    resources :records, only: [:index, :show, :edit, :create, :update, :destroy]
+    resources :meals, only: [:index, :show, :destroy]
+    resources :meal_comments, only: [:index, :show, :destroy]
+
+    resources :trainings, only: [:index, :show, :destroy]
+    resources :training_comments, only: [:index, :show, :destroy]
+    resources :customers, only: [:index, :show, :edit, :update, :destroy]
+
+    root to: 'admin/homes#top'
  end
 end

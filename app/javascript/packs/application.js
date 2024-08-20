@@ -16,13 +16,5 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+require("@nathanvda/cocoon");
 
-   document.addEventListener('DOMContentLoaded', function() {
-     var elements = document.getElementsByClassName('post-link');
-     for (var i = 0; i < elements.length; i++) {
-       elements[i].addEventListener('click', function(event) {
-         event.preventDefault();
-         window.location.href = this.getAttribute('href');
-       });
-     }
-   });

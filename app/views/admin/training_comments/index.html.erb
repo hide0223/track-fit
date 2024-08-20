@@ -1,0 +1,26 @@
+<div class="list_buttons">
+  <div class="list_button">
+    <%= link_to '食事', admin_meal_comments_path(@customers), class: "name-link" %>
+  </div>
+  <div class="list_button">
+    <%= link_to 'トレーニング',admin_training_comments_path(@customers), class: "name-link" %>
+  </div>
+</div>
+<table class="table">
+  <tr>
+    <th class="col-2">名前</th>
+    <th class="col-8">コメント</th>
+    <th class="col-1"></th>
+    <th class="col-1"></th>
+  </tr>
+<% @training_comments.each do |training_comment| %>
+  <tr>
+    <td class="col-2"><%= @customers.find(training_comment.customer_id).name %></td>
+    <td class="col-8"><%= training_comment.comment %></td>
+    <td class="col-1"><%= training_comment.created_at.strftime('%Y/%m/%d') %></td>
+    <td class="col-1">
+    <%= link_to '削除', admin_training_comment_path(training_comment), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-sm btn-danger" %>
+    </td>
+  </tr>
+<% end %>
+</table>
