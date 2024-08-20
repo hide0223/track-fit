@@ -237,3 +237,51 @@ select {
   font-weight: bold;
   color: #2b2b2b;
 }
+
+
+.login-set_center_inner {
+  padding: 20px;              /* 余白指定 */
+  height: 250px;              /* 高さ指定 */
+}
+
+
+.login-field {
+  width: 200px;               /* 幅指定 */
+  height: 90px;               /* 高さ指定 */
+  margin:  0 auto;            /* 中央寄せ */
+}
+
+.modal_submit {
+  width: 200px;
+  margin:  0 auto;
+}
+
+.signin-set_center_inner {
+  text-align:  center;        /* 中央寄せ */
+}
+
+.signin-field {
+  width: 200px;               /* 幅指定 */
+  height: 90px;               /* 高さ指定 */
+  margin:  0 auto;            /* 中央寄せ */
+}
+
+.modal_submit {
+  width: 200px;
+  margin:  0 auto;
+}
+
+.set_center_outer {
+  text-align:  center;
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  color: #666666;
+  text-align: left;
+  margin-left: 125px;
+  font-size: 23px;
+  padding-top: 23px;
+}
