@@ -22,49 +22,74 @@
     <div class="mt-2">
       <img id="preview" style="width:40%;">
     </div>
-    <div class="mt-1">
-      <button id="delete-button" type="button" style="display: none;" >削除</button>
-    </div>
-    <div class="d-flex">
-      <div>
-        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
-      </div>
-      <div class="mx-3">
-        <%= f.number_field :body_weight, class: "form-control" %>
-      </div>
-    </div>
-    <div id='meal_contents'>
-      <%= f.fields_for :meal_contents do |meal_content| %>
-        <%= render 'meal_content_fields', :f => meal_content %>
-      <% end %>
-      <div class='links'>
-        <%= link_to_add_association '詳細を追加', f, :meal_contents %>
-      </div>
-    </div>
-
-    <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
     <% if @meal.image.attached? %>
-    <%= image_tag @meal.image, class: "meal-img-top img-fluid mt-3" %>
-      <div class="">
-        <label for="file-upload" class="file-input-label">
-          <i class="fa-solid fa-image fa-2x"></i>
-        </label>
-        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+    <%= image_tag @meal.image, class: "meal-img-top img-fluid" %>
+      <div class="mt-1 mb-2">
+        <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger" >削除</button>
+      </div>
+      <div class="d-flex">
+        <div>
+          <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+        </div>
+        <div class="col-2">
+          <%= f.number_field :body_weight, placeholder: "体重", class: "form-control" %>
+        </div>
+      </div>
+      <div id='meal_contents'>
+        <%= f.fields_for :meal_contents do |meal_content| %>
+          <%= render 'meal_content_fields', :f => meal_content %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
+        <div class="">
+          <label for="file-upload" class="file-input-label">
+            <i class="fa-solid fa-image fa-2x"></i>
+          </label>
+          <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+        </div>
+        <div>
+          <form>
+            <input class="radius-pixel-30" type="submit" value="変更する">
+          </form>
+        </div>
       </div>
     <% else %>
-      <div class="">
-        <label for="file-upload" class="file-input-label">
-          <i class="fa-solid fa-image fa-2x"></i>
-        </label>
-        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      <div class="mt-1 mb-1">
+        <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
+      </div>
+      <div class="d-flex">
+        <div>
+          <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+        </div>
+        <div class="col-2">
+          <%= f.number_field :body_weight, placeholder: "体重", class: "form-control" %>
+        </div>
+      </div>
+      <div id='meal_contents'>
+        <%= f.fields_for :meal_contents do |meal_content| %>
+          <%= render 'meal_content_fields', :f => meal_content %>
+        <% end %>
+        <div class='links'>
+          <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
+        <div class="">
+          <label for="file-upload" class="file-input-label">
+            <i class="fa-solid fa-image fa-2x"></i>
+          </label>
+          <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+        </div>
+        <div>
+          <form>
+            <input class="radius-pixel-30" type="submit" value="変更する">
+          </form>
+        </div>
       </div>
     <% end %>
-      <div>
-        <form>
-          <input class="radius-pixel-30" type="submit" value="変更する">
-        </form>
-      </div>
-    </div>
   <% end %>
 </div>
 

@@ -7,6 +7,7 @@
   </div>
 </div>
 <% @trainings.each do |training| %>
+<%= render 'layouts/errors', obj: training %>
   <div class="border-bottom px-4">
     <div class="d-flex pt-2">
       <div class="">

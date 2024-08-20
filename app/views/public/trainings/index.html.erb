@@ -42,8 +42,8 @@
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'training_content_fields', :f => training_content %>
       <% end %>
-      <div class='links mt-2'>
-        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark" %>
+      <div>
+        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
 

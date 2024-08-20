@@ -12,6 +12,7 @@
       </div>
     <% end %>
   </div>
+
   <%= form_with model: @training, url: public_training_path, local: true, method: :patch, class: "pl40 pt-2" do |f| %>
   <div class="row">
     <div class="col-6">
@@ -21,47 +22,70 @@
   <div class="mt-2 mb-2">
     <img id="preview" style="width:40%;">
   </div>
-  <div class="mt-1">
-    <button id="delete-button" type="button" style="display: none;" >削除</button>
-  </div>
-  <div class="row">
-    <div class="col-2">
-      <%= f.number_field :body_weight, class: "form-control" %>
-    </div>
-    <div class="mt-2 mr-2"><%= f.label :kg %></div>
-  </div>
-  <div id='training_contents'>
-    <%= f.fields_for :training_contents do |training_content| %>
-      <%= render 'training_content_fields', :f => training_content %>
-    <% end %>
-    <div class='links'>
-      <%= link_to_add_association '詳細を追加', f, :training_contents %>
-    </div>
-  </div>
-
-  <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
   <% if @training.image.attached? %>
   <%= image_tag @training.image, class: "meal-img-top img-fluid mt-3" %>
-    <div class="">
-      <label for="file-upload" class="file-input-label">
-        <i class="fa-solid fa-image fa-2x"></i>
-      </label>
-      <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+    <div class="mt-1 mb-2">
+      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger" >削除</button>
     </div>
-  <% else %>
-    <div class="">
-      <label for="file-upload" class="file-input-label">
-        <i class="fa-solid fa-image fa-2x"></i>
-      </label>
-      <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+    <div class="row">
+      <div class="col-3">
+        <%= f.number_field :body_weight, placeholder: "体重を入力", class: "form-control" %>
+      </div>
+      <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
-  <% end %>
-    <div>
-      <form>
-        <input class="radius-pixel-30" type="submit" value="変更する">
-      </form>
+    <div id='training_contents'>
+      <%= f.fields_for :training_contents do |training_content| %>
+        <%= render 'training_content_fields', :f => training_content %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
+      </div>
     </div>
-  </div>
+    <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
+      <div class="">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+      <div>
+        <form>
+          <input class="radius-pixel-30" type="submit" value="変更する">
+        </form>
+      </div>
+    </div>
+    <% else %>
+    <div class="mt-1 mb-2">
+      <button id="delete-button" type="button" style="display: none;" >削除</button>
+    </div>
+    <div class="row">
+      <div class="col-3">
+        <%= f.number_field :body_weight, placeholder: "体重を入力", class: "form-control" %>
+      </div>
+      <div class="mt-2 mr-2"><%= f.label :kg %></div>
+    </div>
+    <div id='training_contents'>
+      <%= f.fields_for :training_contents do |training_content| %>
+        <%= render 'training_content_fields', :f => training_content %>
+      <% end %>
+      <div class='links'>
+        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
+      </div>
+    </div>
+    <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
+      <div class="">
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+        <div>
+        <form>
+          <input class="radius-pixel-30" type="submit" value="変更する">
+        </form>
+      </div>
+    </div>
+    <% end %>
   <% end %>
 </div>
 

@@ -45,8 +45,8 @@
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'meal_content_fields', :f => meal_content %>
       <% end %>
-      <div class='links mt-2'>
-        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark" %>
+      <div>
+        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
 
