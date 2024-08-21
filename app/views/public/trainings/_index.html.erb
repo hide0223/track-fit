@@ -1,4 +1,59 @@
-<% @trainings.each do |training| %>
+
+<div class="px-4 pt-2 border-bottom">
+  <div class="d-flex">
+    <% if current_customer %>
+      <div class="">
+        <%= link_to public_customer_path(current_customer), class: "profile-link" do %>
+          <%= image_tag current_customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
+        <% end %>
+      </div>
+       <div class="username">
+        <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+      </div>
+    <% end %>
+  </div>
+  <%= form_with model: training, url: public_trainings_path, local: true, class: "pl40 pt-2" do |f| %>
+    <div class="row">
+      <div class="col-6">
+        <%= f.text_area :body, class: "form-control", rows: "4", cols: "30" %>
+      </div>
+    </div>
+    <div class="mt-2 mb-2">
+      <img id="preview" style="width:40%;">
+    </div>
+    <div class="mt-1 mb-1">
+        <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
+    </div>
+    <div class="row">
+      <div class="col-2">
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重" %>
+      </div>
+      <div class="mt-2 mr-2"><%= f.label :kg %></div>
+    </div>
+    <div id='training_contents'>
+      <%= f.fields_for :training_contents do |training_content| %>
+        <%= render 'public/trainings/training_content_fields', :f => training_content %>
+      <% end %>
+      <div>
+        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
+      <div>
+        <label for="file-upload" class="file-input-label">
+          <i class="fa-solid fa-image fa-2x"></i>
+        </label>
+        <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
+      </div>
+      <div>
+        <button type="submit" class="btn btn-outline-dark"><p class="a-button">記録する</p></button>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<% trainings.each do |training| %>
   <div class="border-bottom px-4">
     <div class="d-flex pt-2">
       <div class="">
@@ -24,7 +79,7 @@
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div><%= training.body_weight %> kg</div>
+      <div class=""><%= training.body_weight.present? ? "#{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
       <table class="table table-bordered" style="width: 80%;">
         <tr>
@@ -53,3 +108,32 @@
     </div>
   </div>
 <% end %>
+
+
+<script>
+$('#file-upload').on('change', function (e) {
+  var reader = new FileReader();
+  reader.onload = function (e) {
+    $("#preview").attr('src', e.target.result);
+  }
+  reader.readAsDataURL(e.target.files[0]);
+
+  $('#delete-button').show();
+});
+$('#delete-button').on('click', function () {
+
+  $('#preview').attr('src', '');
+
+  $('#delete-button').hide();
+});
+
+$(document).on('turbolinks:load', function() {
+    $('#training_contents')
+      .on('cocoon:before-remove', function(e) {
+        if ($('#training_contents .nested-fields').length <= 1) {
+          alert('最低1つは必要です。');
+          e.preventDefault();
+        }
+      });
+  });
+</script>
