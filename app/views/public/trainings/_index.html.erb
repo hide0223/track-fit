@@ -1,13 +1,4 @@
-<div class="list_buttons border-bottom">
-  <div class="list_button">
-    <%= link_to '食事', admin_meals_path(@customers), class: "name-link" %>
-  </div>
-  <div class="list_button">
-    <%= link_to 'トレーニング',admin_trainings_path(@customers), class: "name-link" %>
-  </div>
-</div>
 <% @trainings.each do |training| %>
-<%= render 'layouts/errors', obj: training %>
   <div class="border-bottom px-4">
     <div class="d-flex pt-2">
       <div class="">
@@ -28,14 +19,14 @@
           <%= training.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-4">
         <% if training.image.attached? %>
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div>体重 <%= training.body_weight %> kg</div>
+      <div><%= training.body_weight %> kg</div>
       <% training.training_contents.each do |training_content| %>
-      <table class="table table-bordered" style="width: 70%;">
+      <table class="table table-bordered" style="width: 80%;">
         <tr>
           <td class="col-1"><%= training_content.body_parts %></td>
           <td class="col-2"><%= training_content.exercise %></td>
@@ -45,13 +36,18 @@
         </tr>
       </table>
       <% end %>
-      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
         <div>
+          <i class="fa-regular fa-comment"></i>
+          <span style="font-size: smaller; opacity: 0.8;"></span>
+          <span id="favorite_btn_<%= training.id %>">
+            <%= render "public/training_favorites/training_favorite_btn", training: training %>
+          </span>
         </div>
         <div>
-          <form>
-            <%= link_to '削除', admin_training_path(training), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-          </form>
+          <%= link_to public_training_path(training), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">詳細</p>
+          <% end %>
         </div>
       </div>
     </div>

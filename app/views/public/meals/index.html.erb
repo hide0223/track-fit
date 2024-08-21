@@ -1,4 +1,4 @@
-<div class="list_buttons">
+<div class="list_buttons border-bottom">
   <div class="list_button">
     <%= link_to '食事', public_meals_path(@customers), class: "name-link" %>
   </div>
@@ -37,7 +37,7 @@
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
       <div class="mx-3">
-        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力"%>
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重"%>
       </div>
       <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
@@ -45,8 +45,8 @@
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'meal_content_fields', :f => meal_content %>
       <% end %>
-      <div class='links mt-2'>
-        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark" %>
+      <div>
+        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
 
@@ -91,7 +91,7 @@
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class=""><%= meal.body_weight %></div>
+      <div class=""><%= meal.body_weight.present? ? "#{meal.body_weight}kg" : "" %></div>
       <% meal.meal_contents.each do |meal_content| %>
       <table class="table table-bordered" style="width: 50%;">
         <tr class="meal-tr">

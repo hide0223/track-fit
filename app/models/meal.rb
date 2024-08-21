@@ -7,6 +7,8 @@ class Meal < ApplicationRecord
   accepts_nested_attributes_for :meal_contents, reject_if: :all_blank, allow_destroy: true
   has_one_attached :image
 
+  validates :category, presence: true
+
   def favorited_by?(customer)
     meal_favorites.where(customer_id: customer.id).exists?
   end

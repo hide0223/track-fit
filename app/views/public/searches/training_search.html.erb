@@ -1,11 +1,11 @@
 <% if @training == [] %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果がありません。</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果がありません。</h2>
   </div>
 <% elsif @training.present? %>
   <% search_word = @training_q.training_contents_body_parts_cont %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果 "<%= search_word %>"</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果 "<%= search_word %>"</h2>
   </div>
   <!--#indexページで共通化する-->
   <% @training.each do |training| %>
@@ -55,16 +55,16 @@
             </span>
           </div>
           <div>
-            <form>
-              <%= link_to '詳細', public_training_path(training), class: "radius-pixel-30" %>
-            </form>
+            <%= link_to public_training_path(training), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">詳細</p>
+            <% end %>
           </div>
         </div>
       </div>
     </div>
   <% end %>
 <% else %>
-  <div class="border-bottom">
-    <h2 style="text-align:center">検索結果がありません。</h2>
+  <div class="border-bottom mt-3 pb-3">
+    <h3 style="text-align:center">検索結果がありません。</h2>
   </div>
 <% end %>

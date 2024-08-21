@@ -4,19 +4,19 @@
       <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.text_field :exercise, placeholder: "種目名を入力", class: "form-control", style: "width: 250px;" %>
+      <%= f.text_field :exercise, required: true, placeholder: "種目名", class: "form-control", style: "width: 250px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :weight, placeholder: "重量を入力", class: "form-control", style: "width: 130px;" %>
+      <%= f.number_field :weight, required: true, placeholder: "重量", class: "form-control", style: "width: 100px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :sets, placeholder: "セット数を入力", class: "form-control", style: "width: 160px;" %>
+      <%= f.number_field :sets, required: true, placeholder: "セット数", class: "form-control", style: "width: 130px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :reps, placeholder: "回数を入力", class: "form-control", style: "width: 130px;" %>
+      <%= f.number_field :reps, required: true, placeholder: "回数", class: "form-control", style: "width: 100px;" %>
     </div>
-  </div>
-  <div class="mt-2">
-  <%= link_to_remove_association "削除", f, class: "btn btn-outline-danger" %>
+    <div class="mt-2">
+      <%= link_to_remove_association "削除", f, class: "btn btn-outline-danger mt-1 ml-4" %>
+    </div>
   </div>
 </div>

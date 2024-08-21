@@ -1,5 +1,5 @@
-<div style="display: flex; justify-content: space-between;" class="border-bottom">
 <% training.training_comments.each do |training_comment| %>
+<div style="display: flex; justify-content: space-between;" class="border-bottom">
   <div class="px-4 pt-2">
     <div class="d-flex">
       <% if current_customer %>
@@ -27,5 +27,5 @@
       <%= link_to "削除", public_training_training_comment_path(training, training_comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
     <% end %>
   </div>
-<% end %>
 </div>
+<% end %>

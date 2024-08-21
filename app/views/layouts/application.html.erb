@@ -62,7 +62,12 @@
               <% end %>
             </li>
           <% else %>
-            <li class="nav-item"><%= link_to 'About',root_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
+            <li>
+              <%=  link_to root_path,class: 'nav-link' do %>
+                 <i class="fa-solid fa-t"></i>
+                 <span class="ml-2">About</span>
+              <% end %>
+            </li>
           <% end %>
         </ul>
       </div>
