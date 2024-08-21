@@ -127,8 +127,6 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
-
-$(document).on('turbolinks:load', function() {
     $('#training_contents')
       .on('cocoon:before-remove', function(e) {
         if ($('#training_contents .nested-fields').length <= 1) {
@@ -136,5 +134,4 @@ $(document).on('turbolinks:load', function() {
           e.preventDefault();
         }
       });
-  });
 </script>
