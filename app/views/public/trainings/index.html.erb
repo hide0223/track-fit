@@ -28,7 +28,6 @@ $(function() {
     $(".btn").removeClass("btn-clicked");
     // クリックされたボタンに.btn-clickedクラスを追加する
     $(this).addClass("btn-clicked");
-    console.log("<% pp @training %>");
     $("#rendering-area").html("<%= j render('public/trainings/index', trainings: @trainings, training: @training, customers: @customers) %>");
   });
 });
