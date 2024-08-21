@@ -43,145 +43,40 @@
   </div>
 </div>
 
-<div class="border-bottom" style="padding: 30px;">
-  <div class="d-flex justify-content-center">
-    <button class="button" id="a_btn">食事</button>
-    <button class="button" id="b_btn">トレーニング</button>
+<div class="select_button border-bottom pb-3 pt-3">
+  <div>
+    <button id="meal-button" class="btn btn-outline-dark mr-2">食事</button>
+  </div>
+  <div>
+    <button id="training-button" class="btn btn-outline-dark">トレーニング</button>
   </div>
 </div>
-<div class="screen">
-  <div class="a_screen">
-    <% @meals.each do |meal| %>
-      <div class="border-top px-4">
-        <div class="d-flex pt-2">
-          <div class="">
-            <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
-              <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
-            <% end %>
-          </div>
-          <div class="username">
-            <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
-          </div>
-          <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
-            <%= meal.created_at.strftime('%Y/%m/%d') %>
-          </div>
-        </div>
-        <div class="pl40 pt-2">
-          <div class="row">
-            <div class="col-6">
-              <%= meal.body %>
-            </div>
-          </div>
-          <div class="mt-2">
-            <% if meal.image.attached? %>
-              <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
-            <% end %>
-          </div>
-          <div class=""><%= meal.category %></div>
-          <div class="">体重 <%= meal.body_weight %> kg</div>
-          <% meal.meal_contents.each do |meal_content| %>
-          <table class="table table-bordered" style="width: 50%;">
-            <tr class="">
-              <td class="col-1"><%= meal_content.meal_summary %></td>
-              <td class="col-3"><%= meal_content.eat_meal %></td>
-              <td class="col-1"><%= meal_content.kcal %> kcal</td>
-            </tr>
-          </table>
-          <% end %>
-          <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
-            <div>
-            </div>
-            <div>
-              <form>
-                <%= link_to '削除', admin_meal_path(meal), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-  <div class="b_screen">
-    <% @trainings.each do |training| %>
-      <div class="border-bottom px-4">
-        <div class="d-flex pt-2">
-          <div class="">
-            <%= link_to public_customer_path(training.customer), class: "profile-link" do %>
-              <%= image_tag training.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
-            <% end %>
-          </div>
-          <div class="username">
-            <%= link_to training.customer.name, public_customer_path(training.customer), class: "name-link"%>
-          </div>
-          <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
-            <%= time_ago_in_words(training.created_at) %>前
-          </div>
-        </div>
-        <div class="pl40 pt-2">
-          <div class="row">
-            <div class="col-6">
-              <%= training.body %>
-            </div>
-          </div>
-          <div class="mt-2">
-            <% if training.image.attached? %>
-              <%= image_tag training.image, class: "meal-img-top img-fluid" %>
-            <% end %>
-          </div>
-          <div>体重 <%= training.body_weight %> kg</div>
-          <% training.training_contents.each do |training_content| %>
-          <table class="table table-bordered" style="width: 70%;">
-            <tr>
-              <td class="col-1"><%= training_content.body_parts %></td>
-              <td class="col-2"><%= training_content.exercise %></td>
-              <td class="col-1"><%= training_content.weight %> kg</td>
-              <td class="col-1"><%= training_content.sets %> セット</td>
-              <td class="col-1"><%= training_content.reps %> 回</td>
-            </tr>
-          </table>
-          <% end %>
-          <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
-            <div>
-            </div>
-            <div>
-              <form>
-                <%= link_to '削除', admin_training_path(training), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
-
-
-
-
+<div id="rendering-area"></div>
 
 <script>
-const buttonA = document.getElementById('a_btn');
-
-// Bボタン
-const buttonB = document.getElementById('b_btn');
-
-// A画面
-const screenA = document.querySelector('.a_screen');
-
-// B画面
-const screenB = document.querySelector('.b_screen');
-
-buttonA.addEventListener('click',function(){   // Aボタンをクリックした時
-    buttonA.classList.remove('active');        // 'buttonA' から 'active' が外される
-    buttonB.classList.remove('active');        // 'buttonB' から 'active' が外される
-    screenA.classList.remove('active');        // 'screenA' から 'active' が外される
-    screenB.classList.remove('active');        // 'screenB' から 'active' が外される
-});
-
-buttonB.addEventListener('click',function(){   // Bボタンをクリックした時
-    buttonA.classList.add('active');           // 'buttonA' に 'active' が追加される
-    buttonB.classList.add('active');           // 'buttonB' に 'active' が追加される
-    screenA.classList.add('active');           // 'screenA' に 'active' が追加される
-    screenB.classList.add('active');           // 'screenB' に 'active' が追加される
+$(function() {
+  // 初期表示として食事の内容を表示する
+  $("#rendering-area").html("<%= j render('admin/meals/index', meals: @meals) %>");
+  // 食事ボタンに.btn-clickedクラスを追加する
+  $("#meal-button").addClass("btn-clicked");
+  // 食事ボタンのクリックイベント
+  $("#meal-button").on("click", function() {
+    // 一旦全てのボタンから.btn-clickedクラスを削除する
+    $(".btn").removeClass("btn-clicked");
+    // クリックされたボタンに.btn-clickedクラスを追加する
+    $(this).addClass("btn-clicked");
+    $("#rendering-area").html("<%= j render('admin/meals/index', meals: @meals) %>");
+  });
+  // トレーニングボタンのクリックイベント
+  $("#training-button").on("click", function() {
+    // 一旦全てのボタンから.btn-clickedクラスを削除する
+    $(".btn").removeClass("btn-clicked");
+    // クリックされたボタンに.btn-clickedクラスを追加する
+    $(this).addClass("btn-clicked");
+    $("#rendering-area").html("<%= j render('admin/trainings/index', trainings: @trainings) %>");
+  });
 });
 </script>
+
+
+
