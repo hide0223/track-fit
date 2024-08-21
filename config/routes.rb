@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   }
 
   namespace :public do
-    resources :customers, only: [:show, :edit, :update] do
+    resources :customers, only: [:show, :edit, :update, :destroy] do
       member do
         get :training_favorites
         get :meal_favorites
@@ -19,7 +19,6 @@ Rails.application.routes.draw do
         get "followers" => "relationships#followers", as: "followers"
     end
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
-    patch '/customers/withdraw/:id', to: 'customers#withdraw', as: 'customer_withdraw'
 
     get "customer/search" => "searches#customer_search", as: 'customer_search'
     get "meal/search" => "searches#meal_search", as: 'meal_search'

@@ -1,6 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_correct_customer, only: [:edit, :update]
+  before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def show
     @customer = Customer.find(params[:id])
@@ -31,12 +31,10 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
-  def withdraw
+  def destroy
     @customer = Customer.find(params[:id])
-    @customer.update(is_active: false)
-    reset_session
-    flash[:notice] = "またのご利用をお待ちしております。"
-    redirect_to root_path
+    @customer.destroy
+    redirect_to :root
   end
 
   def meal_favorites

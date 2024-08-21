@@ -79,16 +79,16 @@
 <script>
   $(function() {
     // 初期表示として食事の内容を表示する
-    $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals) %>");
+    $("#rendering-area").html("<%= j render('public/meals/records', meals: @meals) %>");
 
     // 食事ボタンのクリックイベント
     $("#meal-button").on("click", function() {
-      $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals) %>");
+      $("#rendering-area").html("<%= j render('public/meals/records', meals: @meals) %>");
     });
 
     // トレーニングボタンのクリックイベント
     $("#training-button").on("click", function() {
-      $("#rendering-area").html("<%= j render('public/trainings/index', training: @trainings) %>");
+      $("#rendering-area").html("<%= j render('public/trainings/records', training: @trainings) %>");
     });
   });
 </script>
