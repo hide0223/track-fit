@@ -34,7 +34,7 @@
     </div>
     <div class="d-flex">
       <div>
-        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], { :include_blank => "朝食など選択"}, :required => true, class: "form-control" %>
       </div>
       <div class="mx-3">
         <%= f.number_field :body_weight, class: "form-control", placeholder: "体重"%>

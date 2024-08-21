@@ -1,7 +1,7 @@
 <div class="nested-fields">
   <div class="d-flex">
     <div class="mt-2 mr-1">
-      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"], ["背中", "背中"], ["足", "足"]], include_blank: "部位を選択" %>
+      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"],["背中", "背中"],["足", "足"]], { :include_blank => "部位を選択" }, :required => true %>
     </div>
     <div class="mt-2 mx-1">
       <%= f.text_field :exercise, required: true, placeholder: "種目名", class: "form-control", style: "width: 250px;" %>
