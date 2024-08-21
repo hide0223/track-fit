@@ -11,6 +11,7 @@
       </div>
     <% end %>
   </div>
+  <% pp training %>
   <%= form_with model: training, url: public_trainings_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
       <div class="col-6">
@@ -29,12 +30,13 @@
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
+
     <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'public/trainings/training_content_fields', :f => training_content %>
       <% end %>
       <div>
-        <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
+        <%= link_to_add_association '詳細を追加', f , :training_contents, partial: 'public/trainings/training_content_fields',class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
 
@@ -125,7 +127,9 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+</script>
 
+<script>
 $(document).on('turbolinks:load', function() {
     $('#training_contents')
       .on('cocoon:before-remove', function(e) {

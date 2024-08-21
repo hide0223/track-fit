@@ -25,7 +25,7 @@
     </div>
     <div class="d-flex">
       <div>
-        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
+        <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], { :include_blank => "朝食など選択"}, :required => true, class: "form-control" %>
       </div>
       <div class="mx-3">
         <%= f.number_field :body_weight, class: "form-control", placeholder: "体重"%>
@@ -37,7 +37,7 @@
         <%= render 'public/meals/meal_content_fields', :f => meal_content %>
       <% end %>
       <div>
-        <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
+        <%= link_to_add_association '詳細を追加', f , :meal_contents, partial: 'public/meals/meal_content_fields', class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
 
@@ -127,7 +127,9 @@ $('#delete-button').on('click', function () {
 
   $('#delete-button').hide();
 });
+</script>
 
+<script>
 $(document).on('turbolinks:load', function() {
     $('#meal_contents')
       .on('cocoon:before-remove', function(e) {

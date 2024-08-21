@@ -28,7 +28,7 @@ $(function() {
     $(".btn").removeClass("btn-clicked");
     // クリックされたボタンに.btn-clickedクラスを追加する
     $(this).addClass("btn-clicked");
-    $("#rendering-area").html("<%= j render('public/trainings/index', training: @trainings, training: @training, customers: @customers) %>");
+    $("#rendering-area").html("<%= j render('public/trainings/index', trainings: @trainings, training: @training, customers: @customers) %>");
   });
 });
 </script>

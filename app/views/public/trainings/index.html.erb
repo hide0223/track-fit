@@ -11,7 +11,7 @@
 <script>
 $(function() {
   // 初期表示として食事の内容を表示する
-  $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals) %>");
+  $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals, meal: @meal, customers: @customers) %>");
   // 食事ボタンに.btn-clickedクラスを追加する
   $("#meal-button").addClass("btn-clicked");
   // 食事ボタンのクリックイベント
@@ -20,7 +20,7 @@ $(function() {
     $(".btn").removeClass("btn-clicked");
     // クリックされたボタンに.btn-clickedクラスを追加する
     $(this).addClass("btn-clicked");
-    $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals) %>");
+    $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals, meal: @meal, customers: @customers) %>");
   });
   // トレーニングボタンのクリックイベント
   $("#training-button").on("click", function() {
@@ -28,7 +28,8 @@ $(function() {
     $(".btn").removeClass("btn-clicked");
     // クリックされたボタンに.btn-clickedクラスを追加する
     $(this).addClass("btn-clicked");
-    $("#rendering-area").html("<%= j render('public/trainings/index', training: @trainings, training: @training, customers: @customers) %>");
+    console.log("<% pp @training %>");
+    $("#rendering-area").html("<%= j render('public/trainings/index', trainings: @trainings, training: @training, customers: @customers) %>");
   });
 });
 </script>
