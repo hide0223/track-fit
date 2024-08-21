@@ -37,7 +37,7 @@
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], include_blank: "朝食など選択" %>
       </div>
       <div class="mx-3">
-        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力"%>
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重"%>
       </div>
       <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
@@ -91,7 +91,7 @@
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class=""><%= meal.body_weight %></div>
+      <div class=""><%= meal.body_weight.present? ? "#{meal.body_weight}kg" : "" %></div>
       <% meal.meal_contents.each do |meal_content| %>
       <table class="table table-bordered" style="width: 50%;">
         <tr class="meal-tr">

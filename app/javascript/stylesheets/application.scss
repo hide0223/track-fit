@@ -315,7 +315,34 @@ h3 {
   color: #666666;
 }
 
+h2 {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  color: #666666;
+}
+
+h4 {
+  color: black;
+  text-decoration: none;
+  font-weight: bold;
+  color: #666666;
+}
+
 p {
   margin-bottom: 0px;
 }
 
+.select_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#meal-button {
+  width: 150px;
+}
+
+#training-button {
+  width: 150px;
+}

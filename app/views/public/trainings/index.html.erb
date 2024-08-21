@@ -34,7 +34,7 @@
     </div>
     <div class="row">
       <div class="col-2">
-        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重を入力" %>
+        <%= f.number_field :body_weight, class: "form-control", placeholder: "体重" %>
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
@@ -87,7 +87,7 @@
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div><%= training.body_weight %> kg</div>
+      <div class=""><%= training.body_weight.present? ? "#{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
       <table class="table table-bordered" style="width: 80%;">
         <tr>
