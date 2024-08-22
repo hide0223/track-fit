@@ -1,6 +1,9 @@
 class Admin::MealsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @meals = Meal.all
+    @trainings = Training.all
     @customers = Customer.all
   end
 
