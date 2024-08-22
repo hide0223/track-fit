@@ -16,8 +16,6 @@
 	  	<div class="leftside">
 				<p class="track-fit">Track Fit</p>
 			</div>
-
-<%= link_to 'ゲストログイン（閲覧用）', customers_guest_sign_in_path, method: :post %>
 			<div class="rightside">
 				<div class="rightinner">
 					<div>
@@ -64,6 +62,9 @@
 								<%= render 'login', customer: @customer %>
 						 	  </div>
 						  </div>
+						</div>
+						<div class="button mt-4">
+							<%= link_to "ゲストログイン", customers_guest_sign_in_path, method: :post, class: "btn btn-outline-dark geust-link", style: "width: 300px" %>
 						</div>
 					</div>
 				</div>
