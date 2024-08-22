@@ -8,8 +8,14 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+      post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+   
+  get "customers", to: "public/customers#index"
+
   namespace :public do
-    resources :customers, only: [:show, :edit, :update, :destroy] do
+    resources :customers, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get :training_favorites
         get :meal_favorites
