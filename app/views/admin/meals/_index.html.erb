@@ -10,7 +10,7 @@
         <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
       </div>
       <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
-        <%= meal.created_at.strftime('%Y/%m/%d') %>
+        <%= time_ago_in_words(meal.created_at) %>前
       </div>
     </div>
     <div class="pl40 pt-2">
@@ -19,16 +19,16 @@
           <%= meal.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-3">
         <% if meal.image.attached? %>
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class="">体重 <%= meal.body_weight %> kg</div>
+      <div class=""><%= meal.body_weight.present? ? "#{meal.body_weight}kg" : "" %></div>
       <% meal.meal_contents.each do |meal_content| %>
       <table class="table table-bordered" style="width: 50%;">
-        <tr class="">
+        <tr class="meal-tr">
           <td class="col-1"><%= meal_content.meal_summary %></td>
           <td class="col-3"><%= meal_content.eat_meal %></td>
           <td class="col-1"><%= meal_content.kcal %> kcal</td>

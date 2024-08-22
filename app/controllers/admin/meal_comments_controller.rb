@@ -1,6 +1,9 @@
 class Admin::MealCommentsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @meal_comments = MealComment.all
+    @training_comments = TrainingComment.all
     @customers = Customer.all
   end
 
