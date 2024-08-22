@@ -7,6 +7,9 @@ class Public::MealsController < ApplicationController
     @meal = Meal.new
     @customers = Customer.all
     @meal.meal_contents.build
+    @trainings = Training.all.order(created_at: :desc)
+    @training = Training.new
+    @training.training_contents.build
   end
 
 

@@ -96,7 +96,7 @@ $(function() {
     $(".btn").removeClass("btn-clicked");
     // クリックされたボタンに.btn-clickedクラスを追加する
     $(this).addClass("btn-clicked");
-    $("#rendering-area").html("<%= j render('public/trainings/records', training: @trainings) %>");
+    $("#rendering-area").html("<%= j render('public/trainings/records', trainings: @trainings) %>");
   });
 });
 </script>

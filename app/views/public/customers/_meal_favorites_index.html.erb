@@ -1,4 +1,4 @@
-<% meals.each do |meal| %>
+<% favorite_meals.each do |meal| %>
   <div class="border-bottom px-4">
     <div class="d-flex pt-2">
       <div class="">
@@ -19,16 +19,16 @@
           <%= meal.body %>
         </div>
       </div>
-      <div class="mt-4 mb-3">
+      <div class="mt-2">
         <% if meal.image.attached? %>
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
       <div class=""><%= meal.category %></div>
-      <div class=""><%= meal.body_weight.present? ? "#{meal.body_weight}kg" : "" %></div>
+      <div class="">体重 <%= meal.body_weight %> kg</div>
       <% meal.meal_contents.each do |meal_content| %>
       <table class="table table-bordered" style="width: 50%;">
-        <tr class="meal-tr">
+        <tr class="">
           <td class="col-1"><%= meal_content.meal_summary %></td>
           <td class="col-3"><%= meal_content.eat_meal %></td>
           <td class="col-1"><%= meal_content.kcal %> kcal</td>
@@ -44,7 +44,7 @@
           </span>
         </div>
         <div>
-          <%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
+        　<%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
             <p class="a-button">詳細</p>
           <% end %>
         </div>
