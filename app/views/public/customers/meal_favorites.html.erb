@@ -1,63 +1,34 @@
-<div class="list_buttons border-bottom">
-  <div class="list_button">
-    <%= link_to '食事', meal_favorites_public_customer_path(current_customer), class: "name-link" %>
+<div class="select_button border-bottom pb-3 pt-3">
+  <div>
+    <button id="meal-button" class="btn btn-outline-dark mr-2">食事</button>
   </div>
-  <div class="list_button">
-    <%= link_to 'トレーニング',training_favorites_public_customer_path(current_customer), class: "name-link" %>
+  <div>
+    <button id="training-button" class="btn btn-outline-dark">トレーニング</button>
   </div>
 </div>
-<% @favorite_meals.each do |meal| %>
-<!--#indexから共通化する-->
-  <div class="border-bottom px-4">
-    <div class="d-flex pt-2">
-      <div class="">
-        <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
-          <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
-        <% end %>
-      </div>
-      <div class="username">
-        <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
-      </div>
-      <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
-        <%= time_ago_in_words(meal.created_at) %>前
-      </div>
-    </div>
-    <div class="pl40 pt-2">
-      <div class="row">
-        <div class="col-6">
-          <%= meal.body %>
-        </div>
-      </div>
-      <div class="mt-2">
-        <% if meal.image.attached? %>
-          <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
-        <% end %>
-      </div>
-      <div class=""><%= meal.category %></div>
-      <div class="">体重 <%= meal.body_weight %> kg</div>
-      <% meal.meal_contents.each do |meal_content| %>
-      <table class="table table-bordered" style="width: 50%;">
-        <tr class="">
-          <td class="col-1"><%= meal_content.meal_summary %></td>
-          <td class="col-3"><%= meal_content.eat_meal %></td>
-          <td class="col-1"><%= meal_content.kcal %> kcal</td>
-        </tr>
-      </table>
-      <% end %>
-      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
-        <div>
-          <i class="fa-regular fa-comment"></i>
-          <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
-          <span id="favorite_btn_<%= meal.id %>">
-            <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
-          </span>
-        </div>
-        <div>
-        　<%= link_to public_meal_path(meal), class: "btn btn-outline-dark", type: "button" do %>
-            <p class="a-button">詳細</p>
-          <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-<% end %>
+<div id="rendering-area"></div>
+
+<script>
+//$(function() {
+  // 初期表示として食事の内容を表示する
+  $("#rendering-area").html("<%= j render('public/customers/meal_favorites_index', favorite_meals: @favorite_meals) %>");
+  // 食事ボタンに.btn-clickedクラスを追加する
+  $("#meal-button").addClass("btn-clicked");
+  // 食事ボタンのクリックイベント
+  $("#meal-button").on("click", function() {
+    // 一旦全てのボタンから.btn-clickedクラスを削除する
+    $(".btn").removeClass("btn-clicked");
+    // クリックされたボタンに.btn-clickedクラスを追加する
+    $(this).addClass("btn-clicked");
+    $("#rendering-area").html("<%= j render('public/customers/meal_favorites_index', favorite_meals: @favorite_meals) %>");
+  });
+  // トレーニングボタンのクリックイベント
+  $("#training-button").on("click", function() {
+    // 一旦全てのボタンから.btn-clickedクラスを削除する
+    $(".btn").removeClass("btn-clicked");
+    // クリックされたボタンに.btn-clickedクラスを追加する
+    $(this).addClass("btn-clicked");
+    $("#rendering-area").html("<%= j render('public/customers/training_favorites_index', favorite_trainings: @favorite_trainings) %>");
+  });
+//});
+</script>
