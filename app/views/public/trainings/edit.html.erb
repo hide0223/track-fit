@@ -41,17 +41,15 @@
         <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
-    <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
-      <div class="">
+    <div class="icon">
+      <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <form>
-          <input class="radius-pixel-30" type="submit" value="変更する">
-        </form>
+        <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
       </div>
     </div>
     <% else %>
@@ -72,17 +70,15 @@
         <%= link_to_add_association '詳細を追加', f, :training_contents, class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
-    <div class="d-flex mt-4" style="display: flex; justify-content: space-between; padding: 0px 10px 10px 0px ;">
-      <div class="">
+    <div class="icon">
+      <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
-        <div>
-        <form>
-          <input class="radius-pixel-30" type="submit" value="変更する">
-        </form>
+      <div>
+        <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
       </div>
     </div>
     <% end %>

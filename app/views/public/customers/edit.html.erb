@@ -1,6 +1,6 @@
 <%= render 'layouts/errors', obj: @customer %>
 <%= form_with model: @customer, url: public_customer_path do |f| %>
-  <div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid">
+  <div class="user_edit" style="display: flex; padding: 20px;">
       <img id="preview" class="rounded-circle border" style="width: 100px; height: 100px; display: none;" >
     <% if @customer.get_profile_image.present? %>
     <%= image_tag @customer.get_profile_image, size: '100x100', class: "profile_image rounded-circle border" %>
@@ -25,7 +25,7 @@
       <div style="display: flex; justify-content: space-between; padding: 0px 0px 0px 0px ;">
         <div class="mt-1 name-link">
           <%= f.label :ユーザ %>
-          <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control" %>
+          <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control", required: true %>
         </div>
         <div class="mt-1 ml-3" >
           <%= f.submit "編集内容を保存", class: 'btn btn-outline-dark' %>
