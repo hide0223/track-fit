@@ -1,21 +1,7 @@
 @use '~bootstrap/scss/bootstrap';
-
-.test_container {
-  width: 100%;
-  min-height: 100vh;
-  display: flex;
-}
-.body {
-  width: 50%;
-  border-right: 2px solid #f7f7f7;
-  border-left: 2px solid #f7f7f7;
-}
-
-.side {
-  width: 25%;
-}
-.aside{
-  width: 25%;
+//アバウトページ
+body {
+  background-color: #fdfdfd;
 }
 
 .leftside{
@@ -45,6 +31,86 @@
   margin-left: 100px;
 }
 
+.geust-link {
+  text-decoration: none !important;
+}
+
+.login-set_center_inner {
+  padding: 20px;              /* 余白指定 */
+  height: 250px;              /* 高さ指定 */
+}
+
+
+.login-field {
+  width: 200px;               /* 幅指定 */
+  height: 90px;               /* 高さ指定 */
+  margin:  0 auto;            /* 中央寄せ */
+}
+
+.modal_submit {
+  width: 200px;
+  margin:  0 auto;
+}
+
+.signin-set_center_inner {
+  text-align:  center;        /* 中央寄せ */
+}
+
+.signin-field {
+  width: 200px;               /* 幅指定 */
+  height: 90px;               /* 高さ指定 */
+  margin:  0 auto;            /* 中央寄せ */
+}
+
+.set_center_outer {
+  text-align:  center;
+}
+//
+
+//共通ビュー
+.test_container {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+
+.body {
+  width: 50%;
+  border-right: 2px solid white;
+  border-left: 2px solid white;
+}
+
+.side {
+  width: 25%;
+}
+
+.side-link {
+  position: sticky;
+  top: 20px;
+  width: 70%;
+  margin: 0 auto;
+}
+.aside{
+  width: 25%;
+}
+
+.aside-link {
+  position: sticky;
+  top: 20px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.search {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.search_word {
+  font-weight: bold;
+  color: #2b2b2b;
+}
+//
 
 .pl10 {}
 .pl20 {}
@@ -59,10 +125,16 @@
 
 .username{
   line-height: 40px;
+  margin-left: 1px;
 }
 
 .time{
   line-height: 40px;
+  font-size: smaller; opacity: 0.8;
+}
+
+.mini-words {
+  font-size: smaller; opacity: 0.8;
 }
 
 #meal_kcal {
@@ -124,29 +196,6 @@ select {
 }
 
 
-.radius-pixel-30 {
-  color: white;
-  font-weight: bold;
-  border: 1px solid #2b2b2b;
-  background-color: #2b2b2b;
-  border-radius: 30px;
-  padding: 5px 10px;
-}
-
-.radius-pixel-20 {
-  line-height: 30px;
-  color: white;
-  font-weight: bold;
-  border: 1px solid #2b2b2b;
-  background-color: #2b2b2b;
-  border-radius: 30px;
-  padding: 3px 10px; /* パディングを小さくする */
-}
-
-.file-input-label {
-}
-
-
 .file-input-label:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   border-radius: 100% 100% 100% 100%;
@@ -156,8 +205,8 @@ select {
 }
 
 .buttons{
-    margin: 10px auto;/* 上下 50px 空け、左右中央に配置 */
-    width: 300px;        /* 横幅 210px */
+  margin: 10px auto;/* 上下 50px 空け、左右中央に配置 */
+  width: 300px;        /* 横幅 210px */
 }
 
 
@@ -193,47 +242,14 @@ select {
   margin-bottom: 0;
 }
 
-.search_word {
-  font-weight: bold;
-  color: #2b2b2b;
-}
 
 
-.login-set_center_inner {
-  padding: 20px;              /* 余白指定 */
-  height: 250px;              /* 高さ指定 */
-}
-
-
-.login-field {
-  width: 200px;               /* 幅指定 */
-  height: 90px;               /* 高さ指定 */
-  margin:  0 auto;            /* 中央寄せ */
-}
 
 .modal_submit {
   width: 200px;
   margin:  0 auto;
 }
 
-.signin-set_center_inner {
-  text-align:  center;        /* 中央寄せ */
-}
-
-.signin-field {
-  width: 200px;               /* 幅指定 */
-  height: 90px;               /* 高さ指定 */
-  margin:  0 auto;            /* 中央寄せ */
-}
-
-.modal_submit {
-  width: 200px;
-  margin:  0 auto;
-}
-
-.set_center_outer {
-  text-align:  center;
-}
 
 .nav-link {
   color: black;
@@ -241,7 +257,6 @@ select {
   font-weight: bold;
   color: #666666;
   text-align: left;
-  margin-left: 125px;
   font-size: 23px;
   padding-top: 23px;
 }
@@ -273,8 +288,12 @@ p {
 
 .select_button {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  border-bottom: 2px solid white;
+  padding-left: 250px;
+  padding-right: 250px;
+  height: 60px;
 }
 
 #meal-button {
@@ -285,7 +304,101 @@ p {
   width: 150px;
 }
 
-.geust-link {
-  text-decoration: none !important;
+//sideのボタン
+.btn-link {
+  position: relative;
+  background-color: transparent;
+  padding-top: 10px;
+  margin-bottom: 15px;
 }
 
+.btn-link:hover::before {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.btn-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  border-radius: 40px;
+  z-index: -1;
+}
+
+.btn-about {
+  margin-bottom: 20px;
+}
+
+.nav-name {
+  margin-left: 20px;
+}
+
+//入力フィールドのカラー
+.light-color {
+  background-color: #fefefe;
+}
+//
+//記録フォーム
+.meal_records_button {
+  background: #FFB2B2;
+  border: 2px solid #FFB2B2;
+  border-radius: 60px;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  max-width: 300px;
+  padding: 4px 40px;
+  text-align: center;
+}
+
+.meal_records_button:hover {
+  background: #fff;
+  color: #FFB2B2;
+}
+
+.training_records_button {
+  background: #A5C9FF;
+  border: 2px solid #A5C9FF;
+  border-radius: 60px;
+  color: #fff;
+  display: block;
+  font-weight: bold;
+  max-width: 300px;
+  padding: 4px 40px;
+  text-align: center;
+}
+
+.training_records_button:hover {
+  background: #fff;
+  color: #A5C9FF;
+}
+
+
+.records_from {
+  border-bottom: 2px solid white;
+}
+
+.user_edit {
+  border-bottom: 2px solid white;
+}
+
+.user_show {
+  border-bottom: 2px solid white;
+}
+
+.sesrch.form-control.light-color {
+  width: 300px;
+}
+
+.icon {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 10px 10px 0px ;
+}
+
+.show-buttons {
+  margin-left: 520px;
+}

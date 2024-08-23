@@ -1,4 +1,4 @@
-<div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid; justify-content: space-between;">
+<div class="user_show" style="display: flex; padding: 20px; justify-content: space-between;">
   <div class="d-flex">
     <% if @customer.get_profile_image.present? %>
       <%= image_tag @customer.get_profile_image, size:'100x100', class: "profile_image rounded-circle border" %>
@@ -66,7 +66,7 @@
     <% end %>
   </div>
 </div>
-<div class="select_button border-bottom pb-3 pt-3">
+<div class="select_button pb-3 pt-3">
   <div>
     <button id="meal-button" class="btn btn-outline-dark mr-2">食事</button>
   </div>
