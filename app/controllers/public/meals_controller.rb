@@ -51,6 +51,15 @@ class Public::MealsController < ApplicationController
     end
   end
 
+  def search
+    selection = params[:meal][:keyword]
+    if selection == 'likes'
+      @meals = Meal.includes(:meal_favorites).sort {|a,b| b.meal_favorites.size <=> a.meal_favorites.size}
+    else
+      @meals = Meal.includes(:meal_favorites).sort {|a,b| a.meal_favorites.size <=> b.meal_favorites.size}
+    end
+  end
+
     private
 
   def meal_params

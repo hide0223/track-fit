@@ -51,8 +51,12 @@ class Public::TrainingsController < ApplicationController
   end
 
   def search
-    selection = params[:keyword]
-    @trainings = Training.sort(selection)
+    selection = params[:training][:keyword]
+    if selection == 'likes'
+      @trainings = Training.includes(:training_favorites).sort {|a,b| b.training_favorites.size <=> a.training_favorites.size}
+    else
+      @trainings = Training.includes(:training_favorites).sort {|a,b| a.training_favorites.size <=> b.training_favorites.size}
+    end
   end
 
     private

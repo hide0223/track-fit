@@ -19,15 +19,6 @@ class Training < ApplicationRecord
     ["training_contents"]
   end
 
-  def self.sort(selection)
-    case selection
-    when 'likes'
-      return find(Favorite.group(:training_id).order(Arel.sql('count(training_id) desc')).pluck(:training_id))
-    when 'dislikes'
-      return find(Favorite.group(:training_id).order(Arel.sql('count(training_id) asc')).pluck(:training_id))
-    end
-  end
-
   validates :body_parts, presence: true
   validates :exercise, presence: true
   validates :weight, presence: true

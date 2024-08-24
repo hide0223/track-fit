@@ -1,7 +1,3 @@
-<%= form_with(model: @training, url: public_training_f_search_path, method: :get, local: true) do |form| %>
-  <%= form.select :keyword, [['いいねが多い順', 'likes'],['いいねが少ない順', 'dislikes']]%>
-  <button type="submit" class=""><p>記録する</p></button>
-
 <% trainings.each do |training| %>
   <div class="records_from px-4">
     <div class="d-flex pt-2">
@@ -56,5 +52,4 @@
       </div>
     </div>
   </div>
-<% end %>
 <% end %>
