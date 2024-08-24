@@ -1,0 +1,20 @@
+<div class="side-link">
+  <%=  link_to admin_customers_path,class: 'nav-link text-dark btn-link' do %>
+    <span class="">ユーザー</span>
+  <% end %>
+  <%=  link_to admin_meals_path,class: 'nav-link text-dark btn-link' do %>
+    <span class="">食事</span>
+  <% end %>
+  <%=  link_to admin_trainings_path,class: 'nav-link text-dark btn-link' do %>
+    <span class="">トレーニング</span>
+  <% end %>
+  <%=  link_to admin_meal_comments_path,class: 'nav-link text-dark btn-link' do %>
+    <span class="">食事コメント一覧</span>
+  <% end %>
+  <%=  link_to admin_training_comments_path,class: 'nav-link text-dark btn-link' do %>
+    <span class="">トレーニングコメント一覧</span>
+  <% end %>
+  <%=  link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-dark btn-link' do %>
+    <span class="">ログアウト</span>
+  <% end %>
+</div>

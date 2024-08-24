@@ -11,13 +11,13 @@
         <div>
           <%= link_to public_customer_followings_path(customer) do %>
             <span class="name-link"><%= customer.followings.count %></span>
-            <span class="relationships-name ml-1" style="opacity: 0.8;">フォロー中</span>
+            <span class="relationships-name ml-1">フォロー中</span>
           <% end %>
         </div>
         <div class="ml-4">
           <%= link_to public_customer_followers_path(customer) do %>
             <span class="name-link"><%= customer.followers.count %></span>
-            <span class="relationships-name" style="opacity: 0.8;">フォロワー</span>
+            <span class="relationships-name">フォロワー</span>
           <% end %>
         </div>
       </div>

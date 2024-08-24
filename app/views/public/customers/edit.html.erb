@@ -1,6 +1,6 @@
 <%= render 'layouts/errors', obj: @customer %>
 <%= form_with model: @customer, url: public_customer_path do |f| %>
-  <div class="user_edit" style="display: flex; padding: 20px;">
+  <div class="user_edit">
       <img id="preview" class="rounded-circle border" style="width: 100px; height: 100px; display: none;" >
     <% if @customer.get_profile_image.present? %>
     <%= image_tag @customer.get_profile_image, size: '100x100', class: "profile_image rounded-circle border" %>
@@ -19,10 +19,8 @@
         <%= f.file_field :profile_image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
     <% end %>
-
-
-    <div style="margin-left: 30px;">
-      <div style="display: flex; justify-content: space-between; padding: 0px 0px 0px 0px ;">
+    <div class="user-box">
+      <div class="user-edit-name">
         <div class="mt-1 name-link">
           <%= f.label :ユーザ %>
           <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control", required: true %>
@@ -62,24 +60,19 @@
 
 <script>
 $('#file-upload').on('change', function (e) {
-
   var reader = new FileReader();
   reader.onload = function (e) {
     $("#preview").attr('src', e.target.result);
   }
   reader.readAsDataURL(e.target.files[0]);
-
   $(".profile_image").hide();
   $('#preview').show();
   $('#delete-button').show();
 });
-
-
 $('#delete-button').on('click', function () {
 
   $('#preview').attr('src', '');
 
   $('#delete-button').hide();
 });
-
 </script>
