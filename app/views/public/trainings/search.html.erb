@@ -1,0 +1,6 @@
+<%= form_with(model: @training, url: public_training_f_search_path, method: :get, local: true) do |form| %>
+  <%= form.select :keyword, [['いいねが多い順', 'likes'],['いいねが少ない順', 'dislikes']]%>
+  <button type="submit" class=""><p>変更する</p></button>
+
+<%= render 'public/trainings/records',trainings: @trainings %>
+<% end %>

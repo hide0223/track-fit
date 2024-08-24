@@ -50,6 +50,11 @@ class Public::TrainingsController < ApplicationController
     end
   end
 
+  def search
+    selection = params[:keyword]
+    @trainings = Training.sort(selection)
+  end
+
     private
 
   def training_params
