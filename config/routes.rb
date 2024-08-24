@@ -35,7 +35,7 @@ Rails.application.routes.draw do
       resource :meal_favorites, only: [:create, :destroy]
     end
     get 'meal_f/search' => 'meals#search'
-
+    
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :training_comments, only: [:create, :destroy]
       resource :training_favorites, only: [:create, :destroy]
