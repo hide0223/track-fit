@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   devise_scope :customer do
       post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
-   
+
   get "customers", to: "public/customers#index"
 
   namespace :public do
@@ -34,10 +34,13 @@ Rails.application.routes.draw do
       resources :meal_comments, only: [:create, :destroy]
       resource :meal_favorites, only: [:create, :destroy]
     end
+    get 'meal_f/search' => 'meals#search'
+
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :training_comments, only: [:create, :destroy]
       resource :training_favorites, only: [:create, :destroy]
     end
+    get 'training_f/search' => 'trainings#search'
   end
 
 
