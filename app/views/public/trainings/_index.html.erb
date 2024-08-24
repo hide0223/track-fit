@@ -18,7 +18,7 @@
       </div>
     </div>
     <div class="mt-2 mb-2">
-      <img id="preview" style="width:40%;">
+      <img id="preview">
     </div>
     <div class="mt-1 mb-1">
         <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
@@ -29,7 +29,6 @@
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
-
     <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'public/trainings/training_content_fields', :f => training_content %>
@@ -38,8 +37,7 @@
         <%= link_to_add_association '詳細を追加', f , :training_contents, partial: 'public/trainings/training_content_fields',class: "btn btn-outline-dark mt-2" %>
       </div>
     </div>
-
-    <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
+    <div class="icon">
       <div>
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>

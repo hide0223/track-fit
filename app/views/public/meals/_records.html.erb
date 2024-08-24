@@ -1,7 +1,7 @@
 <% meals.each do |meal| %>
   <div class="records_from px-4">
     <div class="d-flex pt-2">
-      <div class="">
+      <div>
         <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
           <%= image_tag meal.customer.get_profile_image, size:'40x40', class: "rounded-circle border" %>
         <% end %>

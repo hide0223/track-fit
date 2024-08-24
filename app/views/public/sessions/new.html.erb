@@ -1,7 +1,7 @@
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 <div class="set_center_outer">
   <div class="set_center_inner mb-3">
     <h2>Track Fitにログイン</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
     <div class="signin-field">
       <%= f.label :email %><br />
       <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
@@ -15,10 +15,11 @@
     <div class="modal_submit">
       <%= f.submit "Log in", class: "btn btn-outline-dark" %>
     </div>
+    <% end %>
   </div>
   <h4><span>会員登録がお済でない方</span></h4>
   <%= link_to "こちら",   new_customer_registration_path %>から新規登録を行ってしてください
 </div>
-<% end %>
+
 
 

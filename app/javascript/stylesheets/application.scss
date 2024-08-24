@@ -76,8 +76,8 @@ body {
 
 .body {
   width: 50%;
-  border-right: 2px solid white;
-  border-left: 2px solid white;
+  border-right: 1px solid #BDBDBD;
+  border-left: 1px solid #BDBDBD;
 }
 
 .side {
@@ -180,6 +180,7 @@ select {
   color: black;
   text-decoration: none;
   color: #666666;
+  font-size: smaller; opacity: 0.8;
 }
 
 .new-img{
@@ -290,7 +291,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid #BDBDBD;
   padding-left: 250px;
   padding-right: 250px;
   height: 60px;
@@ -378,15 +379,20 @@ p {
 
 
 .records_from {
-  border-bottom: 2px solid white;
+  border-bottom: 1px solid #BDBDBD;
 }
 
 .user_edit {
-  border-bottom: 2px solid white;
+  display: flex;
+  padding: 20px;
+  border-bottom: 1px solid #BDBDBD;
 }
 
 .user_show {
-  border-bottom: 2px solid white;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-bottom: 1px solid #BDBDBD;
 }
 
 .sesrch.form-control.light-color {
@@ -401,4 +407,43 @@ p {
 
 .show-buttons {
   margin-left: 520px;
+}
+
+.comment-field {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-box {
+  margin-left: 30px;
+}
+
+.user-edit-name {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 0px 0px 0px ;
+}
+
+.admin-c-index {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 10px 10px 10px;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.admin-c-name {
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.admin-link {
+  margin-top: 12px;
+}
+
+.comment_select_button {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 250px;
+  padding-right: 250px;
+  height: 60px;
 }
