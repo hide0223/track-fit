@@ -234,6 +234,7 @@ select {
   border-radius: 30px;
   padding-top: 3px;
   padding-bottom: 3px;
+  font-weight: bold;
 }
 
 
@@ -446,4 +447,29 @@ p {
   padding-left: 250px;
   padding-right: 250px;
   height: 60px;
+}
+
+.weight-records {
+  display: flex;
+  text-align: center;
+}
+
+.c-weight-records {
+  width: 100%;
+}
+
+h5 {
+  color: #666666;
+  font-weight: bold;
+}
+
+th {
+  color: #666666;
+  font-weight: bold;
+}
+
+.comments-index {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #BDBDBD;
 }

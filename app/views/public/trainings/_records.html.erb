@@ -24,7 +24,7 @@
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div><%= training.body_weight.present? ? "#体重{training.body_weight}kg" : "" %></div>
+      <div><%= training.body_weight.present? ? "#{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
       <table class="table table-bordered" style="width: 80%;">
         <tr>

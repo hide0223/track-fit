@@ -19,9 +19,4 @@ class Training < ApplicationRecord
     ["training_contents"]
   end
 
-  validates :body_parts, presence: true
-  validates :exercise, presence: true
-  validates :weight, presence: true
-  validates :sets, presence: true
-  validates :reps, presence: true
 end

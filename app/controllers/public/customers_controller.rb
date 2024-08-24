@@ -53,7 +53,6 @@ class Public::CustomersController < ApplicationController
     @favorite_meals = Meal.find(meal_favorites)
   end
 
-
   private
 
   def customer_params
