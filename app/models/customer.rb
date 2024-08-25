@@ -38,7 +38,7 @@ class Customer < ApplicationRecord
   end
 
   def unfollow(customer)
-    relationships.find_by(followed_id: customer.id).destroy
+    relationships.find_by(followed_id: customer.id)&.destroy
   end
 
   def following?(customer)
@@ -66,5 +66,5 @@ class Customer < ApplicationRecord
       @customer = Customer.all
     end
   end
-  
+
 end
