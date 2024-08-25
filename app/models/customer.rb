@@ -52,4 +52,19 @@ class Customer < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
   ["followers", "followings", "meal_comments", "meal_favorites", "meals", "profile_image_attachment", "profile_image_blob", "relationships", "reverse_of_relationships", "training_comments", "training_favorites", "trainings"]
   end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @customer = Customer.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @customer = Customer.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @customer = Customer.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @customer = Customer.where("name LIKE?","%#{word}%")
+    else
+      @customer = Customer.all
+    end
+  end
+  
 end

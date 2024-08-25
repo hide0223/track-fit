@@ -22,9 +22,18 @@ class Meal < ApplicationRecord
     ["meal_contents"]
   end
 
-  # validates :category, presence: true
-  # validates :meal_summary, presence: true
-  # validates :eat_meal, presence: true
-  # validates :kcal, presence: true
-
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @meal = Meal.where("body LIKE?","#{word}")
+    elsif search == "forward_match"
+      @meal = Meal.where("body LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @meal = Meal.where("body LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @meal = Meal.where("body LIKE?","%#{word}%")
+    else
+      @meal = Meal.all
+    end
+  end
+  
 end
