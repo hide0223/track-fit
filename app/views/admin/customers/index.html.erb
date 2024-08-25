@@ -1,18 +1,1 @@
-<div class="admin-c-name container mt-3 pb-2">
-  <h3>ユーザ一覧</h3>
-</div>
-  <% @customers.each do |customer| %>
-  <div class="admin-c-index">
-    <div class="d-flex">
-      <%= image_tag customer.get_profile_image, size: '40x40', class: "rounded-circle border mt-2" %>
-      <div class="admin-link">
-      　<%= link_to customer.name, admin_customer_path(customer), class: "name-link" %><br>
-      </div>
-    </div>
-    <div class="admin-link">
-      <form>
-        <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-      </form>
-    </div>
-  </div>
-<% end %>
+<%= render 'admin/customers/index', customers: @customers %>

@@ -57,5 +57,6 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update, :destroy]
 
     root to: 'admin/homes#top'
+    get "search" => "searches#search"
  end
 end

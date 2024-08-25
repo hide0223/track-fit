@@ -1,0 +1,14 @@
+<div class="search_box">
+  <div class="search_form">
+    <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
+    <div>
+      <%= f.text_field :word, class: "search form-control light-color" %>
+    </div>
+    <div>
+      <%= f.select :range, options_for_select([['Customer'], ['Meal'], ['Training']]) %>
+      <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["前方一致","forward_match"],  ["後方一致","backward_match"], ["部分一致","partial_match"]]) %>
+      <%= f.submit "検索", class: "btn btn-outline-dark" %>
+    </div>
+    <% end %>
+  </div>
+</div>

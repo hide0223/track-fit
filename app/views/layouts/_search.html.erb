@@ -7,7 +7,7 @@
     <%= search_form_for @customer_q, url: public_customer_search_path do |f| %>
     <div class="search">
       <div>
-        <%= f.search_field :name_cont, class: "sesrch form-control light-color", placeholder: "ユーザーを入力" %>
+        <%= f.search_field :name_cont, class: "search form-control light-color", placeholder: "ユーザーを入力" %>
       </div>
       <div>
         <button class="btn btn-outline-dark" type="submit">
@@ -19,7 +19,7 @@
     <%= search_form_for @meal_q, url: public_meal_search_path do |f| %>
     <div class="search">
       <div>
-        <%= f.search_field :meal_contents_eat_meal_cont, class: "sesrch form-control light-color", placeholder: "食べ物を入力" %>
+        <%= f.search_field :meal_contents_eat_meal_cont, class: "search form-control light-color", placeholder: "食べ物を入力" %>
       </div>
       <div>
         <button class="btn btn-outline-dark" type="submit">
@@ -31,7 +31,7 @@
     <%= search_form_for @training_q, url: public_training_search_path do |f| %>
     <div class="search">
       <div>
-        <%= f.search_field :training_contents_body_parts_cont, class: "sesrch form-control light-color", placeholder: "部位を入力" %>
+        <%= f.search_field :training_contents_body_parts_cont, class: "search form-control light-color", placeholder: "部位を入力" %>
       </div>
       <div>
         <button class="btn btn-outline-dark" type="submit">
