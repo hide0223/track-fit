@@ -2,27 +2,15 @@
   <%= render 'public/shared/select' %>
 </div>
 <div id="rendering-area"></div>
+
 <script>
-//$(function() {
-  // 初期表示として食事の内容を表示する
+$(function() {
   $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals, meal: @meal, customers: @customers) %>");
-  // 食事ボタンに.btn-clickedクラスを追加する
-  $("#meal-button").addClass("btn-clicked");
-  // 食事ボタンのクリックイベント
   $("#meal-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('public/meals/index', meals: @meals, meal: @meal, customers: @customers) %>");
   });
-  // トレーニングボタンのクリックイベント
   $("#training-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('public/trainings/index', trainings: @trainings, training: @training, customers: @customers) %>");
   });
-//});
+});
 </script>

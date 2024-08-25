@@ -16,7 +16,7 @@
       <%= f.number_field :reps, required: true, placeholder: "回数", class: "form-control light-color", style: "width: 100px;" %>
     </div>
     <div class="mt-2">
-      <%= link_to_remove_association f, class: "btn btn-outline-dark ml-4 mt-1" do %>
+      <%= link_to_remove_association f, class: "btn btn-outline-dark ml-4 mt-1 hide-if-last" do %>
         <i class="fa-solid fa-trash-can"></i>
       <% end %>
     </div>

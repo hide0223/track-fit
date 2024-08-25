@@ -71,9 +71,7 @@ $('#file-upload').on('change', function (e) {
   $('#delete-button').show();
 });
 $('#delete-button').on('click', function () {
-
   $('#preview').attr('src', '');
-
   $('#delete-button').hide();
 });
 
@@ -84,7 +82,7 @@ $(document).ready(function() {
 
   toggleDeleteButtonVisibility();
 
-  $(document).on('click', '.delete-btn', function() {
+  $(document).on('click', '.btn-outline-dark', function() {
     $(this).closest('.nested-fields').remove();
     toggleDeleteButtonVisibility();
   });

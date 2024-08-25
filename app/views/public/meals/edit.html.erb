@@ -89,7 +89,6 @@
   <% end %>
 </div>
 
-
 <script>
 $('#file-upload').on('change', function (e) {
   var reader = new FileReader();
@@ -97,14 +96,11 @@ $('#file-upload').on('change', function (e) {
     $("#preview").attr('src', e.target.result);
   }
   reader.readAsDataURL(e.target.files[0]);
-
   $(".meal-img-top").hide();
   $('#delete-button').show();
 });
 $('#delete-button').on('click', function () {
-
   $('#preview').attr('src', '');
-
   $('#delete-button').hide();
 });
 
