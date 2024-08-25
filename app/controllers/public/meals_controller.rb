@@ -39,7 +39,6 @@ class Public::MealsController < ApplicationController
 
   def edit
     @meal = Meal.find(params[:id])
-    @meal.meal_contents.build
   end
 
   def update

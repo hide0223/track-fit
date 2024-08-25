@@ -93,24 +93,24 @@ $('#file-upload').on('change', function (e) {
     $("#preview").attr('src', e.target.result);
   }
   reader.readAsDataURL(e.target.files[0]);
-
   $(".meal-img-top").hide();
   $('#delete-button').show();
 });
 $('#delete-button').on('click', function () {
-
   $('#preview').attr('src', '');
-
   $('#delete-button').hide();
 });
 
-$(document).on('turbolinks:load', function() {
-    $('#training_contents')
-      .on('cocoon:before-remove', function(e) {
-        if ($('#training_contents .nested-fields').length <= 1) {
-          alert('最低1つは必要です。');
-          e.preventDefault();
-        }
-      });
+$(document).ready(function() {
+  function toggleDeleteButtonVisibility() {
+    $('.hide-if-last').toggle($('.nested-fields').length > 1);
+  }
+
+  toggleDeleteButtonVisibility();
+
+  $(document).on('click', '.btn-outline-dark', function() {
+    $(this).closest('.nested-fields').remove();
+    toggleDeleteButtonVisibility();
   });
+});
 </script>

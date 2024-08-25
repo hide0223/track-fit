@@ -56,7 +56,7 @@
 <%= form_with(model: @meal, url: public_meal_f_search_path, method: :get, local: true) do |form| %>
 <div class="border-bottom text-right mt-3 pb-3">
   <%= form.select :keyword, [['いいねが多い順', 'likes'],['いいねが少ない順', 'dislikes']]%>
-  <button type="submit" class="btn btn-outline-dark mr-3"><p>変更する</p></button>
+  <button type="submit" class="btn btn-outline-dark mr-3"><p class="a-button">変更する</p></button>
 </div>
 <%= render 'public/meals/records', meals: @meals %>
 <% end %>
@@ -71,16 +71,20 @@ $('#file-upload').on('change', function (e) {
   $('#delete-button').show();
 });
 $('#delete-button').on('click', function () {
-
   $('#preview').attr('src', '');
-
   $('#delete-button').hide();
 });
-     $('#meal_contents')
-      .on('cocoon:before-remove', function(e) {
-        if ($('#meal_contents .nested-fields').length <= 1) {
-          alert('最低1つは必要です。');
-          e.preventDefault();
-        }
-      });
+
+$(document).ready(function() {
+  function toggleDeleteButtonVisibility() {
+    $('.hide-if-last').toggle($('.nested-fields').length > 1);
+  }
+
+  toggleDeleteButtonVisibility();
+
+  $(document).on('click', '.btn-outline-dark', function() {
+    $(this).closest('.nested-fields').remove();
+    toggleDeleteButtonVisibility();
+  });
+});
 </script>

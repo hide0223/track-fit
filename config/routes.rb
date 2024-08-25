@@ -25,7 +25,6 @@ Rails.application.routes.draw do
         get "followers" => "relationships#followers", as: "followers"
     end
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
-
     get "customer/search" => "searches#customer_search", as: 'customer_search'
     get "meal/search" => "searches#meal_search", as: 'meal_search'
     get "training/search" => "searches#training_search", as: 'training_search'
