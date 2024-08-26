@@ -7,13 +7,13 @@
       <%= f.text_field :exercise, required: true, placeholder: "種目名", class: "form-control light-color", style: "width: 250px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :weight, required: true, placeholder: "重量", class: "form-control light-color", style: "width: 100px;" %>
+      <%= f.number_field :weight, placeholder: "重量", class: "form-control light-color", style: "width: 100px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :sets, required: true, placeholder: "セット数", class: "form-control light-color", style: "width: 130px;" %>
+      <%= f.number_field :sets, placeholder: "セット数", class: "form-control light-color", style: "width: 130px;" %>
     </div>
     <div class="mt-2 mx-1">
-      <%= f.number_field :reps, required: true, placeholder: "回数", class: "form-control light-color", style: "width: 100px;" %>
+      <%= f.number_field :reps, placeholder: "回数", class: "form-control light-color", style: "width: 100px;" %>
     </div>
     <div class="mt-2">
       <%= link_to_remove_association f, class: "btn btn-outline-dark ml-4 mt-1 hide-if-last" do %>
