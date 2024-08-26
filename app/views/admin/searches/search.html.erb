@@ -1,0 +1,7 @@
+<% if @range == "Customer" %>
+  <%= render 'admin/customers/index', customers: @customers %>
+<% elsif @range == "Meal" %>
+  <%= render 'admin/meals/index', meals: @meals %>
+<% elsif @range == "Training" %>
+  <%= render 'admin/trainings/index', trainings: @trainings %>
+<% end %>

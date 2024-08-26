@@ -39,7 +39,6 @@ class Public::MealsController < ApplicationController
 
   def edit
     @meal = Meal.find(params[:id])
-    @meal.meal_contents.build
   end
 
   def update
@@ -48,6 +47,15 @@ class Public::MealsController < ApplicationController
       redirect_to public_meal_path(@meal)
     else
       render "edit"
+    end
+  end
+
+  def search
+    selection = params[:meal][:keyword]
+    if selection == 'likes'
+      @meals = Meal.includes(:meal_favorites).sort {|a,b| b.meal_favorites.size <=> a.meal_favorites.size}
+    else
+      @meals = Meal.includes(:meal_favorites).sort {|a,b| a.meal_favorites.size <=> b.meal_favorites.size}
     end
   end
 

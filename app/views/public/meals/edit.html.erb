@@ -20,7 +20,7 @@
       </div>
     </div>
     <div class="mt-2">
-      <img id="preview" style="width:40%;">
+      <img id="preview">
     </div>
     <% if @meal.image.attached? %>
     <%= image_tag @meal.image, class: "meal-img-top img-fluid" %>
@@ -43,17 +43,15 @@
           <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
         </div>
       </div>
-      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
-        <div class="">
+      <div class="icon">
+        <div>
           <label for="file-upload" class="file-input-label">
             <i class="fa-solid fa-image fa-2x"></i>
           </label>
           <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
         </div>
         <div>
-          <form>
-            <input class="radius-pixel-30" type="submit" value="変更する">
-          </form>
+          <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
         </div>
       </div>
     <% else %>
@@ -76,7 +74,7 @@
           <%= link_to_add_association '詳細を追加', f, :meal_contents, class: "btn btn-outline-dark mt-2" %>
         </div>
       </div>
-      <div style="display: flex; justify-content: space-between; padding: 20px 0px 10px 0px ;">
+      <div class="icon">
         <div class="">
           <label for="file-upload" class="file-input-label">
             <i class="fa-solid fa-image fa-2x"></i>
@@ -84,15 +82,12 @@
           <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
         </div>
         <div>
-          <form>
-            <input class="radius-pixel-30" type="submit" value="変更する">
-          </form>
+          <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
         </div>
       </div>
     <% end %>
   <% end %>
 </div>
-
 
 <script>
 $('#file-upload').on('change', function (e) {
@@ -101,24 +96,24 @@ $('#file-upload').on('change', function (e) {
     $("#preview").attr('src', e.target.result);
   }
   reader.readAsDataURL(e.target.files[0]);
-
   $(".meal-img-top").hide();
   $('#delete-button').show();
 });
 $('#delete-button').on('click', function () {
-
   $('#preview').attr('src', '');
-
   $('#delete-button').hide();
 });
 
-$(document).on('turbolinks:load', function() {
-    $('#meal_contents')
-      .on('cocoon:before-remove', function(e) {
-        if ($('#meal_contents .nested-fields').length <= 1) {
-          alert('最低1つは必要です。');
-          e.preventDefault();
-        }
-      });
+$(document).ready(function() {
+  function toggleDeleteButtonVisibility() {
+    $('.hide-if-last').toggle($('.nested-fields').length > 1);
+  }
+
+  toggleDeleteButtonVisibility();
+
+  $(document).on('click', '.btn-outline-dark', function() {
+    $(this).closest('.nested-fields').remove();
+    toggleDeleteButtonVisibility();
   });
+});
 </script>

@@ -1,33 +1,36 @@
-<div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid; justify-content: space-between;">
+<div class="user_show">
   <div class="d-flex">
     <% if @customer.get_profile_image.present? %>
       <%= image_tag @customer.get_profile_image, size:'100x100', class: "profile_image rounded-circle border" %>
     <% end %>
-    <div style="margin-left: 30px;">
-      <div style="display: flex; justify-content: space-between; padding: 0px 0px 0px 0px ;">
+    <div class="user-box">
+      <div class="user-edit-name">
         <div class="mt-1 name-link" style="font-size: 25px;">
           <%= @customer.name %>
         </div>
       </div>
-
       <div class="d-flex mt-1">
         <div>
           <%= link_to public_customer_followings_path(@customer) do %>
-            <span class="name-link"><%= @customer.followings.count %></span>
-            <span class="relationships-name ml-1" style="opacity: 0.8;">フォロー中</span>
+            <span id="followings_cunter" class="name-link">
+              <%= @customer.followings.count %>
+            </span>
+            <span class="relationships-name ml-1">フォロー中</span>
           <% end %>
         </div>
         <div class="ml-3">
           <%= link_to public_customer_followers_path(@customer) do %>
-            <span class="name-link"><%= @customer.followers.count %></span>
-            <span class="relationships-name ml-1" style="opacity: 0.8;">フォロワー</span>
+            <span id="followers_cunter" class="name-link">
+              <%= @customer.followers.count %>
+            </span>
+            <span class="relationships-name ml-1">フォロワー</span>
           <% end %>
         </div>
       </div>
       <div class="d-flex mt-1">
         <div class="d-flex">
           <div>
-            <span style="opacity: 0.8;">年齢</span>
+            <span class="mini-words">年齢</span>
           </div>
           <div class="ml-1 name-link">
             <%= @customer.age %>歳
@@ -35,7 +38,7 @@
         </div>
         <div class="d-flex ml-4">
           <div>
-            <span style="opacity: 0.8;">身長</span>
+            <span class="mini-words">身長</span>
           </div>
           <div class="ml-1 name-link">
             <%= @customer.height %>cm
@@ -43,7 +46,7 @@
         </div>
         <div class="d-flex ml-4">
           <div>
-            <span style="opacity: 0.8;">体重</span>
+            <span class="mini-words">体重</span>
           </div>
           <div class="ml-1 name-link">
             <%= @customer.weight %>kg
@@ -55,48 +58,36 @@
       </div>
     </div>
   </div>
-
   <div>
     <% if @customer == current_customer %>
       <%= link_to edit_public_customer_path(@customer), class: "btn btn-outline-dark", type: "button" do %>
         <p class="a-button">編集</p>
       <% end %>
     <% else %>
+    <div id="follow_btn_<%= @customer.id %>">
       <%= render "public/relationships/btn", customer: @customer, options: { class: "follow-link" } %>
+    </div>
     <% end %>
   </div>
 </div>
-<div class="select_button border-bottom pb-3 pt-3">
+<div class="select_button pb-3 pt-3">
+  <%= render 'public/shared/select' %>
   <div>
-    <button id="meal-button" class="btn btn-outline-dark mr-2">食事</button>
-  </div>
-  <div>
-    <button id="training-button" class="btn btn-outline-dark">トレーニング</button>
+    <button id="weight-button" class="btn btn-outline-dark"><p class="a-button">体重</p></button>
   </div>
 </div>
 <div id="rendering-area"></div>
-
 <script>
 $(function() {
-  // 初期表示として食事の内容を表示する
   $("#rendering-area").html("<%= j render('public/meals/records', meals: @meals) %>");
-  // 食事ボタンに.btn-clickedクラスを追加する
-  $("#meal-button").addClass("btn-clicked");
-  // 食事ボタンのクリックイベント
   $("#meal-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('public/meals/records', meals: @meals) %>");
   });
-  // トレーニングボタンのクリックイベント
   $("#training-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('public/trainings/records', trainings: @trainings) %>");
+  });
+  $("#weight-button").on("click", function() {
+    $("#rendering-area").html("<%= j render('public/weights/records', meals: @meals, trainings: @trainings, customer: @customer) %>");
   });
 });
 </script>

@@ -17,4 +17,3 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 require("@nathanvda/cocoon");
-

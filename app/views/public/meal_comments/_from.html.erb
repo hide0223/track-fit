@@ -10,7 +10,7 @@
     </div>
   </div>
   <%= form_with(model: [meal, meal_comment], url: public_meal_meal_comments_path(meal), method: :post, local: false, html: { class: "pl40 pt-2" }) do |f| %>
-  <div class="d-flex"  style="justify-content:space-between">
+  <div class="comment-field">
     <%= f.text_area :comment, rows:'4',placeholder: "コメントをここに", required: true, class: "form-control", style: "width: 500px" %>
     <div class="pt-5 mt-4">
       <button type="submit" class="btn btn-outline-dark"><p class="a-button">送信</p></button>

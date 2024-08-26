@@ -16,8 +16,6 @@
 	  	<div class="leftside">
 				<p class="track-fit">Track Fit</p>
 			</div>
-
-
 			<div class="rightside">
 				<div class="rightinner">
 					<div>
@@ -47,6 +45,7 @@
 						 	  </div>
 						  </div>
 						</div>
+
 						<div class="button_new mt-4">
 						  <button type="button" class="btn btn-outline-dark" style="width:300px" data-toggle="modal" data-target="#log_inModal" data-whatever="@customer">ログイン</button>
 						</div>
@@ -65,9 +64,11 @@
 						 	  </div>
 						  </div>
 						</div>
+						<div class="button mt-4">
+							<%= link_to "ゲストログイン", customers_guest_sign_in_path, method: :post, class: "btn btn-outline-dark geust-link", style: "width: 300px" %>
+						</div>
 					</div>
 				</div>
 		</main>
 	</body>
 </html>
-

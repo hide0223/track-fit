@@ -13,69 +13,26 @@
 
   <body>
     <main class="test_container">
-      <div class="side mt-3">
-        <ul class = "navbar-nav ml-auto">
-          <% if admin_signed_in? %>
-            <li class="nav-item"><%= link_to 'ユーザ一覧',admin_customers_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to '食事一覧',admin_meals_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to 'トレーニング一覧',admin_trainings_path ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to '食事コメント一覧', admin_meal_comments_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to 'トレーニングコメント一覧', admin_training_comments_path,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-            <li class="nav-item"><%= link_to 'ログアウト',destroy_admin_session_path, method: :delete ,class: 'btn btn-custom-pink btn-custom-white nav-link mr-3'%></li>
-
-          <% elsif customer_signed_in? %>
-            <li>
-              <%=  link_to public_customer_path(current_customer),class: 'nav-link' do %>
-                <i class="fa-solid fa-house"></i>
-                <span class="ml-2">ホーム</span>
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to public_meals_path,class: 'nav-link' do %>
-                <i class="fa-solid fa-drumstick-bite"></i>
-                <span class="ml-2">食事</span>
-              <% end %>
-            </li>
-
-            <li>
-              <%=  link_to public_trainings_path,class: 'nav-link' do %>
-                 <i class="fa-solid fa-dumbbell"></i>
-                 <span class="ml-2">トレーニング</span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to meal_favorites_public_customer_path(current_customer), class: 'nav-link' do %>
-                <i class="fa-solid fa-heart"></i>
-                <span class="ml-2">食事のいいね</span>
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to training_favorites_public_customer_path(current_customer),class: 'nav-link' do %>
-                 <i class="fa-solid fa-heart"></i>
-                 <span class="ml-2">トレーニングのいいね</span>
-              <% end %>
-            </li>
-            <li>
-              <%=  link_to destroy_customer_session_path, method: :delete,class: 'nav-link' do %>
-                 <i class="fas fa-sign-out-alt"></i>
-                 <span class="ml-2">ログアウト</span>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%=  link_to root_path,class: 'nav-link' do %>
-                 <i class="fa-solid fa-t"></i>
-                 <span class="ml-2">About</span>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
+      <div class="side">
+        <% if admin_signed_in? %>
+          <%= render 'layouts/admin' %>
+        <% elsif customer_signed_in? %>
+          <%= render 'layouts/customer' %>
+        <% else %>
+          <div class="side-link">
+            <%=  link_to root_path,class: 'nav-link text-dark btn-link' do %>
+               <i class="fa-solid fa-t"></i>
+               <span class="ml-2">About</span>
+            <% end %>
+          </div>
+        <% end %>
       </div>
       <div class="body">
         <%= yield %>
       </div>
       <div class="aside">
         <% if admin_signed_in? %>
+          <%= render 'layouts/admin_aside' %>
         <% elsif customer_signed_in? %>
           <%= render 'public/customers/info', customer: current_customer %>
         <% else %>

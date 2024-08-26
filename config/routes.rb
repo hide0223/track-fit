@@ -8,8 +8,14 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+      post 'customers/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
+  get "customers", to: "public/customers#index"
+
   namespace :public do
-    resources :customers, only: [:show, :edit, :update, :destroy] do
+    resources :customers, only: [:index, :show, :edit, :update, :destroy] do
       member do
         get :training_favorites
         get :meal_favorites
@@ -19,7 +25,6 @@ Rails.application.routes.draw do
         get "followers" => "relationships#followers", as: "followers"
     end
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
-
     get "customer/search" => "searches#customer_search", as: 'customer_search'
     get "meal/search" => "searches#meal_search", as: 'meal_search'
     get "training/search" => "searches#training_search", as: 'training_search'
@@ -28,10 +33,13 @@ Rails.application.routes.draw do
       resources :meal_comments, only: [:create, :destroy]
       resource :meal_favorites, only: [:create, :destroy]
     end
+    get 'meal_f/search' => 'meals#search'
+
     resources :trainings, only: [:index, :show, :edit, :create, :update, :destroy] do
       resources :training_comments, only: [:create, :destroy]
       resource :training_favorites, only: [:create, :destroy]
     end
+    get 'training_f/search' => 'trainings#search'
   end
 
 
@@ -49,5 +57,6 @@ Rails.application.routes.draw do
     resources :customers, only: [:index, :show, :edit, :update, :destroy]
 
     root to: 'admin/homes#top'
+    get "search" => "searches#search"
  end
 end

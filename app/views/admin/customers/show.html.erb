@@ -1,15 +1,18 @@
-<div style="display: flex; padding: 20px; border-bottom: 0.05em lightgray solid">
+<div class="user_show">
   <%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle border" %>
-  <div style="margin-left: 30px;">
-    <div class="d-flex">
+  <div class="user-box">
+    <div class="user-edit-name">
       <div class="mt-1 name-link" style="font-size: 25px;">
         <%= @customer.name %>
       </div>
     </div>
+    <div class="mt-1 name-link">
+      <%= @customer.email %>
+    </div>
     <div class="d-flex mt-1">
       <div class="d-flex">
         <div>
-          <span style="opacity: 0.8;">年齢</span>
+          <span class="mini-words">年齢</span>
         </div>
         <div class="ml-1 name-link">
           <%= @customer.age %>歳
@@ -17,7 +20,7 @@
       </div>
       <div class="d-flex ml-4">
         <div>
-          <span style="opacity: 0.8;">身長</span>
+          <span class="mini-words">身長</span>
         </div>
         <div class="ml-1 name-link">
           <%= @customer.height %>cm
@@ -25,7 +28,7 @@
       </div>
       <div class="d-flex ml-4">
         <div>
-          <span style="opacity: 0.8;">体重</span>
+          <span class="mini-words">体重</span>
         </div>
         <div class="ml-1 name-link">
           <%= @customer.weight %>kg
@@ -36,43 +39,24 @@
       <%= @customer.introduction %>
     </div>
   </div>
-  <div style="display: flex; justify-content: space-between; padding: 25px 0px 0px 500px ;">
-    <form>
+  <div class="user-edit-name">
+    <div></div>
+    <div>
       <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-    </form>
+    </div>
   </div>
 </div>
-
 <div class="select_button border-bottom pb-3 pt-3">
-  <div>
-    <button id="meal-button" class="btn btn-outline-dark mr-2">食事</button>
-  </div>
-  <div>
-    <button id="training-button" class="btn btn-outline-dark">トレーニング</button>
-  </div>
+  <%= render 'public/shared/select' %>
 </div>
 <div id="rendering-area"></div>
-
 <script>
 $(function() {
-  // 初期表示として食事の内容を表示する
   $("#rendering-area").html("<%= j render('admin/meals/index', meals: @meals) %>");
-  // 食事ボタンに.btn-clickedクラスを追加する
-  $("#meal-button").addClass("btn-clicked");
-  // 食事ボタンのクリックイベント
   $("#meal-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('admin/meals/index', meals: @meals) %>");
   });
-  // トレーニングボタンのクリックイベント
   $("#training-button").on("click", function() {
-    // 一旦全てのボタンから.btn-clickedクラスを削除する
-    $(".btn").removeClass("btn-clicked");
-    // クリックされたボタンに.btn-clickedクラスを追加する
-    $(this).addClass("btn-clicked");
     $("#rendering-area").html("<%= j render('admin/trainings/index', trainings: @trainings) %>");
   });
 });

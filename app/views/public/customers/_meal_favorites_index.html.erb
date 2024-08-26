@@ -1,5 +1,5 @@
 <% favorite_meals.each do |meal| %>
-  <div class="border-bottom px-4">
+  <div class="records_from px-4">
     <div class="d-flex pt-2">
       <div class="">
         <%= link_to public_customer_path(meal.customer), class: "profile-link" do %>
@@ -9,8 +9,8 @@
       <div class="username">
         <%= link_to meal.customer.name, public_customer_path(meal.customer), class: "name-link"%>
       </div>
-      <div class="time ml-2" style="font-size: smaller; opacity: 0.8;">
-        <%= time_ago_in_words(meal.created_at) %>前
+      <div class="time ml-2">
+        <p class="mini-words"><%= time_ago_in_words(meal.created_at) %>前</p>
       </div>
     </div>
     <div class="pl40 pt-2">
@@ -35,10 +35,10 @@
         </tr>
       </table>
       <% end %>
-      <div style="display: flex; justify-content: space-between; padding: 20px 10px 10px 0px ;">
+      <div class="icon">
         <div>
           <i class="fa-regular fa-comment"></i>
-          <span style="font-size: smaller; opacity: 0.8;"><%= meal.meal_comments.count %></span>
+          <span class="mini-words"><%= meal.meal_comments.count %></span>
           <span id="favorite_btn_<%= meal.id %>">
             <%= render "public/meal_favorites/meal_favorite_btn", meal: meal %>
           </span>

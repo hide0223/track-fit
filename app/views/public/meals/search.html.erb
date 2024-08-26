@@ -1,0 +1,8 @@
+<%= form_with(model: @meal, url: public_meal_f_search_path, method: :get, local: true) do |form| %>
+<div class="border-bottom text-right mt-3 pb-3">
+  <%= form.select :keyword, [['いいねが多い順', 'likes'],['いいねが少ない順', 'dislikes']]%>
+  <button type="submit" class="btn btn-outline-dark mr-3"><p>変更する</p></button>
+</div>
+<%= render 'public/meals/records', meals: @meals %>
+<% end %>
+

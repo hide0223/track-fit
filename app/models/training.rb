@@ -19,10 +19,18 @@ class Training < ApplicationRecord
     ["training_contents"]
   end
 
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @training = Training.where("body LIKE?","#{word}")
+    elsif search == "forward_match"
+      @training = Training.where("body LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @training = Training.where("body LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @training = Training.where("body LIKE?","%#{word}%")
+    else
+      @training = Training.all
+    end
+  end
 
-  # validates :body_parts, presence: true
-  # validates :exercise, presence: true
-  # validates :weight, presence: true
-  # validates :sets, presence: true
-  # validates :reps, presence: true
 end

@@ -1,0 +1,29 @@
+<div class="side-link">
+  <%=  link_to public_customer_path(current_customer),class: 'nav-link text-dark btn-about' do %>
+    <h2>Track Fit</h2>
+  <% end %>
+  <%=  link_to public_customer_path(current_customer),class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fa-solid fa-user"></i>
+    <span class="">プロフィール</span>
+  <% end %>
+  <%=  link_to public_meals_path,class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fa-solid fa-drumstick-bite"></i>
+    <span class="">食事</span>
+  <% end %>
+  <%=  link_to public_trainings_path,class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fa-solid fa-dumbbell"></i>
+    <span class="">トレーニング</span>
+  <% end %>
+  <%= link_to meal_favorites_public_customer_path(current_customer), class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fa-solid fa-heart"></i>
+    <span class="">食事のいいね</span>
+  <% end %>
+  <%=  link_to training_favorites_public_customer_path(current_customer),class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fa-solid fa-heart"></i>
+    <span class="">トレーニングのいいね</span>
+  <% end %>
+  <%=  link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-dark btn-link' do %>
+    <i class="icons fas fa-sign-out-alt"></i>
+    <span class="">ログアウト</span>
+  <% end %>
+</div>

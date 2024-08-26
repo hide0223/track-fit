@@ -20,7 +20,13 @@ class Customer < ApplicationRecord
   has_one_attached :profile_image
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction, length: { maximum: 50 }
+  #validates :introduction, length: { maximum: 50 }
+
+  def self.guest
+    find_or_create_by!(email: 'guest@example.com', name: "guest") do |customer|
+      customer.password = SecureRandom.urlsafe_base64
+    end
+  end
 
 
   def get_profile_image
@@ -32,7 +38,7 @@ class Customer < ApplicationRecord
   end
 
   def unfollow(customer)
-    relationships.find_by(followed_id: customer.id).destroy
+    relationships.find_by(followed_id: customer.id)&.destroy
   end
 
   def following?(customer)
@@ -46,4 +52,19 @@ class Customer < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
   ["followers", "followings", "meal_comments", "meal_favorites", "meals", "profile_image_attachment", "profile_image_blob", "relationships", "reverse_of_relationships", "training_comments", "training_favorites", "trainings"]
   end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @customer = Customer.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @customer = Customer.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @customer = Customer.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @customer = Customer.where("name LIKE?","%#{word}%")
+    else
+      @customer = Customer.all
+    end
+  end
+
 end
