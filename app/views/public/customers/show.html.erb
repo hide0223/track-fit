@@ -9,6 +9,9 @@
           <%= @customer.name %>
         </div>
       </div>
+      <div class="name-link">
+        <%= @customer.email %>
+      </div>
       <div class="d-flex mt-1">
         <div>
           <%= link_to public_customer_followings_path(@customer) do %>
@@ -59,14 +62,14 @@
     </div>
   </div>
   <div>
-    <% if @customer == current_customer %>
+    <% if (@customer == current_customer) && (@customer.email != Customer::GUEST_USER_EMAIL) %>
       <%= link_to edit_public_customer_path(@customer), class: "btn btn-outline-dark", type: "button" do %>
         <p class="a-button">編集</p>
       <% end %>
     <% else %>
-    <div id="follow_btn_<%= @customer.id %>">
-      <%= render "public/relationships/btn", customer: @customer, options: { class: "follow-link" } %>
-    </div>
+      <div id="follow_btn_<%= @customer.id %>">
+        <%= render "public/relationships/btn", customer: @customer, options: { class: "follow-link" } %>
+      </div>
     <% end %>
   </div>
 </div>
