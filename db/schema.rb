@@ -121,11 +121,11 @@ ActiveRecord::Schema.define(version: 2024_08_16_064437) do
 
   create_table "training_contents", force: :cascade do |t|
     t.integer "training_id"
-    t.string "weight", null: false
+    t.string "weight"
     t.string "body_parts"
     t.string "exercise", null: false
-    t.integer "sets", null: false
-    t.integer "reps", null: false
+    t.integer "sets"
+    t.integer "reps"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["training_id"], name: "index_training_contents_on_training_id"
