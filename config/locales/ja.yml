@@ -1,19 +1,11 @@
 ja:
   activerecord:
-    attributes:
-      customer:
-        name: "ユーザーネーム"
-        password: "パスワード"
-        email: "メールアドレス"
-        password_confirmation: "パスワード（確認用）"
-      meal:
-        meal_content: "食事内容"
     errors:
-      models:
-        user:
-          attributes:
-            name:
-              blank: "ユーザーネームを入力してください"
+      messages:
+        record_invalid: 'バリデーションに失敗しました: %{errors}'
+        restrict_dependent_destroy:
+          has_one: "%{record}が存在しているので削除できません"
+          has_many: "%{record}が存在しているので削除できません"
   date:
     abbr_day_names:
     - 日
