@@ -22,7 +22,7 @@
     <div class="user-box">
       <div class="user-edit-name">
         <div class="mt-1 name-link">
-          <%= f.label :ユーザ %>
+          <%= f.label :name %>
           <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control", required: true %>
         </div>
         <div class="mt-1 ml-3" >
@@ -30,28 +30,32 @@
         　<%= link_to "退会する", public_customer_unsubscribe_path(@customer), class: "btn btn-outline-danger" %>
         </div>
       </div>
+      <div class="name-link" style="width: 300px;">
+        <%= f.label :email %>
+        <%= f.text_field :email, value: @customer.email, autofocus: true, class: "form-control" %>
+      </div>
       <div class="d-flex mt-2">
         <div class="d-flex">
           <div class="name-link">
-            <%= f.label :年齢 %>
+            <%= f.label :age %>
             <%= f.text_field :age, value: @customer.age, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
           </div>
         </div>
         <div class="d-flex ml-4">
           <div class="name-link">
-            <%= f.label :身長 %>
+            <%= f.label :height %>
             <%= f.text_field :height, value: @customer.height, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
           </div>
         </div>
         <div class="d-flex ml-4">
           <div class="name-link">
-            <%= f.label :体重 %>
+            <%= f.label :weight %>
             <%= f.text_field :weight, value: @customer.weight, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
           </div>
         </div>
       </div>
       <div class="name-link mt-2" style="font-size: 15px;">
-        <%= f.label :自己紹介 %>
+        <%= f.label :introduction %>
         <%= f.text_area :introduction, value: @customer.introduction, autofocus: true, class: "form-control", style: "width: 300px" %>
       </div>
     </div>
