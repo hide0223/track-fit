@@ -29,7 +29,7 @@
 ・どんな食事が効果があるか調べたいとき
 
 # 設計書
-[ER図](app/assets/images/ER図.png )
+![ER図](app/assets/images/ER図.png )
 
 # 機能一覧
 

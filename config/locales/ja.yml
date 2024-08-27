@@ -1,11 +1,21 @@
 ja:
   activerecord:
+    attributes:
+      customer:
+        name: "ユーザーネーム"
+        password: "パスワード"
+        email: "メールアドレス"
+        password_confirmation: "パスワード（確認用）"
+        age: "年齢"
+        height: "身長"
+        weight: "体重"
+        introduction: "自己紹介"
     errors:
-      messages:
-        record_invalid: 'バリデーションに失敗しました: %{errors}'
-        restrict_dependent_destroy:
-          has_one: "%{record}が存在しているので削除できません"
-          has_many: "%{record}が存在しているので削除できません"
+      models:
+        user:
+          attributes:
+            name:
+              blank: "ユーザーネームを入力してください"
   date:
     abbr_day_names:
     - 日
