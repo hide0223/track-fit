@@ -35,9 +35,9 @@
 
 ![遷移図](app/assets/images/遷移図.png )
 
-[アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1q7r4B3ejhqvaU0KpxT4WHuzCVSV7AjG7I1rW0ZbGeAA/edit?gid=549108681#gid=549108681)
-
 [テーブル定義書](https://docs.google.com/spreadsheets/d/1ONTZq53YaSc_NtG0sBQArLb6nh5G2qoT4wQEUNIk1gU/edit?gid=1044500859#gid=1044500859)
+
+[アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1q7r4B3ejhqvaU0KpxT4WHuzCVSV7AjG7I1rW0ZbGeAA/edit?gid=549108681#gid=549108681)
 
 ### 機能一覧
 **顧客側**
