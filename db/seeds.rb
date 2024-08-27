@@ -52,6 +52,8 @@ fit = Customer.find_or_create_by!(email: "fit@example.com") do |customer|
 end
 
 
+
+
 meal = Meal.find_or_create_by!(customer_id: alice.id ,body: "朝は果物中心です！",body_weight: 48.0,category: "朝食") do |meal|
   meal.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/meal1.jpg"), filename:"meal1.jpg")
 end
@@ -95,6 +97,7 @@ meal = Meal.find_or_create_by!(customer_id: fit.id ,body: "朝ごはんは卵焼
 end
 MealContent.find_or_create_by!(meal_id: meal.id ,meal_summary: "主食",eat_meal: "おにぎり",kcal: 170)
 MealContent.find_or_create_by!(meal_id: meal.id ,meal_summary: "主菜",eat_meal: "卵焼き",kcal: 283)
+
 
 
 
