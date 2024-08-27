@@ -31,7 +31,7 @@
 # 設計書
 ![顧客側ER図](app/assets/images/顧客側ER図.png )
 
-![管理者ER図](app/assets/images/管理者ER図.png )
+![管理者側ER図](app/assets/images/管理者側ER図.png )
 
 ![遷移図](app/assets/images/遷移図.png )
 
