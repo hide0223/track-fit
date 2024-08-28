@@ -13,7 +13,7 @@
   </div>
   <%= form_with model: meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
-      <div class="col-6">
+      <div class="col-8">
         <%= f.text_area :body, class: "form-control light-color", rows: "4", cols: "30" %>
       </div>
     </div>
@@ -27,12 +27,11 @@
       <div>
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], { :include_blank => "朝食など選択"}, :required => true, class: "form-control light-color" %>
       </div>
-      <div class="mx-3">
+      <div class="mx-2">
         <%= f.number_field :body_weight, class: "form-control light-color", placeholder: "体重"%>
       </div>
-      <div class="mt-2 mr-4"><%= f.label :kg %></div>
     </div>
-    <div id='meal_contents'>
+    <div id='meal_contents' class="mt-2">
       <%= f.fields_for :meal_contents do |meal_content| %>
         <%= render 'public/meals/meal_content_fields', :f => meal_content %>
       <% end %>

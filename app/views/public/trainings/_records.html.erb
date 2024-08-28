@@ -24,17 +24,27 @@
           <%= image_tag training.image, class: "meal-img-top img-fluid" %>
         <% end %>
       </div>
-      <div><%= training.body_weight.present? ? "体重: #{training.body_weight}kg" : "" %></div>
+      <div class="my-2"><%= training.body_weight.present? ? "体重: #{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
-      <table class="result-training table table-bordered" style="width: 80%;">
-        <tr>
-          <td class="col-1"><%= training_content.body_parts %></td>
-          <td class="col-3"><%= training_content.exercise %></td>
-          <td class="col-1"><%= training_content.weight %> kg</td>
-          <td class="col-1"><%= training_content.sets %> セット</td>
-          <td class="col-1"><%= training_content.reps %> 回</td>
-        </tr>
-      </table>
+      <!--<table class="result-training table table-bordered">-->
+      <!--  <tr>-->
+      <!--    <td class="col-1"></td>-->
+      <!--    <td class="col-3"></td>-->
+      <!--    <td class="col-1"></td>-->
+      <!--    <td class="col-1"></td>-->
+      <!--    <td class="col-1"></td>-->
+      <!--  </tr>-->
+      <!--</table>-->
+
+      <div class="row border">
+        <div class="col-md-6 text-left text-lg-center p-2"><%= training_content.body_parts %></div>
+        <div class="col-md-6 p-2"><%= training_content.exercise %></div>
+      </div>
+      <div class="row mb-3">
+        <div class="col-md-4 p-2"><%= training_content.weight %> kg</div>
+        <div class="col-md-4 p-2"><%= training_content.sets %> セット</div>
+        <div class="col-md-4 p-2"><%= training_content.reps %> 回</div>
+      </div>
       <% end %>
       <div class="icon">
         <div>
