@@ -290,11 +290,9 @@ p {
 
 .select_button {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   border-bottom: 1px solid #BDBDBD;
-  padding-left: 250px;
-  padding-right: 250px;
   height: 60px;
 }
 
@@ -492,4 +490,42 @@ label {
   display: flex;
   justify-content: space-between;
   margin: 20px 0px 0px 0px;
+}
+
+@media screen and (max-width: 1024px) {
+  .aside, .side {
+    display: none;
+  }
+
+  .body {
+    width: 100%;
+  }
+
+  .select_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #BDBDBD;
+  height: 60px;
+}
+
+}
+
+@media screen and (max-width: 425px) {
+  .aside, .side {
+    display: none;
+  }
+
+  .body {
+    width: 100%;
+  }
+
+  .select_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #BDBDBD;
+  height: 60px;
+}
+
 }

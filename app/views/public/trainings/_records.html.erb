@@ -26,7 +26,7 @@
       </div>
       <div><%= training.body_weight.present? ? "体重: #{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
-      <table class="table table-bordered" style="width: 80%;">
+      <table class="result-training table table-bordered" style="width: 80%;">
         <tr>
           <td class="col-1"><%= training_content.body_parts %></td>
           <td class="col-3"><%= training_content.exercise %></td>
