@@ -17,3 +17,26 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 require("@nathanvda/cocoon");
+
+
+document.getElementById("aside").addEventListener("click", function() {
+  var asideElement = document.getElementById("aside");
+  var asidePosition = getComputedStyle(asideElement).right;
+
+  if (asidePosition === "-100%") {
+    asideElement.style.right = "0";
+  } else {
+    asideElement.style.right = "-100%";
+  }
+});
+
+document.getElementById("side").addEventListener("click", function() {
+  var sideElement = document.getElementById("side");
+  var sidePosition = getComputedStyle(sideElement).left;
+
+  if (sidePosition === "-100%") {
+    sideElement.style.left = "0";
+  } else {
+    sideElement.style.left = "-100%";
+  }
+});
