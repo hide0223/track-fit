@@ -406,9 +406,9 @@ p {
   padding: 20px 10px 10px 0px ;
 }
 
-.show-buttons {
-  margin-left: 520px;
-}
+// .show-buttons {
+//   margin-left: 520px;
+// }
 
 .comment-field {
   display: flex;
@@ -486,4 +486,10 @@ th {
 
 label {
   margin-top: 10px;
+}
+
+.show-icon {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0px 0px 0px;
 }
