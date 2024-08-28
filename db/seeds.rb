@@ -117,7 +117,7 @@ end
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "足",exercise: "スクワット",weight: "90",sets: "5",reps: "7")
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "足",exercise: "ブルガリアンスクワット",weight: "60",sets: "3",reps: "10")
 
-Training.find_or_create_by!(customer_id: dave.id,body: "背中は効いているのかわからない..",body_weight: 70.0,)
+training = Training.find_or_create_by!(customer_id: dave.id,body: "背中は効いているのかわからない..",body_weight: 70.0,)
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "背中",exercise: "ローロー",weight: "60",sets: "3",reps: "10")
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "背中",exercise: "ラットプルダウン",weight: "55",sets: "3",reps: "10")
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "背中",exercise: "チンニング",weight: "70",sets: "3",reps: "10")
@@ -137,7 +137,7 @@ end
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "肩",exercise: "ダンベルショルダープレス",weight: "6",sets: "3",reps: "10")
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "肩",exercise: "リアレイズ",weight: "4",sets: "3",reps: "10")
 
-Training.find_or_create_by!(customer_id: fit.id ,body: "肩はなかなか成果がでませんね...",body_weight: 45.0,) do |training|
+training = Training.find_or_create_by!(customer_id: fit.id ,body: "肩はなかなか成果がでませんね...",body_weight:68.0,) do |training|
   training.image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/training7.jpg"), filename:"training7.jpg")
 end
 TrainingContent.find_or_create_by!(training_id: training.id ,body_parts: "肩",exercise: "ダンベルショルダープレス",weight: "20",sets: "3",reps: "10")
