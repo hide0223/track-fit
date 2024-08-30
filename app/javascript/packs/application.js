@@ -74,7 +74,7 @@ $(document).on('turbolinks:load', function() {
   }
 });
 
-// 画面がlg(991.98px)以上になったときハンバーガーメニューをリセット
+// 画面がlg(991.98px以上)以上になったときハンバーガーメニューをリセット
 $(window).on('resize', function() {
   if(window.matchMedia('(min-width: 991.98px)').matches){
     $('.right-black').removeClass('d-block').addClass('d-none');
