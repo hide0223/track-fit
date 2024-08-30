@@ -12,7 +12,6 @@ class Admin::CustomersController < ApplicationController
   end
 
   def destroy
-
     @customer.destroy
     redirect_to admin_customers_path
   end
