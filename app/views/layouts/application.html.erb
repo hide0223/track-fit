@@ -6,37 +6,51 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <script src="https://kit.fontawesome.com/9101098a47.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <main class="test_container">
-      <div class="side">
-        <% if admin_signed_in? %>
-          <%= render 'layouts/admin' %>
-        <% elsif customer_signed_in? %>
-          <%= render 'layouts/customer' %>
-        <% else %>
-          <div class="side-link">
-            <%=  link_to root_path,class: 'nav-link text-dark btn-link' do %>
-               <i class="fa-solid fa-t"></i>
-               <span class="ml-2">About</span>
-            <% end %>
-          </div>
-        <% end %>
+    <div class="right-black d-none position-fixed"></div>
+    <div class="left-black d-none position-fixed"></div>
+    <main class="container-fluid">
+
+      <div class="left-btn d-inline-block position-fixed d-lg-none">
+        <i class="fa-solid fa-bars fa-fw"></i>
       </div>
-      <div class="body">
-        <%= yield %>
+
+      <div class="right-btn d-inline-block position-fixed d-lg-none">
+        <i class="fa-solid fa-bars fa-fw"></i>
       </div>
-      <div class="aside">
-        <% if admin_signed_in? %>
-          <%= render 'layouts/admin_aside' %>
-        <% elsif customer_signed_in? %>
-          <%= render 'public/customers/info', customer: current_customer %>
-        <% else %>
-        <% end %>
+
+      <div class="row">
+        <div id="left-menu" class="d-none d-lg-block col-lg-3">
+          <% if admin_signed_in? %>
+            <%= render 'layouts/admin' %>
+          <% elsif customer_signed_in? %>
+            <%= render 'layouts/customer' %>
+          <% else %>
+            <div class="side-link">
+              <%= link_to root_path, class: 'nav-link text-dark btn-link' do %>
+                <i class="fa-solid fa-t"></i>
+                <span class="ml-2">About</span>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-lg-6">
+          <%= yield %>
+        </div>
+        <div id="right-menu" class="d-none d-lg-block col-lg-3">
+          <% if admin_signed_in? %>
+            <%= render 'layouts/admin_aside' %>
+          <% elsif customer_signed_in? %>
+            <%= render 'public/customers/info', customer: current_customer %>
+          <% else %>
+          <% end %>
+        </div>
       </div>
     </main>
   </body>

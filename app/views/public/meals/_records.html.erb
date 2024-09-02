@@ -27,7 +27,7 @@
       <div class=""><%= meal.category %></div>
        <div><%= meal.body_weight.present? ? "体重: #{meal.body_weight}kg" : "" %></div>
       <% meal.meal_contents.each do |meal_content| %>
-      <table class="table table-bordered" style="width: 50%;">
+      <table class="result-meal table table-bordered">
         <tr class="meal-tr">
           <td class="col-1"><%= meal_content.meal_summary %></td>
           <td class="col-3"><%= meal_content.eat_meal %></td>
