@@ -70,4 +70,12 @@ class Customer < ApplicationRecord
     end
   end
 
+  def customer_status
+    if is_active == false
+      "退会"
+    else
+      "有効"
+    end
+  end
+
 end

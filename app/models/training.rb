@@ -33,4 +33,7 @@ class Training < ApplicationRecord
     end
   end
 
+  scope :active_customers, -> { joins(:customer).where(customers: { is_active: true }) }
+
+
 end

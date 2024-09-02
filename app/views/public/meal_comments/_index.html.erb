@@ -2,19 +2,17 @@
 <div class="comments-index">
   <div class="px-4 pt-2">
     <div class="d-flex">
-      <% if current_customer %>
         <div class="">
           <%= link_to public_customer_path(meal_comment.customer) do %>
             <%= image_tag meal_comment.customer.get_profile_image, size: "40x40", class: "rounded-circle border" %>
           <% end %>
         </div>
          <div class="username">
-          <%= link_to current_customer.name, public_customer_path(current_customer), class: "name-link"%>
+          <%= link_to meal_comment.customer.name, public_customer_path(meal_comment.customer), class: "name-link"%>
         </div>
         <div class="time ml-2">
           <p class="mini-words"><%= time_ago_in_words(meal.created_at) %>前</p>
         </div>
-      <% end %>
     </div>
     <div class="pl40 mb-3 mt-2">
       <div class="">

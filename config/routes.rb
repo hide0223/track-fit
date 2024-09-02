@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   get "customers", to: "public/customers#index"
 
   namespace :public do
-    resources :customers, only: [:index, :show, :edit, :update, :destroy] do
+    resources :customers, only: [:index, :show, :edit, :update] do
       member do
         get :training_favorites
         get :meal_favorites
@@ -24,6 +24,7 @@ Rails.application.routes.draw do
         get "followings" => "relationships#followings", as: "followings"
         get "followers" => "relationships#followers", as: "followers"
     end
+    patch '/customers/withdraw/:id',to: 'customers#withdraw', as: 'customer_withdraw'
     get '/customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'customer_unsubscribe'
     get "customer/search" => "searches#customer_search", as: 'customer_search'
     get "meal/search" => "searches#meal_search", as: 'meal_search'

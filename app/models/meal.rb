@@ -35,5 +35,7 @@ class Meal < ApplicationRecord
       @meal = Meal.all
     end
   end
-  
+
+  scope :active_customers, -> { joins(:customer).where(customers: { is_active: true }) }
+
 end

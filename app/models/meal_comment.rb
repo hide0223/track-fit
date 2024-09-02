@@ -3,5 +3,4 @@ class MealComment < ApplicationRecord
   belongs_to :meal
 
   validates :comment, presence: true
-  
 end

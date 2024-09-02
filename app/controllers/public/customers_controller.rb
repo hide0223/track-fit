@@ -32,9 +32,10 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:id])
   end
 
-  def destroy
+  def withdraw
     @customer = Customer.find(params[:id])
-    @customer.destroy
+    @customer.update(is_active: false)
+    reset_session
     redirect_to :root
   end
 

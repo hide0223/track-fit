@@ -9,10 +9,8 @@
       　<%= link_to customer.name, admin_customer_path(customer), class: "name-link" %><br>
       </div>
     </div>
-    <div class="admin-link">
-      <form>
-        <%= link_to '削除', admin_customer_path(customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
-      </form>
+    <div class="mt-3 name-link">
+      <%= customer.customer_status %>
     </div>
   </div>
 <% end %>
