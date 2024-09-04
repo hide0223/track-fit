@@ -26,23 +26,13 @@
       </div>
       <div class="my-2"><%= training.body_weight.present? ? "体重: #{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
-      <!--<table class="result-training table table-bordered">-->
-      <!--  <tr>-->
-      <!--    <td class="col-1"></td>-->
-      <!--    <td class="col-3"></td>-->
-      <!--    <td class="col-1"></td>-->
-      <!--    <td class="col-1"></td>-->
-      <!--    <td class="col-1"></td>-->
-      <!--  </tr>-->
-      <!--</table>-->
-
-      <div class="row border">
-        <div class="col-md-6 text-left text-lg-center p-2"><%= training_content.body_parts %></div>
+      <div class="tow-content row text-center">
+        <div class="left-box col-md-6 p-2"><%= training_content.body_parts %></div>
         <div class="col-md-6 p-2"><%= training_content.exercise %></div>
       </div>
-      <div class="row mb-3">
+      <div class="three-content row mb-3 text-center">
         <div class="col-md-4 p-2"><%= training_content.weight %> kg</div>
-        <div class="col-md-4 p-2"><%= training_content.sets %> セット</div>
+        <div class="center-box col-md-4 p-2"><%= training_content.sets %> セット</div>
         <div class="col-md-4 p-2"><%= training_content.reps %> 回</div>
       </div>
       <% end %>

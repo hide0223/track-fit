@@ -534,3 +534,36 @@ label {
 #right-menu {
   z-index: 2;
 }
+
+.favorite-box{
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.col-lg-6 {
+  border-left: 1px solid #BDBDBD;
+  border-right: 1px solid #BDBDBD;
+}
+
+.three-content,
+.tow-content {
+  border-left: 1px solid #BDBDBD;
+  border-right: 1px solid #BDBDBD;
+}
+
+.tow-content {
+  border-top: 1px solid #BDBDBD;
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.three-content {
+  border-bottom: 1px solid #BDBDBD;
+}
+
+.center-box {
+  border-left: 1px solid #BDBDBD;
+  border-right: 1px solid #BDBDBD;
+}
+
+.left-box {
+  border-right: 1px solid #BDBDBD;
+}

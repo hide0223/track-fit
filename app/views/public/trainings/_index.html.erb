@@ -50,7 +50,7 @@
   <% end %>
 </div>
 <%= form_with(model: @training, url: public_training_f_search_path, method: :get, local: true) do |form| %>
-<div class="border-bottom text-right mt-3 pb-3">
+<div class="favorite-box text-right mt-3 pb-3">
   <%= form.select :keyword, [['いいねが多い順', 'likes'],['いいねが少ない順', 'dislikes']]%>
   <button type="submit" class="btn btn-outline-dark mr-3"><p class="a-button">変更する</p></button>
 </div>
