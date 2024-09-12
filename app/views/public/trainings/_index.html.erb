@@ -13,7 +13,7 @@
   </div>
   <%= form_with model: training, url: public_trainings_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
-      <div class="col-6">
+      <div class="col-sm-6">
         <%= f.text_area :body, class: "form-control light-color", rows: "4", cols: "30" %>
       </div>
     </div>
@@ -24,7 +24,7 @@
         <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
     </div>
     <div class="row">
-      <div class="col-2">
+      <div class="col-4 col-sm-2">
         <%= f.number_field :body_weight, class: "form-control light-color", placeholder: "体重" %>
       </div>
     </div>
@@ -32,9 +32,7 @@
       <%= f.fields_for :training_contents do |training_content| %>
         <%= render 'public/trainings/training_content_fields', :f => training_content %>
       <% end %>
-      <div>
-        <%= link_to_add_association '詳細を追加', f , :training_contents, partial: 'public/trainings/training_content_fields',class: "btn btn-outline-dark mt-2" %>
-      </div>
+    <%= link_to_add_association '詳細を追加', f , :training_contents, partial: 'public/trainings/training_content_fields',class: "btn btn-outline-dark mt-2" %>
     </div>
     <div class="icon">
       <div>

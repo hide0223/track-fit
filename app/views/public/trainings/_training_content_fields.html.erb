@@ -1,24 +1,22 @@
-<div class="nested-fields">
-  <div class="d-flex">
-    <div class="mt-2 mr-1">
-      <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"],["背中", "背中"],["足", "足"]], { :include_blank => "部位を選択" }, :required => true, class: "form-control light-color" %>
-    </div>
-    <div class="mt-2 mx-1">
-      <%= f.text_field :exercise, required: true, placeholder: "種目名", class: "form-control light-color", style: "width: 250px;" %>
-    </div>
-    <div class="mt-2 mx-1">
-      <%= f.number_field :weight, placeholder: "重量", class: "form-control light-color", style: "width: 100px;" %>
-    </div>
-    <div class="mt-2 mx-1">
-      <%= f.number_field :sets, placeholder: "セット数", class: "form-control light-color", style: "width: 130px;" %>
-    </div>
-    <div class="mt-2 mx-1">
-      <%= f.number_field :reps, placeholder: "回数", class: "form-control light-color", style: "width: 100px;" %>
-    </div>
-    <div class="mt-2">
-      <%= link_to_remove_association f, class: "btn btn-outline-dark ml-4 mt-1 hide-if-last" do %>
-        <i class="fa-solid fa-trash-can"></i>
-      <% end %>
-    </div>
+<div class="row nested-fields">
+  <div class="col-6 col-sm-2 mt-2">
+    <%= f.select :body_parts, [["胸", "胸"], ["肩", "肩"], ["腕", "腕"],["背中", "背中"],["足", "足"]], { :include_blank => "部位選択" }, :required => true, class: "form-control light-color" %>
+  </div>
+  <div class="col-12 col-sm-4 mt-2">
+    <%= f.text_field :exercise, required: true, placeholder: "種目名", class: "form-control light-color" %>
+  </div>
+  <div class="col-4 col-sm-2 mt-2">
+    <%= f.number_field :weight, placeholder: "重量", class: "form-control light-color" %>
+  </div>
+  <div class="col-6 col-sm-2 mt-2">
+    <%= f.number_field :sets, placeholder: "セット数", class: "form-control light-color" %>
+  </div>
+  <div class="col-4 col-sm-2 mt-2">
+    <%= f.number_field :reps, placeholder: "回数", class: "form-control light-color" %>
+  </div>
+  <div class="col-4 col-sm-2 mt-2">
+    <%= link_to_remove_association f, class: "btn btn-outline-dark mt-1 hide-if-last" do %>
+      <i class="fa-solid fa-trash-can"></i>
+    <% end %>
   </div>
 </div>

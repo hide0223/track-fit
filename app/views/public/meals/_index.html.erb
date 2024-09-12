@@ -13,7 +13,7 @@
   </div>
   <%= form_with model: meal, url: public_meals_path, local: true, class: "pl40 pt-2" do |f| %>
     <div class="row">
-      <div class="col-8">
+      <div class="col-sm-6">
         <%= f.text_area :body, class: "form-control light-color", rows: "4", cols: "30" %>
       </div>
     </div>

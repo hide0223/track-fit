@@ -15,7 +15,7 @@
     </div>
     <div class="pl40 pt-2">
       <div class="row">
-        <div class="col-6">
+        <div class="col-sm-6">
           <%= training.body %>
         </div>
       </div>
@@ -26,11 +26,10 @@
       </div>
       <div class="my-2"><%= training.body_weight.present? ? "体重: #{training.body_weight}kg" : "" %></div>
       <% training.training_contents.each do |training_content| %>
-      <div class="row border">
-        <div class="col-md-2 p-2"><%= training_content.body_parts %></div>
-        <div class="col-md-4 p-2"><%= training_content.exercise %></div>
+      <div class="">
+        <div class="col-md-5 text-left p-2 border"><%= training_content.body_parts %> <%= training_content.exercise %></div>
       </div>
-      <div class="mb-3 d-flex">
+      <div class="d-flex mb-3">
         <div class="col-md-2 p-2"><%= training_content.weight %> kg</div>
         <div class="col-md-2 p-2"><%= training_content.sets %> セット</div>
         <div class="col-md-2 p-2"><%= training_content.reps %> 回</div>
