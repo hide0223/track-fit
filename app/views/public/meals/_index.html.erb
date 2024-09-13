@@ -27,7 +27,7 @@
       <div class="col-4 col-sm-2">
         <%= f.number_field :body_weight, class: "form-control light-color", placeholder: "体重"%>
       </div>
-      <div class="col-4 col-sm-3">
+      <div class="col-7 col-sm-3">
         <%= f.select :category, [["朝食", "朝食"], ["昼食", "昼食"], ["夕食", "夕食"], ["間食", "間食"]], { :include_blank => "朝食など選択"}, :required => true, class: "form-control light-color" %>
       </div>
     </div>
