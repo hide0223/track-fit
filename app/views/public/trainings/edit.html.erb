@@ -29,7 +29,7 @@
     </div>
     <div class="row">
       <div class="col-4 col-sm-2">
-        <%= f.number_field :body_weight, placeholder: "体重を入力", class: "form-control" %>
+        <%= f.number_field :body_weight, placeholder: "体重", class: "form-control" %>
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
@@ -49,7 +49,7 @@
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
+        <button type="submit" class="btn btn-outline-dark mt-3"><p>変更する</p></button>
       </div>
     </div>
     <% else %>

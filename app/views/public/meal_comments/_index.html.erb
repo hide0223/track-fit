@@ -1,5 +1,5 @@
 <% meal.active_meal_comments.each do |meal_comment| %>
-<div class="comments-index">
+<div class="">
   <div class="px-4 pt-2">
     <div class="d-flex">
         <div class="">
@@ -15,15 +15,17 @@
         </div>
     </div>
     <div class="pl40 mb-3 mt-2">
-      <div class="">
-        <%= meal_comment.comment %>
+      <div class="row">
+        <div class="col-sm-6">
+          <%= meal_comment.comment %>
+        </div>
+      </div>
+      <div class="d-flex justify-content-end">
+        <% if meal_comment.customer == current_customer %>
+          <%= link_to "削除", public_meal_meal_comment_path(meal, meal_comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
+        <% end %>
       </div>
     </div>
-  </div>
-  <div class="mt-5 mr-4">
-    <% if meal_comment.customer == current_customer %>
-      <%= link_to "削除", public_meal_meal_comment_path(meal, meal_comment), method: :delete, remote: true, class: "btn btn-outline-danger" %>
-    <% end %>
   </div>
 </div>
 <% end %>
