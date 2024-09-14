@@ -293,6 +293,7 @@ p {
   justify-content: center;
   align-items: center;
   border-bottom: 1px solid #BDBDBD;
+  border-top: 1px solid #BDBDBD;
   height: 60px;
 }
 
@@ -414,7 +415,8 @@ p {
 }
 
 .user-box {
-  margin-left: 30px;
+  padding-left: 40px;
+  border-top: 1px solid #BDBDBD;
 }
 
 .user-edit-name {
@@ -566,4 +568,14 @@ label {
 
 .left-box {
   border-right: 1px solid #BDBDBD;
+}
+
+.p-image_edit {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 30px 0px 40px;
+}
+
+.edit-button {
+  margin-top: 68px;
 }

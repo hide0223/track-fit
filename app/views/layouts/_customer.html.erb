@@ -16,11 +16,7 @@
   <% end %>
   <%= link_to meal_favorites_public_customer_path(current_customer), class: 'nav-link text-dark btn-link' do %>
     <i class="icons fa-solid fa-heart"></i>
-    <span class="">食事のいいね</span>
-  <% end %>
-  <%=  link_to training_favorites_public_customer_path(current_customer),class: 'nav-link text-dark btn-link' do %>
-    <i class="icons fa-solid fa-heart"></i>
-    <span class="">トレーニングのいいね</span>
+    <span class="">いいね</span>
   <% end %>
   <%=  link_to destroy_customer_session_path, method: :delete,class: 'nav-link text-dark btn-link' do %>
     <i class="icons fas fa-sign-out-alt"></i>
