@@ -14,25 +14,6 @@
           <p class="mini-words"><%= time_ago_in_words(@training.created_at) %>前</p>
         </div>
       </div>
-      <div class="show-buttons d-flex">
-      <% if @training.customer == current_customer %>
-        <div class="px-2">
-          <%= link_to edit_public_training_path(@training), class: "btn btn-outline-dark", type: "button" do %>
-            <p class="a-button">編集</p>
-          <% end %>
-        </div>
-        <div class="px-2">
-          <%= link_to public_trainings_path, class: "btn btn-outline-dark", type: "button" do %>
-            <p class="a-button">一覧</p>
-          <% end %>
-        </div>
-        <div class="px-2">
-          <%= link_to public_training_path(@training.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
-            <p class="a-button">削除</p>
-          <% end %>
-        </div>
-      <% end %>
-      </div>
     </div>
     <div class="pl40 pt-2">
       <div class="row">
@@ -47,15 +28,14 @@
       </div>
       <div><%= @training.body_weight.present? ? "体重: #{@training.body_weight}kg" : "" %></div>
       <% @training.training_contents.each do |training_content| %>
-      <table class="table table-bordered" style="width: 90%;">
-        <tr class="">
-          <td class="col-1"><%= training_content.body_parts %></td>
-          <td class="col-4"><%= training_content.exercise %></td>
-          <td class="col-1"><%= training_content.weight %> kg</td>
-          <td class="col-2"><%= training_content.sets %> セット</td>
-          <td class="col-1"><%= training_content.reps %> 回</td>
-        </tr>
-      </table>
+      <div class="">
+        <div class="col-md-5 text-left p-2 border"><%= training_content.body_parts %> <%= training_content.exercise %></div>
+      </div>
+      <div class="d-flex mb-3">
+        <div class="col-md-2 p-2"><%= training_content.weight %> kg</div>
+        <div class="col-md-2 p-2"><%= training_content.sets %> セット</div>
+        <div class="col-md-2 p-2"><%= training_content.reps %> 回</div>
+      </div>
       <% end %>
       <div class="icon">
         <div>
@@ -66,6 +46,25 @@
           <span id="favorite_btn_<%= @training.id %>">
             <%= render "public/training_favorites/training_favorite_btn", training: @training %>
           </span>
+        </div>
+        <div class="show-buttons d-flex">
+        <% if @training.customer == current_customer %>
+          <div class="px-2">
+            <%= link_to edit_public_training_path(@training), class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">編集</p>
+            <% end %>
+          </div>
+          <div class="px-2">
+            <%= link_to public_trainings_path, class: "btn btn-outline-dark", type: "button" do %>
+              <p class="a-button">一覧</p>
+            <% end %>
+          </div>
+          <div class="ml-2">
+            <%= link_to public_training_path(@training.id), class: "btn btn-outline-danger", type: "button", method: :delete do %>
+              <p class="a-button">削除</p>
+            <% end %>
+          </div>
+        <% end %>
         </div>
       </div>
     </div>

@@ -15,11 +15,11 @@
     </div>
     <div class="pl40 pt-2">
       <div class="row">
-        <div class="col-6">
+        <div class="col-sm-6">
           <%= meal.body %>
         </div>
       </div>
-      <div class="mt-2">
+      <div class="mt-4 mb-4">
         <% if meal.image.attached? %>
           <%= image_tag meal.image, class: "meal-img-top img-fluid" %>
         <% end %>
@@ -27,15 +27,14 @@
       <div class=""><%= meal.category %></div>
       <div class="">体重 <%= meal.body_weight %> kg</div>
       <% meal.meal_contents.each do |meal_content| %>
-      <table class="table table-bordered" style="width: 50%;">
-        <tr class="">
-          <td class="col-1"><%= meal_content.meal_summary %></td>
-          <td class="col-3"><%= meal_content.eat_meal %></td>
-          <td class="col-1"><%= meal_content.kcal %> kcal</td>
-        </tr>
-      </table>
+      <div class"">
+        <div class="col-md-1 p-2"><%= meal_content.meal_summary %></div>
+        <div class="col-md-5 text-left p-2 border">
+          <%= meal_content.eat_meal %> : <%= meal_content.kcal %> kcal
+        </div>
+      </div>
       <% end %>
-      <div class="icon">
+      <div class="icon mt-2">
         <div>
           <i class="fa-regular fa-comment"></i>
           <span class="mini-words"><%= meal.meal_comments.count %></span>

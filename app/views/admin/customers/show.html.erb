@@ -1,46 +1,58 @@
 <div class="user_show">
-  <%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle border" %>
-  <div class="user-box">
-    <div class="user-edit-name">
-      <div class="mt-1 name-link" style="font-size: 25px;">
-        <%= @customer.name %>
+  <div class="d-flex">
+    <%= image_tag @customer.get_profile_image, size:'100x100', class: "rounded-circle border" %>
+    <div class="user-box">
+      <div class="user-edit-name">
+        <div class="mt-1 name-link" style="font-size: 25px;">
+          <%= @customer.name %>
+        </div>
       </div>
-    </div>
-    <div class="mt-1 name-link">
-      <%= @customer.email %>
-    </div>
-    <div class="d-flex mt-1">
+      <div class="mt-1 name-link">
+        <%= @customer.email %>
+      </div>
+      <div class="d-flex mt-1">
+        <div class="d-flex">
+          <div>
+            <span class="mini-words">年齢</span>
+          </div>
+          <div class="ml-1 name-link">
+            <%= @customer.age %>歳
+          </div>
+        </div>
+        <div class="d-flex ml-4">
+          <div>
+            <span class="mini-words">身長</span>
+          </div>
+          <div class="ml-1 name-link">
+            <%= @customer.height %>cm
+          </div>
+        </div>
+        <div class="d-flex ml-4">
+          <div>
+            <span class="mini-words">体重</span>
+          </div>
+          <div class="ml-1 name-link">
+            <%= @customer.weight %>kg
+          </div>
+        </div>
+      </div>
+      <div class="mt-1 mb-3 name-link" style="font-size: 15px;">
+        <%= @customer.introduction %>
+      </div>
       <div class="d-flex">
         <div>
-          <span class="mini-words">年齢</span>
+          <span class="mini-words">会員ステータス</span>
         </div>
         <div class="ml-1 name-link">
-          <%= @customer.age %>歳
+          <%= @customer.customer_status %>
         </div>
       </div>
-      <div class="d-flex ml-4">
-        <div>
-          <span class="mini-words">身長</span>
-        </div>
-        <div class="ml-1 name-link">
-          <%= @customer.height %>cm
-        </div>
-      </div>
-      <div class="d-flex ml-4">
-        <div>
-          <span class="mini-words">体重</span>
-        </div>
-        <div class="ml-1 name-link">
-          <%= @customer.weight %>kg
-        </div>
-      </div>
-    </div>
-    <div class="mt-1 mb-3 name-link" style="font-size: 15px;">
-      <%= @customer.introduction %>
     </div>
   </div>
   <div class="user-edit-name">
-    <div></div>
+    <div>
+      <%= link_to '編集', edit_admin_customer_path,class: "btn btn-outline-dark" %>
+    </div>
     <div>
       <%= link_to '削除', admin_customer_path(@customer), method: :delete, data: { confirm: '本当に削除しますか?' },class: "btn btn-outline-danger" %>
     </div>

@@ -1,8 +1,23 @@
-<div class="user_show">
-  <div class="d-flex">
-    <% if @customer.get_profile_image.present? %>
-      <%= image_tag @customer.get_profile_image, size:'100x100', class: "profile_image rounded-circle border" %>
-    <% end %>
+<div class="">
+  <div class="">
+    <div class="p-image_edit mb-3">
+      <div>
+        <% if @customer.get_profile_image.present? %>
+          <%= image_tag @customer.get_profile_image, size:'100x100', class: "profile_image rounded-circle border" %>
+        <% end %>
+      </div>
+      <div class="edit-button">
+        <% if (@customer == current_customer) && (@customer.email != Customer::GUEST_USER_EMAIL) %>
+          <%= link_to edit_public_customer_path(@customer), class: "btn btn-outline-dark", type: "button" do %>
+            <p class="a-button">プロフィールの編集</p>
+          <% end %>
+        <% else %>
+          <div id="follow_btn_<%= @customer.id %>">
+            <%= render "public/relationships/btn", customer: @customer, options: { class: "follow-link" } %>
+          </div>
+        <% end %>
+      </div>
+    </div>
     <div class="user-box">
       <div class="user-edit-name">
         <div class="mt-1 name-link" style="font-size: 25px;">
@@ -60,17 +75,6 @@
         <%= @customer.introduction %>
       </div>
     </div>
-  </div>
-  <div>
-    <% if (@customer == current_customer) && (@customer.email != Customer::GUEST_USER_EMAIL) %>
-      <%= link_to edit_public_customer_path(@customer), class: "btn btn-outline-dark", type: "button" do %>
-        <p class="a-button">編集</p>
-      <% end %>
-    <% else %>
-      <div id="follow_btn_<%= @customer.id %>">
-        <%= render "public/relationships/btn", customer: @customer, options: { class: "follow-link" } %>
-      </div>
-    <% end %>
   </div>
 </div>
 <div class="select_button pb-3 pt-3">

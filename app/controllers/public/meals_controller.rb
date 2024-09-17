@@ -3,13 +3,13 @@ class Public::MealsController < ApplicationController
   before_action :ensure_correct_customer, only: [:edit, :update, :destroy]
 
   def index
-    @meals = Meal.all.order(created_at: :desc)
+    @meals = Meal.active_customers.order(created_at: :desc)
     @meal = Meal.new
-    @customers = Customer.all
     @meal.meal_contents.build
     @trainings = Training.all.order(created_at: :desc)
     @training = Training.new
     @training.training_contents.build
+    @customers = Customer.all
   end
 
 

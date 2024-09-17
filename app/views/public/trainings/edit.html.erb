@@ -15,7 +15,7 @@
 
   <%= form_with model: @training, url: public_training_path, local: true, method: :patch, class: "pl40 pt-2" do |f| %>
   <div class="row">
-    <div class="col-6">
+    <div class="col-sm-6">
       <%= f.text_area :body, value: @training.body, class: "form-control", rows: "4", cols: "30" %>
     </div>
   </div>
@@ -25,11 +25,11 @@
   <% if @training.image.attached? %>
   <%= image_tag @training.image, class: "meal-img-top img-fluid mt-3" %>
     <div class="mt-1 mb-2">
-      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger" >削除</button>
+      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
     </div>
     <div class="row">
-      <div class="col-3">
-        <%= f.number_field :body_weight, placeholder: "体重を入力", class: "form-control" %>
+      <div class="col-4 col-sm-2">
+        <%= f.number_field :body_weight, placeholder: "体重", class: "form-control" %>
       </div>
       <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
@@ -42,25 +42,24 @@
       </div>
     </div>
     <div class="icon">
-      <div>
+      <div  class="mt-2">
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
+        <button type="submit" class="btn btn-outline-dark mt-3"><p>変更する</p></button>
       </div>
     </div>
     <% else %>
     <div class="mt-1 mb-2">
-      <button id="delete-button" type="button" style="display: none;" >削除</button>
+      <button id="delete-button" type="button" style="display: none;" class="btn btn-outline-danger">削除</button>
     </div>
     <div class="row">
-      <div class="col-3">
-        <%= f.number_field :body_weight, placeholder: "体重を入力", class: "form-control" %>
+      <div class="col-4 col-sm-2">
+        <%= f.number_field :body_weight, placeholder: "体重", class: "form-control" %>
       </div>
-      <div class="mt-2 mr-2"><%= f.label :kg %></div>
     </div>
     <div id='training_contents'>
       <%= f.fields_for :training_contents do |training_content| %>
@@ -71,14 +70,14 @@
       </div>
     </div>
     <div class="icon">
-      <div>
+      <div class="mt-2">
         <label for="file-upload" class="file-input-label">
           <i class="fa-solid fa-image fa-2x"></i>
         </label>
         <%= f.file_field :image, id: "file-upload", class: "file-input", style: "display: none;" %>
       </div>
       <div>
-        <button type="submit" class="btn btn-outline-dark"><p>変更する</p></button>
+        <button type="submit" class="btn btn-outline-dark mt-3"><p>変更する</p></button>
       </div>
     </div>
     <% end %>

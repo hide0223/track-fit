@@ -12,18 +12,18 @@
   </head>
 
   <body>
-  	<main class="test_container">
-	  	<div class="leftside">
-				<p class="track-fit">Track Fit</p>
-			</div>
-			<div class="rightside">
-				<div class="rightinner">
-					<div>
-						<h3>
+  	<main class="">
+			<div class="row main-box">
+				<div class="leftside">
+					<p class="track-fit mb-5">Track Fit</p>
+				</div>
+				<div class="rightside">
+					<div class="explanation">
+						<p class="first">
 							トレーニングと食事を記録して<br>
 							新しい自分を作りだそう<br>
 							さあ、始めよう<i class="fa-solid fa-person-running fa-lg ml-2"></i><br>
-						</h3>
+						</p>
 					</div>
 					<div>
 						<div class="button_new">
@@ -32,16 +32,16 @@
 						<div class="modal fade" id="sign_upModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 							  <div class="modal-content">
-							  <div class="modal-header">
-								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								  <span aria-hidden="true">×</span>
-								  </button>
-							  </div>
-								<div class="set_center_outer">
-									<h2 class="page_title_en">アカウントを作成</h2>
-									<%= render "public/shared/error_messages", resource: @customer %>
-								</div>
-								<%= render 'signup', customer: @customer %>
+								  <div class="modal-header">
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									  <span aria-hidden="true">×</span>
+									  </button>
+								  </div>
+									<div class="set_center_outer">
+										<h2 class="page_title_en">アカウントを作成</h2>
+										<%= render "public/shared/error_messages", resource: @customer %>
+									</div>
+									<%= render 'signup', customer: @customer %>
 						 	  </div>
 						  </div>
 						</div>
@@ -52,15 +52,15 @@
 						<div class="modal fade" id="log_inModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 							  <div class="modal-content">
-							  <div class="modal-header">
-								  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-								  <span aria-hidden="true">×</span>
-								  </button>
-							  </div>
-								<div class="set_center_outer">
-									<h2 class="page_title_en">Track Fitにログイン</h2>
-								</div>
-								<%= render 'login', customer: @customer %>
+								  <div class="modal-header">
+									  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									  <span aria-hidden="true">×</span>
+									  </button>
+								  </div>
+									<div class="set_center_outer">
+										<h2 class="page_title_en">Track Fitにログイン</h2>
+									</div>
+									<%= render 'login', customer: @customer %>
 						 	  </div>
 						  </div>
 						</div>
@@ -69,6 +69,72 @@
 						</div>
 					</div>
 				</div>
+			</div>
 		</main>
 	</body>
 </html>
+
+ <!-- <body>-->
+ <!-- 	<main class="test_container">-->
+	<!--  	<div class="leftside">-->
+	<!--			<p class="track-fit">Track Fit</p>-->
+	<!--		</div>-->
+	<!--		<div class="rightside">-->
+	<!--			<div class="rightinner">-->
+	<!--				<div>-->
+	<!--					<h3>-->
+	<!--						トレーニングと食事を記録して<br>-->
+	<!--						新しい自分を作りだそう<br>-->
+	<!--						さあ、始めよう<i class="fa-solid fa-person-running fa-lg ml-2"></i><br>-->
+	<!--					</h3>-->
+	<!--				</div>-->
+	<!--				<div>-->
+	<!--					<div class="button_new">-->
+	<!--					  <button type="button" class="btn btn-outline-dark" style="width:300px" data-toggle="modal" data-target="#sign_upModal" data-whatever="@customer">新規登録</button>-->
+	<!--					</div>-->
+	<!--					<div class="modal fade" id="sign_upModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+	<!--					  <div class="modal-dialog">-->
+	<!--						  <div class="modal-content">-->
+	<!--						  <div class="modal-header">-->
+	<!--							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+	<!--							  <span aria-hidden="true">×</span>-->
+	<!--							  </button>-->
+	<!--						  </div>-->
+	<!--							<div class="set_center_outer">-->
+	<!--								<h2 class="page_title_en">アカウントを作成</h2>-->
+	<!--								<= render "public/shared/error_messages", resource: @customer %>-->
+	<!--							</div>-->
+	<!--							<= render 'signup', customer: @customer %>-->
+	<!--					 	  </div>-->
+	<!--					  </div>-->
+	<!--					</div>-->
+
+	<!--					<div class="button_new mt-4">-->
+	<!--					  <button type="button" class="btn btn-outline-dark" style="width:300px" data-toggle="modal" data-target="#log_inModal" data-whatever="@customer">ログイン</button>-->
+	<!--					</div>-->
+	<!--					<div class="modal fade" id="log_inModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">-->
+	<!--					  <div class="modal-dialog">-->
+	<!--						  <div class="modal-content">-->
+	<!--						  <div class="modal-header">-->
+	<!--							  <button type="button" class="close" data-dismiss="modal" aria-label="Close">-->
+	<!--							  <span aria-hidden="true">×</span>-->
+	<!--							  </button>-->
+	<!--						  </div>-->
+	<!--							<div class="set_center_outer">-->
+	<!--								<h2 class="page_title_en">Track Fitにログイン</h2>-->
+	<!--							</div>-->
+	<!--							<= render 'login', customer: @customer %>-->
+	<!--					 	  </div>-->
+	<!--					  </div>-->
+	<!--					</div>-->
+	<!--					<div class="button mt-4">-->
+	<!--						<= link_to "ゲストログイン", customers_guest_sign_in_path, method: :post, class: "btn btn-outline-dark geust-link", style: "width: 300px" %>-->
+	<!--					</div>-->
+	<!--				</div>-->
+	<!--			</div>-->
+	<!--	</main>-->
+	<!--</body>-->
+
+
+
+

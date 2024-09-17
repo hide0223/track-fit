@@ -1,63 +1,67 @@
 <%= render 'layouts/errors', obj: @customer %>
 <%= form_with model: @customer, url: public_customer_path do |f| %>
-  <div class="user_edit">
-      <img id="preview" class="rounded-circle border" style="width: 100px; height: 100px; display: none;" >
-    <% if @customer.get_profile_image.present? %>
-    <%= image_tag @customer.get_profile_image, size: '100x100', class: "profile_image rounded-circle border" %>
-      <div class="">
-        <label for="file-upload" class="file-input-label">
-          <i class="fa-solid fa-image fa-2x"></i>
-        </label>
-        <%= f.file_field :profile_image, id: "file-upload", class: "file-input", style: "display: none;" %>
+  <div class="">
+    <div class="p-image_edit">
+      <div>
+        <img id="preview" class="rounded-circle border" style="width: 100px; height: 100px; display: none;" >
+        <% if @customer.get_profile_image.present? %>
+        <%= image_tag @customer.get_profile_image, size: '100x100', class: "profile_image rounded-circle border" %>
+          <div class="">
+            <label for="file-upload" class="file-input-label">
+              <i class="fa-solid fa-image fa-2x"></i>
+            </label>
+            <%= f.file_field :profile_image, id: "file-upload", class: "file-input", style: "display: none;" %>
+          </div>
+        <% else %>
+        <%= image_tag "no_image.jpg", size: '100x100', class: "rounded-circle border" %>
+          <div class="">
+            <label for="file-upload" class="file-input-label">
+              <i class="fa-solid fa-image fa-2x"></i>
+            </label>
+            <%= f.file_field :profile_image, id: "file-upload", class: "file-input", style: "display: none;" %>
+          </div>
+        <% end %>
       </div>
-    <% else %>
-    <%= image_tag "no_image.jpg", size: '100x100', class: "rounded-circle border" %>
+      <div class="delete-save-button">
+        <div>
+          <%= f.submit "編集内容を保存", class: 'btn btn-outline-dark' %>
+        </div>
+    　</div>
+    </div>
+    <div class="edit-field pb-3">
       <div class="">
-        <label for="file-upload" class="file-input-label">
-          <i class="fa-solid fa-image fa-2x"></i>
-        </label>
-        <%= f.file_field :profile_image, id: "file-upload", class: "file-input", style: "display: none;" %>
-      </div>
-    <% end %>
-    <div class="user-box">
-      <div class="user-edit-name">
-        <div class="mt-1 name-link">
+        <div class="col-7 col-sm-3 name-link">
           <%= f.label :name %>
           <%= f.text_field :name, value: @customer.name, autofocus: true, class: "form-control", required: true %>
         </div>
-        <div class="mt-1 ml-3" >
-          <%= f.submit "編集内容を保存", class: 'btn btn-outline-dark' %>
-        　<%= link_to "退会する", public_customer_unsubscribe_path(@customer), class: "btn btn-outline-danger" %>
+        <div class="col-7 col-sm-3 name-link">
+          <%= f.label :email %>
+          <%= f.text_field :email, value: @customer.email, autofocus: true, class: "form-control" %>
         </div>
       </div>
-      <div class="name-link" style="width: 300px;">
-        <%= f.label :email %>
-        <%= f.text_field :email, value: @customer.email, autofocus: true, class: "form-control" %>
-      </div>
-      <div class="d-flex mt-2">
-        <div class="d-flex">
-          <div class="name-link">
-            <%= f.label :age %>
-            <%= f.text_field :age, value: @customer.age, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
-          </div>
+      <div class="d-flex">
+        <div class="col-3 col-sm-2 name-link">
+          <%= f.label :age %>
+          <%= f.text_field :age, value: @customer.age, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
         </div>
-        <div class="d-flex ml-4">
-          <div class="name-link">
-            <%= f.label :height %>
-            <%= f.text_field :height, value: @customer.height, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
-          </div>
+        <div class="col-3 col-sm-2 name-link">
+          <%= f.label :height %>
+          <%= f.text_field :height, value: @customer.height, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
         </div>
-        <div class="d-flex ml-4">
-          <div class="name-link">
-            <%= f.label :weight %>
-            <%= f.text_field :weight, value: @customer.weight, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
-          </div>
+        <div class="col-4 col-sm-2 name-link">
+          <%= f.label :weight %>
+          <%= f.text_field :weight, value: @customer.weight, placeholder: "数値のみ", autofocus: true, class: "form-control" %>
         </div>
       </div>
-      <div class="name-link mt-2" style="font-size: 15px;">
-        <%= f.label :introduction %>
-        <%= f.text_area :introduction, value: @customer.introduction, autofocus: true, class: "form-control", style: "width: 300px" %>
+      <div class="">
+        <div class="col-sm-6 name-link" style="font-size: 15px;">
+          <%= f.label :introduction %>
+          <%= f.text_area :introduction, value: @customer.introduction, autofocus: true, class: "form-control", style: "width: 300px" %>
+        </div>
       </div>
+      <div class="d-flex justify-content-end mt-3">
+        <%= link_to "退会する", public_customer_unsubscribe_path(@customer), class: "btn btn-outline-danger" %>
+　    </div>
     </div>
   </div>
 <% end %>
