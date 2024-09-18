@@ -441,6 +441,12 @@ p {
   border-bottom: 1px solid #BDBDBD;
 }
 
+.admin_user_show {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
 // .search.form-control.light-color {
 //   width: 300px;
 // }
@@ -462,7 +468,6 @@ p {
 
 .user-box {
   padding-left: 40px;
-  border-top: 1px solid #BDBDBD;
 }
 
 .user-edit-name {
@@ -683,6 +688,10 @@ label {
     margin: 0 auto;
   }
 
+  .fa-bars {
+    font-size: 25px; /* フォントサイズを変更 */
+  }
+
 }
 
 @media screen and (max-width:1024px) {
@@ -722,5 +731,4 @@ label {
   .modal-dialog {
     margin: 0 auto;
   }
-
 }
