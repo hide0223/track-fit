@@ -28,8 +28,8 @@ body {
   font-weight: bold;
   color: #666666;
   font-size: 130px;
-  opacity: 0; /* 初期状態は透明に */
-  animation: fadeIn 2s ease-out forwards; /* 2秒かけてフェードイン */
+  opacity: 0;
+  animation: fadeIn 2s ease-out forwards;
 }
 
 @keyframes fadeIn {
@@ -302,7 +302,7 @@ select {
   color: #666666;
   opacity: 0;
   animation: fadeInText 2s ease-out forwards;
-  animation-delay: 2s; /* Track Fit の後に浮かび上がるように遅延 */
+  animation-delay: 2s;
 }
 
 @keyframes fadeInText {
@@ -447,19 +447,11 @@ p {
   padding: 20px;
 }
 
-// .search.form-control.light-color {
-//   width: 300px;
-// }
-
 .icon {
   display: flex;
   justify-content: space-between;
   padding-bottom: 10px;
 }
-
-// .show-buttons {
-//   margin-left: 520px;
-// }
 
 .comment-field {
   display: flex;
