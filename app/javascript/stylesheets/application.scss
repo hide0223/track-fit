@@ -237,15 +237,15 @@ select {
 }
 
 .buttons{
-  margin: 10px auto;/* 上下 50px 空け、左右中央に配置 */
-  width: 300px;        /* 横幅 210px */
+  margin: 10px auto;
+  width: 300px;
 }
 
 
 
 .list_buttons {
-  display: flex; /* Flexboxの利用 */
-  justify-content: center; /* 子要素の横並び・中央寄せ */
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
   padding: 20px;
 }
@@ -545,10 +545,6 @@ label {
  width: 80%;
 }
 
-// .eat_meal-kcal {
-//   display: flex;
-// }
-
 // ハンバーガーメニュー背景
 .left-black,
 .right-black {
@@ -569,7 +565,6 @@ label {
 
 .left-btn,
 .right-btn {
-  // padding: 5px;
   top: 96%;
   z-index: 9999;
 }
@@ -681,7 +676,7 @@ label {
   }
 
   .fa-bars {
-    font-size: 25px; /* フォントサイズを変更 */
+    font-size: 25px;
   }
 
 }
