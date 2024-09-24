@@ -4,6 +4,7 @@
   </div>
 <% elsif @meal.present? %>
   <% search_word = @meal_q.meal_contents_eat_meal_cont %>
+  <% search_word_meal = @meal_q.category_cont %>
   <div class="border-bottom mt-3 pb-3">
     <h3 style="text-align:center">検索結果 "<%= search_word %>"</h2>
   </div>
