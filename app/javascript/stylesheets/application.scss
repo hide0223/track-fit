@@ -35,11 +35,11 @@ body {
 @keyframes fadeIn {
   0% {
     opacity: 0;
-    transform: translateY(20px); /* 下から上に移動 */
+    transform: translateY(20px);
   }
   100% {
     opacity: 1;
-    transform: translateY(0); /* 元の位置に戻る */
+    transform: translateY(0);
   }
 }
 
@@ -51,7 +51,7 @@ body {
 .button_new, .geust-link {
   opacity: 0;
   animation: fadeInButtons 2s ease-out forwards;
-  animation-delay: 4s; /* h3 の後、3つのボタンが同時に表示される */
+  animation-delay: 4s;
 }
 
 @keyframes fadeInButtons {
@@ -67,15 +67,15 @@ body {
 
 
 .login-set_center_inner {
-  padding: 20px;              /* 余白指定 */
-  height: 250px;              /* 高さ指定 */
+  padding: 20px;
+  height: 250px;
 }
 
 
 .login-field {
-  width: 200px;               /* 幅指定 */
-  height: 90px;               /* 高さ指定 */
-  margin:  0 auto;            /* 中央寄せ */
+  width: 200px;
+  height: 90px;
+  margin:  0 auto;
 }
 
 .modal_submit {
@@ -84,19 +84,18 @@ body {
 }
 
 .signin-set_center_inner {
-  text-align:  center;        /* 中央寄せ */
+  text-align:  center;
 }
 
 .signin-field {
-  width: 200px;               /* 幅指定 */
-  height: 90px;               /* 高さ指定 */
-  margin:  0 auto;            /* 中央寄せ */
+  width: 200px;
+  height: 90px;
+  margin:  0 auto;
 }
 
 .set_center_outer {
   text-align:  center;
 }
-//
 
 //共通ビュー
 .test_container {
