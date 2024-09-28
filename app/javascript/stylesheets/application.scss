@@ -241,7 +241,6 @@ select {
 }
 
 
-
 .list_buttons {
   display: flex;
   justify-content: center;
@@ -273,8 +272,6 @@ select {
   margin-top: 0;
   margin-bottom: 0;
 }
-
-
 
 
 .modal_submit {
@@ -573,9 +570,9 @@ label {
   z-index: 2;
 }
 
-.favorite-box{
-  border-bottom: 1px solid #BDBDBD;
-}
+// .favorite-box{
+//   border-bottom: 1px solid #BDBDBD;
+// }
 
 .col-lg-6 {
   border-left: 1px solid #BDBDBD;
@@ -583,6 +580,7 @@ label {
 }
 
 .three-content,
+.center-box,
 .tow-content {
   border-left: 1px solid #BDBDBD;
   border-right: 1px solid #BDBDBD;
@@ -593,17 +591,10 @@ label {
   border-bottom: 1px solid #BDBDBD;
 }
 
+.favorite-box,
+.left-box,
 .three-content {
   border-bottom: 1px solid #BDBDBD;
-}
-
-.center-box {
-  border-left: 1px solid #BDBDBD;
-  border-right: 1px solid #BDBDBD;
-}
-
-.left-box {
-  border-right: 1px solid #BDBDBD;
 }
 
 .p-image_edit {
