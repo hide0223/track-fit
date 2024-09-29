@@ -19,7 +19,7 @@
     <%= search_form_for @meal_q, url: public_meal_search_path do |f| %>
     <div class="search">
       <div>
-        <%= f.search_field :meal_contents_eat_meal_cont, class: "search form-control light-color", placeholder: "食べ物を入力" %>
+        <%= f.search_field :category_or_meal_contents_eat_meal_cont, class: "search form-control light-color", placeholder: "主食や食べ物を入力" %>
       </div>
       <div>
         <button class="btn btn-outline-dark" type="submit">
