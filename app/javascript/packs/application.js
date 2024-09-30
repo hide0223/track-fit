@@ -66,10 +66,12 @@ $(document).on('turbolinks:load', function() {
       // 隠す
       visibleBgBlack.removeClass('d-block').addClass('d-none');
       visibleMenu.removeClass('d-block position-fixed w-100').addClass('d-none col-lg-3');
+      $('body').css('overflow', 'auto');
     } else {
       // 表示する
       visibleBgBlack.removeClass('d-none').addClass('d-block');
       visibleMenu.removeClass('d-none col-lg-3').addClass('d-block position-fixed w-100');
+      $('body').css('overflow', 'hidden');
     }
   }
 });
