@@ -17,7 +17,6 @@ class Meal < ApplicationRecord
     ["body", "category", "created_at", "customer_id", "id", "title", "updated_at"]
   end
 
-
   def self.ransackable_associations(auth_object = nil)
     ["meal_contents"]
   end
