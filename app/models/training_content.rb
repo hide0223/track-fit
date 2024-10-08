@@ -7,4 +7,5 @@ class TrainingContent < ApplicationRecord
   def self.ransackable_attributes(auth_object = nil)
     ["body_parts", "created_at", "exercise", "id", "reps", "sets", "training_id", "updated_at", "weight"]
   end
+  
 end
