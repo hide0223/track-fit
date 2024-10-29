@@ -105,15 +105,14 @@ ActiveRecord::Schema.define(version: 2024_10_08_182033) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.string "subject_type"
-    t.integer "subject_id"
-    t.integer "customer_id"
-    t.integer "action_type", null: false
-    t.boolean "checked"
+    t.integer "costomer_id", null: false
+    t.string "notifiable_type", null: false
+    t.integer "notifiable_id", null: false
+    t.boolean "read", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["customer_id"], name: "index_notifications_on_customer_id"
-    t.index ["subject_type", "subject_id"], name: "index_notifications_on_subject"
+    t.index ["costomer_id"], name: "index_notifications_on_costomer_id"
+    t.index ["notifiable_type", "notifiable_id"], name: "index_notifications_on_notifiable"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -161,6 +160,6 @@ ActiveRecord::Schema.define(version: 2024_10_08_182033) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "meal_contents", "meals"
-  add_foreign_key "notifications", "customers"
+  add_foreign_key "notifications", "costomers"
   add_foreign_key "training_contents", "trainings"
 end
